@@ -9,10 +9,11 @@ package hotelBooking.core.domain;
  *
  * @author PANDA Sourav
  */
-public class User {
+public class Hotel {
     
     private String name;
     private String id;
+    private String city;
 
     public String getName() {
         return name;
@@ -22,13 +23,20 @@ public class User {
         this.name = name;
     }
 
-    public String getUserID() {
+    public String getId() {
         return id;
     }
 
-    public void setUserID(String userID) {
-        this.id = userID;
+    public void setId(String id) {
+        this.id = id;
     }
-    
-    
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
 }
