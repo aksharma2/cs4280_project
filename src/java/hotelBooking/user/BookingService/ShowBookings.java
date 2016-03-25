@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ShowBookings extends HttpServlet {
 
+    public static int userCounts=1;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,6 +37,26 @@ public class ShowBookings extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+         String action = request.getParameter("action");
+
+        if (action != null) {
+            // call different action depends on the action parameter
+            if (action.equalsIgnoreCase("update")) {
+                this.doUpdateEntry(request, response);
+            }
+          
+        }
+
+        this.doRetrieveEntry(request, response);
+        
+    }
+
+    
+    
+    private void doRetrieveEntry(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
          int numRow = 1;
@@ -68,7 +91,7 @@ public class ShowBookings extends HttpServlet {
            out.println("<p>Total"+numRow+"entries.</p>");
             out.println("<div><table style='width:100%'>");
             out.println("<thead>");
-            out.println("<th align='left'>Hotel</th><th align='left'>Room Type</th><th align='left'>Action</th>");
+            out.println("<th align='left'>Hotel</th><th align='left'>Room Type</th><th align='left'>User Name</th>");
             out.println("</thead>");
             out.println("<tbody>");
             
@@ -81,9 +104,12 @@ public class ShowBookings extends HttpServlet {
                 
                 
             out.println("<tr>");
-            out.println("<td>" + this.htmlEncode(user) + "</td>");
             out.println("<td>" + this.htmlEncode(hotel) + "</td>");
+            out.println("<td>" + this.htmlEncode(room) + "</td>");
             out.println("<td>" + this.htmlEncode(user) + "</td>");
+             out.println("<td>");
+            out.println("<a href='" + request.getRequestURI() + "?action=update&userid=" + user + "'>Update</a>");
+           out.println("</td>");
              out.println("</tr>");
                 
                 
@@ -119,7 +145,125 @@ public class ShowBookings extends HttpServlet {
             out.close();
         }
     }
+    
+     private void doUpdateEntry(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+         
+         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Show Bookings</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Boookings (Update)</h1>");
+            out.println("<div style='width:600px'>");
+            out.println("<fieldset>");
+            
+            
+            String hotel = request.getParameter("hotels");
+            String room = request.getParameter("rooms");
+            String USERID= request.getParameter("userid");
+            
+             Statement stmt;
+             ResultSet rs;
+             Connection con=null;
 
+            if (hotel != null && !hotel.equalsIgnoreCase("") &&
+                room != null && !room.equalsIgnoreCase("")) 
+            { 
+                
+                    
+                  
+                String userName= "User" + userCounts;
+                // Register the JDBC driver, open a connection
+                userCounts+=1;
+                
+                // Create a preparedstatement to set the SQL statement			 
+                PreparedStatement pstmt = con.prepareStatement("UPDATE [Booking] SET [roomID] = ? , [hotelID] =?   WHERE [userID] = ?");
+
+                pstmt.setString(1,hotel);
+                pstmt.setString(2, room);
+                pstmt.setString(3, USERID);
+  
+                // execute the SQL statement
+                int rows = pstmt.executeUpdate();
+
+                if (rows > 0) {
+                    out.println("<legend>New record is sucessfully created.</legend>");
+                    // display the information of the record just added including UID
+                    stmt=con.createStatement();
+                    rs=stmt.executeQuery("SELECT @@IDENTITY AS [@@IDENTITY]");
+                    if(rs!=null && rs.next()!=false)
+                    {
+                        out.println("<p>UserID: "+USERID+"</p>");
+                        rs.close();
+                    }
+                   
+					
+                    out.println("<p>Hotel:" + this.htmlEncode(hotel) + "</p>");
+                    out.println("<p>Room:" + room + "</p>");
+                }
+                else {
+                    out.println("<legend>ERROR: New Booking failed to Update.</legend>");
+                }
+            }
+            else {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                con = DriverManager.getConnection("jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad025_db", "aiad025", "aiad025");
+             
+                String useridString=request.getParameter("userid");
+                stmt=con.createStatement();
+                rs=stmt.executeQuery("SELECT * FROM [Booking]");
+
+                
+                if (hotel == null) {
+                    hotel = "";
+                }
+                if (room == null) {
+                   room = "";
+                }				
+               out.println("<legend>Please fill in the form</legend>");
+                out.println("<form method='POST' action='" + request.getRequestURI() + "'>");
+                out.println("<input name='action' type='hidden' value='create' />");
+                out.println("<p>Hotel:");
+                out.println(" <select name=\"hotels\">\n" +
+"    <option value=\"hyatt\">Hyatt</option>\n" +
+"    <option value=\"radisson\">Radisson</option>\n" +
+"    <option value=\"itc\">ITC</option>\n" +
+"    <option value=\"leela\">Leela Palace</option>\n" +
+"  </select></p>");
+                out.println("<p>Room Type:");
+                out.println(" <select name=\"rooms\">\n" +
+"    <option value=\"single\">Single</option>\n" +
+"    <option value=\"deluxe\">Deluxe</option>\n" +
+"    <option value=\"suite\">Suite</option>\n" +
+"    <option value=\"prsuite\">Presidential Suite</option>\n" +
+"  </select></p>");
+                
+                out.println("<input type='submit' value='Make Booking!' />");
+                out.println("</form>");
+            
+                 if (stmt !=null)
+                        stmt.close();
+            }
+            
+            out.println("</fieldset>");
+            out.println("</div>");
+            out.println("</body>");
+            out.println("</html>");
+        } catch (ClassNotFoundException e) {
+            out.println("<div style='color: red'>" + e.toString() + "</div>");
+        } catch (SQLException e) {
+            out.println("<div style='color: red'>" + e.toString() + "</div>");
+        } finally {
+            out.close();
+        }
+		
+         
+     }
+     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
