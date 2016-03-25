@@ -134,7 +134,7 @@ public class MakeBooking extends HttpServlet {
 "    <option value=\"single\">Single</option>\n" +
 "    <option value=\"deluxe\">Deluxe</option>\n" +
 "    <option value=\"suite\">Suite</option>\n" +
-"    <option value=\"presidential\">Presidential Suite</option>\n" +
+"    <option value=\"prsuite\">Presidential Suite</option>\n" +
 "  </select></p>");
                 
                 out.println("<input type='submit' value='Make Booking!' />");
