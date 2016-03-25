@@ -12,6 +12,6 @@
         <title>User View</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>JSP Request Dispatcher - successful</h1>
     </body>
 </html>
