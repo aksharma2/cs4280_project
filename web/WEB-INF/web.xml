@@ -12,6 +12,14 @@
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>hotelBooking.web.servlet.user.RegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MakeBooking</servlet-name>
+        <servlet-class>hotelBooking.user.BookingService.MakeBooking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowBookings</servlet-name>
+        <servlet-class>hotelBooking.user.BookingService.ShowBookings</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/Test</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MakeBooking</servlet-name>
+        <url-pattern>/MakeBooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowBookings</servlet-name>
+        <url-pattern>/ShowBookings</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
