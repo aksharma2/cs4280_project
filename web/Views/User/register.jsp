@@ -55,7 +55,7 @@
                     </div>
 
                     <div align="center">
-                        You have already an account? <a href="/login">Sign in here</a>
+                        You have already an account? <a href="login">Sign in here</a>
                     </div>
 
                 </fieldset>

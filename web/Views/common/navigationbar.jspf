@@ -27,7 +27,7 @@
             <%--not logged in mode --%>
             <c:if test="${sessionScope.user == null}">
             <ul class="nav pull-right">
-                <li class="${requestScope.registerTabStyle}"><a href="/register">Register</a></li>
+                <li class="${requestScope.registerTabStyle}"><a href="register">Register</a></li>
                 <li class="${requestScope.loginTabStyle}"><a href="login">Login</a></li>
             </ul>
             </c:if>
