@@ -1,0 +1,13 @@
+</body> <!--mentioned in header. jspf -->
+<footer>
+    <div class="container">
+        <div class="row well">
+            <div align="center">
+            <p>&copy; 2016 ASS Hotel Booking Service</p>
+        </div>
+    </div>
+    </div>
+</footer>
+
+</body>
+</html>
