@@ -67,33 +67,22 @@ public class MakeBooking extends HttpServlet {
                 b.setUserID(userName);
                 
                 
-               
+                BookingDBHandler db = new BookingDBHandler();
                 
+                boolean isConnectionMade = db.makeConnection();
                 
-                
-                // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-                
-                Connection con = DriverManager.getConnection("jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad025_db", "aiad025", "aiad025");
-               
-                // Create a preparedstatement to set the SQL statement	
-                PreparedStatement pstmt = con.prepareStatement("INSERT INTO [Booking] ([roomID], [hotelID], [userID]) VALUES (?, ?, ?)");
-                pstmt.setString(1, b.getRoomID());
-                pstmt.setString(2, b.getHotelID());
-                pstmt.setString(3,b.getUserID());
-                
-
-                int rows = pstmt.executeUpdate();
-
-                 
-                if (rows > 0) {
+                if(isConnectionMade)
+                    
+                {
+                    boolean addBooking = db.makeMybooking(b);
+                    
+                    if(addBooking)
+                        {
                     out.println("<legend>New Booking is sucessfully made.</legend>");
                     // display the information of the record just added including UID
                     
-                    Statement stmt = con.createStatement();
-                    ResultSet rs = stmt.executeQuery("SELECT @@IDENTITY AS [@@IDENTITY]");
-                    
+                    Statement stmt = db.getStatement();
+                    ResultSet rs = db.returnResult();
                     
                     if (rs != null && rs.next() != false) {
                             out.println("<p>Room: " + (b.getRoomID()) + "</p>");
@@ -105,7 +94,7 @@ public class MakeBooking extends HttpServlet {
                             stmt.close();
                     }
 
-					
+                 }			
                     
                 }
                 else {
@@ -144,8 +133,6 @@ public class MakeBooking extends HttpServlet {
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
-        } catch (ClassNotFoundException e) {
-            out.println("<div style='color: red'>" + e.toString() + "</div>");
         } catch (SQLException e) {
             out.println("<div style='color: red'>" + e.toString() + "</div>");
         } finally {
@@ -153,7 +140,8 @@ public class MakeBooking extends HttpServlet {
         }
         
         
-        
+                    
+               
         
     }
 

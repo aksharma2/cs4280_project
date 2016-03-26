@@ -59,7 +59,12 @@ public class ShowBookings extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-         int numRow = 1;
+        
+        Connection con;
+         int numRow ;
+         Statement stmt;
+         ResultSet rs;
+         
         
         try {
             out.println("<html>");
@@ -72,23 +77,23 @@ public class ShowBookings extends HttpServlet {
             out.println("<fieldset>");
             out.println("<legend>Booked Rooms</legend>");
             
+             
+            BookingDBHandlerRetreive db = new BookingDBHandlerRetreive();
             
-                
-            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
+            boolean isConnectionMade = db.makeConnection();
             
-            Connection con = DriverManager.getConnection("jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad025_db", "aiad025", "aiad025");
-            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs = stmt.executeQuery("SELECT * FROM [Booking] ");
-            
-            if (rs != null && rs.last() != false)
+            if(isConnectionMade)
             {
-            numRow = rs.getRow();
-            rs.beforeFirst();
-            }
-
-           out.println("<p>Total"+numRow+"entries.</p>");
+                boolean showBookings = db.showMybookings();
+                
+                if(showBookings)
+                {
+                    numRow=db.returnNumOfRows();
+                    con=db.getConnection();
+                    rs=db.getResultSet();
+                    stmt=db.returnStatement();
+                    
+                      out.println("<p>Total"+numRow+"entries.</p>");
             out.println("<div><table style='width:100%'>");
             out.println("<thead>");
             out.println("<th align='left'>Hotel</th><th align='left'>Room Type</th><th align='left'>User Name</th>");
@@ -114,11 +119,14 @@ public class ShowBookings extends HttpServlet {
                 
                 
             }
+                    
+                    
+            }
+         }
             
             out.println("</tbody>");
             out.println("</table></div>");
-          //  out.println("<br/><a href='" + request.getRequestURI() + "?action=create'>Add a New Phonebook Entry</a>");
-            out.println("</fieldset>");
+              out.println("</fieldset>");
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
@@ -133,11 +141,8 @@ public class ShowBookings extends HttpServlet {
             if (con != null) {
                 con.close();
             }
- 
-            
-         } catch (ClassNotFoundException e) {
-               out.println("<div style='color: red'>" + e.toString() + "</div>");
-        } catch (SQLException e) {
+  
+         } catch (SQLException e) {
                out.println("<div style='color: red'>" + e.toString() + "</div>");
         }
 
