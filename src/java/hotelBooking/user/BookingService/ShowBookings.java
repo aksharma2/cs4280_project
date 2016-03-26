@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -180,10 +181,13 @@ public class ShowBookings extends HttpServlet {
             { 
                 
                     
-                  
-                String userName= "User" + userCounts;
-                // Register the JDBC driver, open a connection
-                userCounts+=1;
+                /*  
+               Long id ;
+              Random rand = new Random();
+              id=rand.nextLong();
+              
+              String userName=Long.toString(id);
+              */
                 
                 // Create a preparedstatement to set the SQL statement			 
                 PreparedStatement pstmt = con.prepareStatement("UPDATE [Booking] SET [roomID] = ? , [hotelID] =?   WHERE [userID] = ?");

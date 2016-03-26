@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import hotelBooking.core.domain.Booking;
+import java.util.Random;
 /**
  *
  * @author shrankhla
@@ -55,11 +56,12 @@ public class MakeBooking extends HttpServlet {
             if (hotel != null && !hotel.equalsIgnoreCase("") &&
                 room != null && !room.equalsIgnoreCase("")) {
 
-                
-                String userName= "User" + userCount;
-                // Register the JDBC driver, open a connection
-                userCount+=1;
-                
+              
+              Long id ;
+              Random rand = new Random();
+              id=rand.nextLong();
+              
+              String userName=Long.toString(id);
 
                 Booking b = new Booking();
                 b.setHotelID(hotel);
