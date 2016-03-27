@@ -26,9 +26,9 @@
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label" for="email">Email:</label>
+                        <label class="control-label" for="email">User ID:</label>
                         <div class="controls">
-                            <input id="email" name="email" type="email" class="input-medium" placeholder="your@email.com" required="required"/>
+                            <input id="email" name="userID" type="text" class="input-medium" required="required"/>
                             <p class="help-block alert-error"><c:out value="${requestScope.errorEmail}"/></p>
                         </div>
                     </div>

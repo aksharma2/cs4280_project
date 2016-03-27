@@ -111,15 +111,22 @@ public class UserDBHandler {
     
     }
     
-    public boolean deleteUser()
+    public boolean deleteUser(String id)
     {
         boolean success = false;
         PreparedStatement pstmt;
         try {
+            
+            //Create Entry in the PROJ_USER table
             pstmt = con.prepareStatement("DELETE FROM [PROJ_USER] WHERE [ID] = (?)");
+            pstmt.setString(1, id);
+            
             int rowsUser = pstmt.executeUpdate();
             
+            //Create entry in the PROJ_USERCRED table
             pstmt = con.prepareStatement("DELETE FROM [PROJ_USERCRED] WHERE [ID] = (?)");
+            pstmt.setString(1, id);
+            
             int rowsUserCred = pstmt.executeUpdate();
             
             if(rowsUser > 0 && rowsUserCred > 0)

@@ -43,5 +43,30 @@ public class UserService {
     
     }
     
+    public static boolean deleteUser(String id)
+    {
+        boolean success = false;
+        UserDBHandler db = new UserDBHandler();
+        db = new UserDBHandler();
+        if(db.setupConnection())
+        {
+            success = db.deleteUser(id);
+        }
+        db.closeConnection();
+        return success;
+    }
+    
+    public static boolean dropUserTables()
+    {
+        boolean success = false;
+        UserDBHandler db = new UserDBHandler();
+        db = new UserDBHandler();
+        if(db.setupConnection())
+        {
+            success = db.clearTable();
+        }
+        db.closeConnection();
+        return success;
+    }
     
 }

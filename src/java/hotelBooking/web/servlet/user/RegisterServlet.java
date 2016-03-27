@@ -44,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
         registration.setName(request.getParameter("name"));
         registration.setPassword(request.getParameter("password"));
         registration.setConfirmationPassword(request.getParameter("confirmationPassword"));
-        registration.setUserID(request.getParameter("email"));
+        registration.setUserID(request.getParameter("userID"));
         
         boolean valid = registration.validate();
         boolean added = false;

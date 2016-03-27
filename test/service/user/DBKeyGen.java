@@ -21,8 +21,8 @@ public class DBKeyGen {
     
      public static void main(String[] arg) throws ClassNotFoundException
     {   
-        
-        ArrayList<User> allUsers = UserService.findUser();
+        boolean b = UserService.dropUserTables();
+        //Boolean d = UserService.deleteUser("spanda20");
         
         int x = 4;
     }

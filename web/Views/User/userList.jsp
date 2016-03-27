@@ -19,38 +19,27 @@
 
                     <thead>
                     <tr>
-                        <th>Name</th>
                         <th>ID</th>
+                        <th>Name</th>
                         <th>Action</th>
-                        <th>Confirm</th>
+                        
                     </tr>
                     </thead>
 
                     <tbody>
                     <c:forEach items="${requestScope.userList}" var="currentUser">
                         <tr>
+                            <td>Resolve Later</td>
                             <td>${currentUser.name}</td>
-                            <td>Resolve Later!</td>
-                            <%--
-                            <td><span class="label <tl:statusStyle status="${currentTodo.done}"/> "> <tl:statusLabel status="${currentTodo.done}"/></span></td>
                             <td>
-                                <a class="btn btn-mini btn-danger" data-toggle="modal" href="#confirm_delete_${currentTodo.id}"><i class="icon-remove icon-white"></i> Delete</a>
-                                <div class="modal hide" id="confirm_delete_${currentTodo.id}">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">×</button>
-                                        <h3>Confirmation</h3>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Are you sure to delete todo ${currentTodo.id} '${currentTodo.title}' ?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <form action="/todos/delete.do" method="post">
-                                            <input type="hidden" name="todoId" value="${currentTodo.id}">
-                                            <a href="#" class="btn" data-dismiss="modal">Cancel</a> <button type="submit" class="btn btn-primary">Confirm</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>--%>
+                                
+                                <form action="Delete" method="post">
+                                    <input type="hidden" name="idToDel" value="Resolve Later">
+                                    <button type="submit" class="btn btn-primary">DELETE</button>
+                                </form>
+                                
+                            </td>
+                            
                         </tr>
                     </c:forEach>
 
@@ -72,10 +61,12 @@
 
                 <c:if test="${not empty requestScope.userList}">
                 <div align="center">
-                    <button class="btn" onclick="javascript:window.print()">
-                        <i class="icon-print"></i>
-                        Print my todo list
-                    </button>
+                   
+                    <form action="Delete" method="post">
+                        
+                        <button type="submit" class="btn btn-primary">Drop Table</button>
+                    </form>
+                    
                 </div>
                 </c:if>
 
