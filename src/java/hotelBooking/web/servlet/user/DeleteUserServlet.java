@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DeleteUserServlet extends HttpServlet {
 
-     @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if(request.getAttribute("idToDel") != null)
