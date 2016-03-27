@@ -43,6 +43,20 @@ public class UserService {
     
     }
     
+    public static User findUser(String id)
+    {
+        User u = null;
+        UserDBHandler db = new UserDBHandler();
+        db = new UserDBHandler();
+        if(db.setupConnection())
+        {
+            u = db.findUser(id);
+        }
+        db.closeConnection();
+        return u;
+    
+    }
+    
     public static boolean deleteUser(String id)
     {
         boolean success = false;
@@ -69,4 +83,27 @@ public class UserService {
         return success;
     }
     
+    public static boolean authenticate(UserCredential cred)
+    {
+       
+        boolean isAuthenticated = false;
+        UserDBHandler db = new UserDBHandler();
+        db = new UserDBHandler();
+        if(db.setupConnection())
+        {
+            User u = db.findUser(cred.getUserID());
+            if(u != null)
+            {
+                isAuthenticated = db.checkPassword(cred);
+            }
+            else
+            {
+                isAuthenticated =  false;
+            }
+            
+        }
+        db.closeConnection();
+        return isAuthenticated;
+    
+    }
 }

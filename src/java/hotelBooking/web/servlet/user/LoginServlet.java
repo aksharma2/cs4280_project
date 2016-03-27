@@ -6,6 +6,8 @@
 
 package hotelBooking.web.servlet.user;
 
+import hotelBooking.core.domain.UserCredential;
+import hotelBooking.core.services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -28,4 +30,22 @@ public class LoginServlet extends HttpServlet {
         dispatcher.forward(request,response);
     }
     
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("loginTabStyle", "active");
+        String nextJSP = "/Views/User/login.jsp";
+        
+        String errorText = "";
+        
+        UserCredential cred = new UserCredential();
+        
+        cred.setPassword(request.getParameter("password"));
+        cred.setUserID(request.getParameter("userID"));
+        
+        //if(UserService.authenticate(cred))
+            
+            
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        dispatcher.forward(request,response);
+    }
 }
