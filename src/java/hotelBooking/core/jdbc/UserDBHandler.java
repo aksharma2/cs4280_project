@@ -7,11 +7,14 @@ package hotelBooking.core.jdbc;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import hotelBooking.core.domain.User;
+import hotelBooking.core.domain.UserCredential;
 import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +29,7 @@ public class UserDBHandler {
     public boolean setupConnection()
     {
         boolean success = false;
-        
+       
         try
         {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -44,31 +47,113 @@ public class UserDBHandler {
         return success;
     }
     
-    public boolean registerUser(User u)
+    public void closeConnection()
     {
+        if(this.con!=null)
+            try {
+                con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
+    
+    public boolean registerUser(UserCredential u)
+    {
         boolean success = false;
-        
         PreparedStatement pstmt;
         try {
-            pstmt = con.prepareStatement("INSERT INTO [PROJ_USER] ([Name], [ID] ) VALUES (?, ?)");
+            
+            //Create Entry in the PROJ_USER table
+            pstmt = con.prepareStatement("INSERT INTO [PROJ_USER] ( [Name], [ID] ) VALUES (?, ?)");
             pstmt.setString(1, u.getName());
             pstmt.setString(2, u.getUserID());
             
-            int rows = pstmt.executeUpdate();
-            if(rows > 0)
-                success = true;
+            int rowsUser = pstmt.executeUpdate();
             
+            //Create entry in the PROJ_USERCRED table
+            pstmt = con.prepareStatement("INSERT INTO [PROJ_USERCRED] ( [Name], [ID], [Password] ) VALUES (?, ?, ?)");
+            pstmt.setString(1, u.getName());
+            pstmt.setString(2, u.getUserID());
+            pstmt.setString(3, u.getPassword());
+            
+            int rowsUserCred = pstmt.executeUpdate();
+            
+            if(rowsUser > 0 && rowsUserCred > 0)
+                success = true;
         }
         catch (SQLException ex) {
             success = false;
         }
-        
-        
         return success;
     
     }
     
+    public boolean clearTable()
+    {
+        boolean success = false;
+        PreparedStatement pstmt;
+        try {
+            pstmt = con.prepareStatement("DELETE FROM [PROJ_USER]");
+            int rowsUser = pstmt.executeUpdate();
+            
+            pstmt = con.prepareStatement("DELETE FROM [PROJ_USERCRED]");
+            int rowsUserCred = pstmt.executeUpdate();
+            
+            
+            if(rowsUser > 0 && rowsUserCred > 0)
+                success = true;
+        }
+        catch (SQLException ex) {
+            success = false;
+        }
+        return success;
+    
+    }
+    
+    public boolean deleteUser()
+    {
+        boolean success = false;
+        PreparedStatement pstmt;
+        try {
+            pstmt = con.prepareStatement("DELETE FROM [PROJ_USER] WHERE [ID] = (?)");
+            int rowsUser = pstmt.executeUpdate();
+            
+            pstmt = con.prepareStatement("DELETE FROM [PROJ_USERCRED] WHERE [ID] = (?)");
+            int rowsUserCred = pstmt.executeUpdate();
+            
+            if(rowsUser > 0 && rowsUserCred > 0)
+                success = true;
+        }
+        catch (SQLException ex) {
+            success = false;
+        }
+        return success;
+    
+    }
+    
+    public ArrayList<User> findUser()
+    {
+        
+        ArrayList<User> allusers = new ArrayList<User>();
+        
+        PreparedStatement pstmt;
+        try {
+            pstmt = con.prepareStatement("SELECT * FROM [PROJ_USER]");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) 
+            {
+               User u = new User(rs.getString("Name"), rs.getString("ID"));
+               allusers.add(u);
+            }
+            
+        }
+        catch (SQLException ex) {
+            //DO nothing
+        }
+        
+         return allusers;
+    }
     
     
     

@@ -6,6 +6,9 @@
 package hotelBooking.core.services;
 
 import hotelBooking.core.domain.User;
+import hotelBooking.core.domain.UserCredential;
+import hotelBooking.core.jdbc.UserDBHandler;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,12 +16,31 @@ import hotelBooking.core.domain.User;
  */
 public class UserService {
  
-    public static User getUserByID(String id)
+    public static boolean registerUser(UserCredential u)
     {
-        User u = new User();
-        u.setName("Sourav Panda");
-        u.setUserID("spanda2");
-        return u;
+        boolean success = false;
+        UserDBHandler db = new UserDBHandler();
+        db = new UserDBHandler();
+        if(db.setupConnection())
+        {
+            success = db.registerUser(u);
+        }
+        db.closeConnection();
+        return success;
+    }
+    
+    public static ArrayList<User> findUser()
+    {
+        ArrayList<User> allusers = null;
+        UserDBHandler db = new UserDBHandler();
+        db = new UserDBHandler();
+        if(db.setupConnection())
+        {
+            allusers = db.findUser();
+        }
+        db.closeConnection();
+        return allusers;
+    
     }
     
     

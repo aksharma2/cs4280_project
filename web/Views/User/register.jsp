@@ -11,7 +11,7 @@
                 <h1>Sign up</h1>
             </div>
 
-            <form class="well form-horizontal" method="post" action="/register.do">
+            <form class="well form-horizontal" method="post" action="register">
 
                 <%@ include file="../common/error.jspf"%>
 

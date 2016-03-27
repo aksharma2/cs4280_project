@@ -12,32 +12,28 @@
         <div class="span9">
             <div class="well">
                 <div class="page-header">
-                    <h1>My Todo list</h1>
+                    <h1>Users Registered to this system</h1>
                 </div>
 
                 <table class="table table-bordered table-striped">
 
                     <thead>
                     <tr>
+                        <th>Name</th>
                         <th>ID</th>
-                        <th>Title</th>
-                        <th>Due Date</th>
-                        <th>Priority</th>
-                        <th>Status</th>
                         <th>Action</th>
+                        <th>Confirm</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    <c:forEach items="${requestScope.todoList}" var="currentTodo">
+                    <c:forEach items="${requestScope.userList}" var="currentUser">
                         <tr>
-                            <td>${currentTodo.id}</td>
-                            <td>${currentTodo.title}</td>
-                            <td><fmt:formatDate value="${currentTodo.dueDate}" pattern="dd/MM/yyyy"/></td>
-                            <td><i class="icon-circle-arrow-<tl:priorityIcon priority="${currentTodo.priority}"/>"></i> ${currentTodo.priority}</td>
+                            <td>${currentUser.name}</td>
+                            <td>Resolve Later!</td>
+                            <%--
                             <td><span class="label <tl:statusStyle status="${currentTodo.done}"/> "> <tl:statusLabel status="${currentTodo.done}"/></span></td>
                             <td>
-                                <a class="btn btn-mini btn-primary" href="/todos/update?todoId=${currentTodo.id}"><i class="icon-edit icon-white"></i> Edit</a>
                                 <a class="btn btn-mini btn-danger" data-toggle="modal" href="#confirm_delete_${currentTodo.id}"><i class="icon-remove icon-white"></i> Delete</a>
                                 <div class="modal hide" id="confirm_delete_${currentTodo.id}">
                                     <div class="modal-header">
@@ -54,27 +50,27 @@
                                         </form>
                                     </div>
                                 </div>
-                            </td>
+                            </td>--%>
                         </tr>
                     </c:forEach>
 
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="2"><div align="center">Total = <span class="badge badge-inverse">${requestScope.totalCount}</span></div></td>
-                        <td colspan="2"><div align="center">Todo = <span class="badge">${requestScope.todoCount}</span></div></td>
-                        <td colspan="2"><div align="center">Done = <span class="badge badge-success">${requestScope.doneCount}</span></div></td>
+                        
+                        <td colspan="2"><div align="center">Todo = <span class="badge">${requestScope.userCount}</span></div></td>
+                        
                     </tr>
                     </tfoot>
                 </table>
 
-                <c:if test="${empty requestScope.todoList}">
+                <c:if test="${empty requestScope.userList}">
                     <div class="alert alert-info">
                         <div align="center">Your todo list is empty !</div>
                     </div>
                 </c:if>
 
-                <c:if test="${not empty requestScope.todoList}">
+                <c:if test="${not empty requestScope.userList}">
                 <div align="center">
                     <button class="btn" onclick="javascript:window.print()">
                         <i class="icon-print"></i>

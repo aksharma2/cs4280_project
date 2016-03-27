@@ -61,10 +61,10 @@ public class ShowBookings extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        Connection con;
+        Connection con = null;
          int numRow ;
-         Statement stmt;
-         ResultSet rs;
+         Statement stmt = null;
+         ResultSet rs = null;
          
         
         try {
