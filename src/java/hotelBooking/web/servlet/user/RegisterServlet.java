@@ -75,7 +75,7 @@ public class RegisterServlet extends HttpServlet {
         }
         else
         {
-            errorText += "\n Your password and confirmation password dont match";
+            errorText += "\n Your password and confirmation password dont match Or is not 6 characters in length!";
             request.setAttribute("error", errorText);
         }
         

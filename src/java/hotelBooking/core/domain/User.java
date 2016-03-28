@@ -20,7 +20,7 @@ public class User {
     }
 
     public User() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     
@@ -32,11 +32,11 @@ public class User {
         this.name = name;
     }
 
-    public String getUserID() {
+    public String getId() {
         return id;
     }
 
-    public void setUserID(String userID) {
+    public void setId(String userID) {
         this.id = userID;
     }
     

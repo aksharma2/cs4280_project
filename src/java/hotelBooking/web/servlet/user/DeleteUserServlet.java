@@ -27,8 +27,8 @@ public class DeleteUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(request.getAttribute("idToDel") != null)
-            UserService.deleteUser((String) request.getAttribute("id"));
+        if(request.getParameter("idToDel") != null)
+            UserService.deleteUser((String) request.getParameter("idToDel"));
         else
             UserService.dropUserTables();
         

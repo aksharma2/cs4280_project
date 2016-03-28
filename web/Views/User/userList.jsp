@@ -29,12 +29,12 @@
                     <tbody>
                     <c:forEach items="${requestScope.userList}" var="currentUser">
                         <tr>
-                            <td>Resolve Later</td>
+                            <td>${currentUser.id}</td>
                             <td>${currentUser.name}</td>
                             <td>
                                 
                                 <form action="Delete" method="post">
-                                    <input type="hidden" name="idToDel" value="Resolve Later">
+                                    <input type="hidden" name="idToDel" value=${currentUser.id}>
                                     <button type="submit" class="btn btn-primary">DELETE</button>
                                 </form>
                                 
@@ -55,7 +55,7 @@
 
                 <c:if test="${empty requestScope.userList}">
                     <div class="alert alert-info">
-                        <div align="center">Your todo list is empty !</div>
+                        <div align="center">No one is registered to the system</div>
                     </div>
                 </c:if>
 
@@ -64,7 +64,7 @@
                    
                     <form action="Delete" method="post">
                         
-                        <button type="submit" class="btn btn-primary">Drop Table</button>
+                        <button type="submit" class="btn btn-primary">Clear Table</button>
                     </form>
                     
                 </div>

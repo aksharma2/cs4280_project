@@ -20,11 +20,13 @@ import java.util.ArrayList;
 public class DBKeyGen {
     
      public static void main(String[] arg) throws ClassNotFoundException
-    {   
-        boolean b = UserService.dropUserTables();
-        //Boolean d = UserService.deleteUser("spanda20");
+    {  
         
-        int x = 4;
+         ArrayList<User> u = UserService.findUser();
+        
+        
+        
+        int x = 5;
     }
             
    

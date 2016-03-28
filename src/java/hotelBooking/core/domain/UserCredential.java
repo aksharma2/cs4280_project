@@ -51,7 +51,7 @@ public class UserCredential {
     
     public boolean validate()
     {
-        return this.password.equals(this.confirmationPassword);
+        return this.password.equals(this.confirmationPassword) && this.password.length() >= 6;
     }
     
 }

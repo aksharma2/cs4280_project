@@ -46,7 +46,7 @@ public class UserService {
     public static User findUser(String id)
     {
         User u = null;
-        UserDBHandler db = new UserDBHandler();
+        UserDBHandler db = null;
         db = new UserDBHandler();
         if(db.setupConnection())
         {

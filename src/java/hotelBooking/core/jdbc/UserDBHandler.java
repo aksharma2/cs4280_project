@@ -171,11 +171,15 @@ public class UserDBHandler {
             pstmt.setString(1, id);
             User user = null;
             ResultSet rs = pstmt.executeQuery();
-            
-            if(rs.getString("Name")!=null && rs.getString("ID") != null)
-                user = new User(rs.getString("Name"), rs.getString("ID"));
-            
-            return user;
+            while (rs.next()) 
+            {
+               if(rs.getString("Name")!=null && rs.getString("ID") != null)
+               {
+                    user = new User(rs.getString("Name"), rs.getString("ID"));
+                    return user;
+               }
+            }
+             
         }
         catch (SQLException ex) {
             //DO nothing
@@ -189,16 +193,18 @@ public class UserDBHandler {
         PreparedStatement pstmt;
         try {
             pstmt = con.prepareStatement("SELECT * FROM [PROJ_USERCRED] WHERE ID = (?)");
-            pstmt.setString(1, cred.getPassword());
+            pstmt.setString(1, cred.getUserID());
             
             ResultSet rs = pstmt.executeQuery();
-            
-            String dbPassword = rs.getString("Password");
-            if(cred.getPassword().equals(dbPassword))
-                return true;
-            else
-                return false;
-            
+            while (rs.next()) 
+            {
+               String dbPassword = rs.getString("Password");
+               String dbID = rs.getString("ID");
+               
+               if(cred.getUserID().equals(dbID) && cred.getPassword().equals(dbPassword))
+                   return true;
+            }
+           
         }
         catch (SQLException ex) {
             //DO nothing
