@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotelBooking.user.BookingService;
+package hotelBooking.core.jdbc;
 
 import hotelBooking.core.domain.Booking;
 import java.sql.Connection;

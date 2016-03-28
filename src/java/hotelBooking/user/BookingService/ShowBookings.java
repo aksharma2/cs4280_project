@@ -5,6 +5,7 @@
  */
 package hotelBooking.user.BookingService;
 
+import hotelBooking.core.jdbc.BookingDBHandlerRetreive;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
