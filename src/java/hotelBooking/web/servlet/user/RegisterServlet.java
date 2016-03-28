@@ -65,6 +65,7 @@ public class RegisterServlet extends HttpServlet {
                     request.setAttribute("userList", users);
                     request.setAttribute("userCount", users.size());
                 
+                    
                 }
                 
             }

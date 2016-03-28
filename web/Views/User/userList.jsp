@@ -12,7 +12,7 @@
         <div class="span9">
             <div class="well">
                 <div class="page-header">
-                    <h1>Users Registered to this system</h1>
+                    <h1>User's Registered to this system</h1>
                 </div>
 
                 <table class="table table-bordered table-striped">
@@ -47,7 +47,7 @@
                     <tfoot>
                     <tr>
                         
-                        <td colspan="2"><div align="center">Todo = <span class="badge">${requestScope.userCount}</span></div></td>
+                        <td colspan="2"><div align="center">User Count = <span class="badge">${requestScope.userCount}</span></div></td>
                         
                     </tr>
                     </tfoot>
@@ -55,7 +55,7 @@
 
                 <c:if test="${empty requestScope.userList}">
                     <div class="alert alert-info">
-                        <div align="center">No one is registered to the system</div>
+                        <div align="center">No one is registered to the system... Even you're fucking removed, mate!</div>
                     </div>
                 </c:if>
 
@@ -63,7 +63,6 @@
                 <div align="center">
                    
                     <form action="Delete" method="post">
-                        
                         <button type="submit" class="btn btn-primary">Clear Table</button>
                     </form>
                     
