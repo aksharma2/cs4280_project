@@ -33,7 +33,7 @@ public class BookingDBHandlerRetreive {
         {
              Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-             con = DriverManager.getConnection("jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad025_db", "aiad025", "aiad025");
+             con = DriverManager.getConnection("jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad056_db", "aiad056", "aiad056");
              success=true;     
         }  catch (ClassNotFoundException e) {
             success = false;
@@ -55,7 +55,7 @@ public class BookingDBHandlerRetreive {
         try
         {
               stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-             rs = stmt.executeQuery("SELECT * FROM [Booking] ");
+             rs = stmt.executeQuery("SELECT * FROM [PROJ_BOOKING] ");
             
             if (rs != null && rs.last() != false)
             {

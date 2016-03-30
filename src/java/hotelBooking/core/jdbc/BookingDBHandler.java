@@ -29,7 +29,7 @@ public class BookingDBHandler {
         try
         {
            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-              con = DriverManager.getConnection("jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad025_db", "aiad025", "aiad025");
+              con = DriverManager.getConnection("jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad056_db", "aiad056", "aiad056");
            success=true;     
         }  catch (ClassNotFoundException e) {
             success = false;
@@ -49,7 +49,7 @@ public class BookingDBHandler {
         
         try
         {
-             PreparedStatement pstmt = con.prepareStatement("INSERT INTO [Booking] ([roomID], [hotelID], [userID]) VALUES (?, ?, ?)");
+             PreparedStatement pstmt = con.prepareStatement("INSERT INTO [PROJ_BOOKING] ([roomID], [hotelID], [userID]) VALUES (?, ?, ?)");
                 pstmt.setString(1, b.getRoomID());
                 pstmt.setString(2, b.getHotelID());
                 pstmt.setString(3,b.getUserID());
