@@ -1,3 +1,5 @@
+package hotelBooking.core.services;
+
 
 
 import hotelBooking.core.domain.Hotel;
@@ -48,9 +50,9 @@ public class HotelService extends HttpServlet{
     
      response.setContentType("text/html;charset=UTF-8");
      PrintWriter out = response.getWriter();
-     String url = "jdbc:mysql://localhost:3306/cs4280";
-     String username = "root";
-     String password = "dl4cne2577";
+     String url = "jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad056_db";
+     String username = "aiad056";
+     String password = "aiad056";
      
         try{
                 out.println("<html>");
@@ -94,9 +96,9 @@ public class HotelService extends HttpServlet{
                 h.setName(request.getParameter("hotelname"));
                 h.setCity(request.getParameter("hotelcity"));
 
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 Connection con = DriverManager.getConnection(url,username,password);
-                PreparedStatement pstmt = con.prepareStatement("INSERT INTO hotel VALUES (?, ?, ?)");
+                PreparedStatement pstmt = con.prepareStatement("INSERT INTO PROJ_HOTEL VALUES (?, ?, ?)");
                 pstmt.setString(1, h.getId());
                 pstmt.setString(2, h.getName());
                 pstmt.setString(3, h.getCity());
@@ -131,16 +133,16 @@ public class HotelService extends HttpServlet{
     
      response.setContentType("text/html;charset=UTF-8");
      PrintWriter out = response.getWriter();
-     String url = "jdbc:mysql://localhost:3306/cs4280";
-     String username = "root";
-     String password = "dl4cne2577";
+     String url = "jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad056_db";
+     String username = "aiad056";
+     String password = "aiad056";
     
      try{
          
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection(url,username,password);
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM hotel");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM PROJ_HOTEL;");
             
             out.println("<html>");
             out.println("<body>");
@@ -174,7 +176,7 @@ public class HotelService extends HttpServlet{
                 out.println("</table>");
                 out.println("</body>");
                 out.println("</html>");
-                String sql="DELETE FROM hotel WHERE hotelid = '"+request.getParameter("id")+ "'" ;
+                String sql="DELETE FROM PROJ_HOTEL WHERE hotelid = '"+request.getParameter("id")+ "'" ;
                 int rows=stmt.executeUpdate(sql);
                 
                 if(rows>0)
