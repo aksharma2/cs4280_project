@@ -19,7 +19,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="/user/account">My account</a></li>
                     <li class="divider"></li>
-                    <li><a href="Logout">Sign out</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/logout">Sign out</a></li>
                 </ul>
             </div>
             </c:if>
@@ -27,8 +27,8 @@
             <%--not logged in mode --%>
             <c:if test="${sessionScope.user == null}">
             <ul class="nav pull-right">
-                <li class="${requestScope.registerTabStyle}"><a href="register">Register</a></li>
-                <li class="${requestScope.loginTabStyle}"><a href="login">Login</a></li>
+                <li class="${requestScope.registerTabStyle}"><a href="${pageContext.request.contextPath}/user/register">Register</a></li>
+                <li class="${requestScope.loginTabStyle}"><a href="${pageContext.request.contextPath}/user/login">Login</a></li>
             </ul>
             </c:if>
 

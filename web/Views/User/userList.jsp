@@ -33,7 +33,7 @@
                             <td>${currentUser.name}</td>
                             <td>
                                 
-                                <form action="Delete" method="post">
+                                <form action="${pageContext.request.contextPath}/user/delete" method="post">
                                     <input type="hidden" name="idToDel" value=${currentUser.id}>
                                     <button type="submit" class="btn btn-primary">DELETE</button>
                                 </form>
