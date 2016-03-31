@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class UserService {
  
+    //Register a new User --> exmple registerServlet
     public static boolean registerUser(UserCredential u)
     {
         boolean success = false;
@@ -29,6 +30,7 @@ public class UserService {
         return success;
     }
     
+    //FInd User (OverLoading), returns all users registered
     public static ArrayList<User> findUser()
     {
         ArrayList<User> allusers = null;
@@ -43,6 +45,7 @@ public class UserService {
     
     }
     
+    //Returns User Instance for only 1 id
     public static User findUser(String id)
     {
         User u = null;
@@ -57,6 +60,7 @@ public class UserService {
     
     }
     
+    //DeleteUserServlet <-- see this one
     public static boolean deleteUser(String id)
     {
         boolean success = false;
@@ -70,6 +74,7 @@ public class UserService {
         return success;
     }
     
+    //Drops the entire table
     public static boolean dropUserTables()
     {
         boolean success = false;
@@ -83,6 +88,7 @@ public class UserService {
         return success;
     }
     
+    //authenticates user
     public static boolean authenticate(UserCredential cred)
     {
        

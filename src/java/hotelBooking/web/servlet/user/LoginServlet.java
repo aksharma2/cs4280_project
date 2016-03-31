@@ -63,6 +63,7 @@ public class LoginServlet extends HttpServlet {
         }
         else
         {
+            nextJSP = "/Views/User/loginfail.jsp";
             errorText += "\n Bad Credentials";
             request.setAttribute("error", errorText);
         }
