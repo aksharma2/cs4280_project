@@ -8,6 +8,7 @@ package hotelBooking.core.jdbc;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserCredential;
+import hotelBooking.core.domain.UserRole;
 import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -213,4 +214,33 @@ public class UserDBHandler {
         return false;
     
     }
+    
+    
+    public ArrayList<UserRole> getRolesAssignedToUser()
+    {
+        
+        ArrayList<UserRole> allroles = new ArrayList<UserRole>();
+        
+        PreparedStatement pstmt;
+        try {
+            pstmt = con.prepareStatement("SELECT * FROM [PROJ_USERROLEMAPPING] WHERE USERID = (?)");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) 
+            {
+               String roleName = rs.getString("ROLEID");
+               if(roleName != null){
+                    UserRole u = new UserRole(roleName);
+                    allroles.add(u);
+               }
+               
+            }
+            
+        }
+        catch (SQLException ex) {
+            //DO nothing
+        }
+        
+         return allroles;
+    }
+    
 }
