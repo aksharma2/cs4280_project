@@ -5,7 +5,7 @@
  */
 package hotelBooking.core.jdbc;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+//import com.microsoft.sqlserver.jdbc.SQLServerException;
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserCredential;
 import static java.lang.System.out;
