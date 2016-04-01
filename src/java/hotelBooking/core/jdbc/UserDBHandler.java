@@ -216,14 +216,15 @@ public class UserDBHandler {
     }
     
     
-    public ArrayList<UserRole> getRolesAssignedToUser()
+    public ArrayList<UserRole> getRolesAssignedToUser(User user)
     {
         
         ArrayList<UserRole> allroles = new ArrayList<UserRole>();
         
         PreparedStatement pstmt;
         try {
-            pstmt = con.prepareStatement("SELECT * FROM [PROJ_USERROLEMAPPING] WHERE USERID = (?)");
+            pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROLEMAPPING] WHERE USERID = (?)");
+            pstmt.setString(1, user.getId());
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) 
             {
@@ -240,7 +241,7 @@ public class UserDBHandler {
             //DO nothing
         }
         
-         return allroles;
+        return allroles;
     }
     
 }

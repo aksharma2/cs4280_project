@@ -9,6 +9,7 @@ package service.user;
 
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserCredential;
+import hotelBooking.core.domain.UserRole;
 import hotelBooking.core.jdbc.UserDBHandler;
 import hotelBooking.core.services.UserService;
 import java.util.ArrayList;
@@ -21,12 +22,13 @@ public class DBKeyGen {
     
      public static void main(String[] arg) throws ClassNotFoundException
     {  
-        
-         ArrayList<User> u = UserService.findUser();
-        
-        
-        
-        int x = 5;
+         UserCredential u = new UserCredential();
+         u.setUserID("spanda2");
+         u.setPassword("123123");
+         
+         boolean res = UserService.authenticate(u);
+         
+         int x = 6;
     }
             
    

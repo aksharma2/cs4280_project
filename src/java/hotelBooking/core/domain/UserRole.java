@@ -20,6 +20,14 @@ public class UserRole {
     private int role = -1;
 
     
+    public UserRole(int aRole)//e.g. CSUTOMER, HOTEL_MANAGER
+    {
+        if(aRole == ADMIN || aRole == HOTEL_MANAGER || aRole == CUSTOMER)
+            this.role = aRole;
+        else
+            this.role = -1;
+    }
+    
     public UserRole(String name)
     {
         if(name.equals("ROLE_ADMIN"))
@@ -44,10 +52,17 @@ public class UserRole {
     
     public boolean checkPreviledge(ArrayList<UserRole> rolesAssignedToUser)
     {
-        if(rolesAssignedToUser.contains(this.role))
-            return true;
-        else 
+        if(rolesAssignedToUser == null || rolesAssignedToUser.size() < 1)
             return false;
+            
+        for(UserRole r : rolesAssignedToUser)
+        {
+            if(r.getRole() == this.role)
+                return true;
+        }
+        
+        return false;
+        
     }
     
     public String getRoleName()

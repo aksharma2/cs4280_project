@@ -7,6 +7,7 @@ package hotelBooking.core.services;
 
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserCredential;
+import hotelBooking.core.domain.UserRole;
 import hotelBooking.core.jdbc.UserDBHandler;
 import java.util.ArrayList;
 
@@ -113,5 +114,21 @@ public class UserService {
     
     }
     
+    public static ArrayList<UserRole> findRolesAssignedToUser(User u)
+    {
+        if(u == null)
+            return null;
+        
+        ArrayList<UserRole> allroles = null;
+        UserDBHandler db = new UserDBHandler();
+        db = new UserDBHandler();
+        if(db.setupConnection())
+        {
+            allroles = db.getRolesAssignedToUser(u);
+        }
+        db.closeConnection();
+        return allroles;
+    
+    }
     
 }

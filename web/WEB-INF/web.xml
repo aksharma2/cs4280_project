@@ -33,8 +33,8 @@
         <servlet-class>hotelBooking.web.servlet.user.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginFailServlet</servlet-name>
-        <servlet-class>hotelBooking.web.servlet.user.LoginFailServlet</servlet-class>
+        <servlet-name>AdminViewServlet</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.user.AdminViewServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
@@ -69,8 +69,8 @@
         <url-pattern>/user/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoginFailServlet</servlet-name>
-        <url-pattern>/user/loginfail</url-pattern>
+        <servlet-name>AdminViewServlet</servlet-name>
+        <url-pattern>/admin/view</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -80,14 +80,6 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    
-    
-    
-    
-    
-    
-    
-    
     <!--
     Security
     -->
@@ -118,13 +110,7 @@
 	</user-data-constraint>
     </security-constraint>
     -->
-    
     <!--
     End of security
     -->
-    
-    
-    
-    
-    
 </web-app>
