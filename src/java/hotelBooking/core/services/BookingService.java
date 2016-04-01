@@ -5,7 +5,10 @@
  */
 package hotelBooking.core.services;
 
-import hotelBooking.core.domain.User;
+import hotelBooking.core.domain.Booking;
+
+import hotelBooking.core.jdbc.BookingDBHandler;
+import hotelBooking.core.jdbc.BookingDBHandlerRetreive;
 
 /**
  *
@@ -13,7 +16,40 @@ import hotelBooking.core.domain.User;
  */
 public class BookingService {
     
+   public static  BookingDBHandler db;
+   public static BookingDBHandlerRetreive dbr;
     
+    public static boolean makeBooking(Booking b)
+    {
+        boolean success=false;
+        
+         db = new BookingDBHandler();
+        
+        if(db.makeConnection())
+            
+        {
+            success=db.makeMybooking(b);
+            
+        }
+        db.closeConnection();
+        
+        return success;
+    }
     
+    public static boolean showBookings()
+    {
+        boolean success=false;
+        
+         dbr = new BookingDBHandlerRetreive();
+        
+        if(dbr.makeConnection())
+        {
+            success=dbr.showMybookings();
+        }
+        db.closeConnection();
+        
+        return success;
+    }
     
+   
 }

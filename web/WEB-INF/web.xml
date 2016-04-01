@@ -36,6 +36,10 @@
         <servlet-name>AdminViewServlet</servlet-name>
         <servlet-class>hotelBooking.web.servlet.user.AdminViewServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MakeMyBooking</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.MakeMyBooking</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/Test</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>AdminViewServlet</servlet-name>
         <url-pattern>/admin/view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MakeMyBooking</servlet-name>
+        <url-pattern>/MakeMyBooking</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

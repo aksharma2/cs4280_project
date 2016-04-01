@@ -14,6 +14,19 @@ public class Booking {
     private String userID;
     private String roomID;
     private String hotelID;
+    
+    
+
+    public Booking(String HotelID, String RoomID, String UserID) {
+       
+            setHotelID(HotelID);
+            setRoomID(RoomID);
+            setUserID(UserID);
+         }
+
+    public Booking() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public String getUserID() {
         return userID;

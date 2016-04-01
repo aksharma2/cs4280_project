@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import hotelBooking.core.domain.Booking;
+import hotelBooking.core.services.BookingService;
 import java.util.Random;
 /**
  *
@@ -41,106 +42,79 @@ public class MakeBooking extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
       
-         try {
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>My Bookings</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Booking (Add)</h1>");
-            out.println("<div style='width:600px'>");
-            out.println("<fieldset>");
-  
-            String hotel = request.getParameter("hotels");
-            String room = request.getParameter("rooms");
-
-            if (hotel != null && !hotel.equalsIgnoreCase("") &&
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>My Bookings</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>Booking (Add)</h1>");
+        out.println("<div style='width:600px'>");
+        out.println("<fieldset>");
+        String hotel = request.getParameter("hotels");
+        String room = request.getParameter("rooms");
+        if (hotel != null && !hotel.equalsIgnoreCase("") &&
                 room != null && !room.equalsIgnoreCase("")) {
-
-              
-              Long id ;
-              Random rand = new Random();
-              id=rand.nextLong();
-              
-              String userName=Long.toString(id);
-
-                Booking b = new Booking();
-                b.setHotelID(hotel);
-                b.setRoomID(room);
-                b.setUserID(userName);
+            
+            
+            Long id ;
+            Random rand = new Random();
+            id=rand.nextLong();
+            
+            String userName=Long.toString(id);
+            
+            Booking b = new Booking();
+            b.setHotelID(hotel);
+            b.setRoomID(room);
+            b.setUserID(userName);
+            
+            
+           BookingService bookingservice = new BookingService();
+            
+            boolean isConnectionMade = bookingservice.makeBooking(b);
+            
+            if(isConnectionMade)
                 
-                
-                BookingDBHandler db = new BookingDBHandler();
-                
-                boolean isConnectionMade = db.makeConnection();
-                
-                if(isConnectionMade)
-                    
-                {
-                    boolean addBooking = db.makeMybooking(b);
-                    
-                    if(addBooking)
-                        {
-                    out.println("<legend>New Booking is sucessfully made.</legend>");
-                    // display the information of the record just added including UID
-                    
-                    Statement stmt = db.getStatement();
-                    ResultSet rs = db.returnResult();
-                    
-                    if (rs != null && rs.next() != false) {
-                            out.println("<p>Room: " + (b.getRoomID()) + "</p>");
-                            out.println("<p>Hotel:" + (b.getHotelID()) + "</p>");
-                            out.println("<p>User:" + (b.getUserID()) + "</p>");
-                            rs.close();
-                    }
-                    if (stmt != null) {
-                            stmt.close();
-                    }
-
-                 }			
-                    
-                }
-                else {
-                    out.println("<legend>ERROR: New record is failed to create.</legend>");
-                }
+            {
+               out.println("<legend>New Booking is sucessfully made.</legend>");
+            
             }
             else {
-                if (hotel == null) {
-                    hotel = "";
-                }
-                if (room == null) {
-                    room = "";
-                }				
-                out.println("<legend>Please fill in the form</legend>");
-                out.println("<form method='POST' action='" + request.getRequestURI() + "'>");
-                out.println("<input name='action' type='hidden' value='create' />");
-                out.println("<p>Hotel:");
-                out.println(" <select name=\"hotels\">\n" +
-"    <option value=\"hyatt\">Hyatt</option>\n" +
-"    <option value=\"radisson\">Radisson</option>\n" +
-"    <option value=\"itc\">ITC</option>\n" +
-"    <option value=\"leela\">Leela Palace</option>\n" +
-"  </select></p>");
-                out.println("<p>Room Type:");
-                out.println(" <select name=\"rooms\">\n" +
-"    <option value=\"single\">Single</option>\n" +
-"    <option value=\"deluxe\">Deluxe</option>\n" +
-"    <option value=\"suite\">Suite</option>\n" +
-"    <option value=\"prsuite\">Presidential Suite</option>\n" +
-"  </select></p>");
-                
-                out.println("<input type='submit' value='Make Booking!' />");
-                out.println("</form>");
+                out.println("<legend>ERROR: New record is failed to create.</legend>");
             }
-            out.println("</fieldset>");
-            out.println("</div>");
-            out.println("</body>");
-            out.println("</html>");
-        } catch (SQLException e) {
-            out.println("<div style='color: red'>" + e.toString() + "</div>");
-        } finally {
-            out.close();
         }
+        else {
+            if (hotel == null) {
+                hotel = "";
+            }
+            if (room == null) {
+                room = "";
+            }
+            out.println("<legend>Please fill in the form</legend>");
+            out.println("<form method='POST' action='" + request.getRequestURI() + "'>");
+            out.println("<input name='action' type='hidden' value='create' />");
+            out.println("<p>Hotel:");
+            out.println(" <select name=\"hotels\">\n" +
+                    "    <option value=\"hyatt\">Hyatt</option>\n" +
+                    "    <option value=\"radisson\">Radisson</option>\n" +
+                    "    <option value=\"itc\">ITC</option>\n" +
+                    "    <option value=\"leela\">Leela Palace</option>\n" +
+                    "  </select></p>");
+            out.println("<p>Room Type:");
+            out.println(" <select name=\"rooms\">\n" +
+                    "    <option value=\"single\">Single</option>\n" +
+                    "    <option value=\"deluxe\">Deluxe</option>\n" +
+                    "    <option value=\"suite\">Suite</option>\n" +
+                    "    <option value=\"prsuite\">Presidential Suite</option>\n" +
+                    "  </select></p>");
+            
+            out.println("<input type='submit' value='Make Booking!' />");
+            out.println("</form>");
+        }
+        out.println("</fieldset>");
+        out.println("</div>");
+        out.println("</body>");
+        out.println("</html>");
+        out.close();
         
         
                     

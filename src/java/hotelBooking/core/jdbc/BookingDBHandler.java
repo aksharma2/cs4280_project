@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +24,8 @@ public class BookingDBHandler {
     boolean success = true;
     Connection con;
     Statement stmt;
-    
+    ResultSet rs;
+            
     public boolean makeConnection()
             
     {
@@ -58,7 +61,19 @@ public class BookingDBHandler {
                  if(rows>0)
                  {
                       success=true;
+                     
+                      System.out.println("Your Booking Details are as follows.");
+                        if (rs != null && rs.next() != false) {
+                            System.out.println("Room: " + (b.getRoomID()));
+                            System.out.println("Hotel:" + (b.getHotelID()) );
+                            System.out.println("User:" + (b.getUserID()));
+                            rs.close();
+                    }
+                    StatementClose(); 
+                    
                  }
+                 
+            
                     
         }catch(SQLException e)
             
@@ -72,8 +87,8 @@ public class BookingDBHandler {
     public ResultSet returnResult() throws SQLException
             
     {
-         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT @@IDENTITY AS [@@IDENTITY]");
+          stmt = con.createStatement();
+         rs = stmt.executeQuery("SELECT @@IDENTITY AS [@@IDENTITY]");
         return rs;
         
     }
@@ -85,5 +100,45 @@ public class BookingDBHandler {
         return stmt;
     }
     
+      
+    public void closeConnection()
+    {
+        if(this.con!=null)
+            try {
+                con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void ResultSetClose()
+            
+    {
+        if(this.rs!=null)
+        {
+            try
+            {
+                rs.close();
+            }catch(SQLException ex)
+            {
+                 Logger.getLogger(BookingDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void StatementClose()
+    {
+        if(this.stmt!=null)
+            
+        {
+            try{
+                stmt.close();
+            }catch(SQLException ex)
+            {
+               Logger.getLogger(BookingDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+           
+            }
+        }
+    }
     
 }

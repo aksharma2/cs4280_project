@@ -12,6 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -77,6 +80,30 @@ public class BookingDBHandlerRetreive {
         return success;
     }
     
+     public ArrayList<Booking> findBooking()
+             
+     {
+         ArrayList<Booking> allbookings = new ArrayList<Booking>();
+         
+         PreparedStatement pst;
+         
+         try{
+             pst=con.prepareStatement("SELECT * FROM [PROJ_BOOKING] ");
+             
+             rs=pst.executeQuery();
+             
+             while(rs.next())
+             {
+                 Booking b = new Booking(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"));
+                 allbookings.add(b);
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(BookingDBHandlerRetreive.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+         return allbookings;
+     }
+     
     public Statement returnStatement()
     {
         return stmt;
@@ -97,5 +124,46 @@ public class BookingDBHandlerRetreive {
             
     {
         return numRows;
+    }
+    
+     public void closeConnection()
+    {
+        if(this.con!=null)
+            try {
+                con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingDBHandlerRetreive.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     
+     
+    public void ResultSetClose()
+            
+    {
+        if(this.rs!=null)
+        {
+            try
+            {
+                rs.close();
+            }catch(SQLException ex)
+            {
+                 Logger.getLogger(BookingDBHandlerRetreive.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void StatementClose()
+    {
+        if(this.stmt!=null)
+            
+        {
+            try{
+                stmt.close();
+            }catch(SQLException ex)
+            {
+               Logger.getLogger(BookingDBHandlerRetreive.class.getName()).log(Level.SEVERE, null, ex);
+           
+            }
+        }
     }
 }
