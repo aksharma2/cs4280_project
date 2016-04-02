@@ -88,10 +88,14 @@ public class BookingDBHandlerRetreive {
          PreparedStatement pst;
          
          try{
-             pst=con.prepareStatement("SELECT * FROM [PROJ_BOOKING] ");
+            // pst=con.prepareStatement("SELECT * FROM [PROJ_BOOKING] ");
              
-             rs=pst.executeQuery();
-             
+             //rs=pst.executeQuery();
+            makeConnection();
+            
+            Statement pstmt;
+             pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             rs = pstmt.executeQuery("SELECT * FROM [PROJ_BOOKING] ");
              while(rs.next())
              {
                  Booking b = new Booking(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"));

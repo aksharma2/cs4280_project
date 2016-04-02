@@ -20,6 +20,7 @@
         
        <div class="container">
   <h2>Make Your Bookings</h2>
+  
   <form role="form" method="post" action="MakeMyBooking">
       
     <div class="form-group">
@@ -46,13 +47,12 @@
     </div>
     
       <div class="form-group">
-    <input type= "submit" class="form-control" value='Make Booking!' />
+    <input type= "submit" class="btn btn-primary" value='Make Booking!' />
         </form>
       </div>
 
-
-    </body>
-</html>
+       </div>
+   
 
 <%--end content--%>
 <%@ include file="../common/footer.jspf"%>

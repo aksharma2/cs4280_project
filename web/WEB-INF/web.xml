@@ -44,6 +44,14 @@
         <servlet-name>EditUserAccess</servlet-name>
         <servlet-class>hotelBooking.web.servlet.user.EditUserAccess</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowMyBookings</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.ShowMyBookings</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowMyBooking</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.ShowMyBooking</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/Test</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>EditUserAccess</servlet-name>
         <url-pattern>/admin/editAccess</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowMyBookings</servlet-name>
+        <url-pattern>/ShowMyBookings</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowMyBooking</servlet-name>
+        <url-pattern>/ShowMyBooking</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

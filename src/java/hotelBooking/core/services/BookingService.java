@@ -9,10 +9,11 @@ import hotelBooking.core.domain.Booking;
 
 import hotelBooking.core.jdbc.BookingDBHandler;
 import hotelBooking.core.jdbc.BookingDBHandlerRetreive;
+import java.util.ArrayList;
 
 /**
  *
- * @author PANDA Sourav
+ * 
  */
 public class BookingService {
     
@@ -49,6 +50,17 @@ public class BookingService {
         db.closeConnection();
         
         return success;
+    }
+    
+    public static ArrayList<Booking> getallMyBookings()
+            
+    {
+        ArrayList<Booking> mybookings;
+        dbr=new BookingDBHandlerRetreive();
+        mybookings=dbr.findBooking();
+        
+        return mybookings;
+        
     }
     
    

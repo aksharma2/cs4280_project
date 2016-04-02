@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotelBooking.user.BookingService;
+package hotelBooking.web.servlet.booking;
 
+import hotelBooking.core.domain.Booking;
+import hotelBooking.core.services.BookingService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author shrankhla
  */
-public class MakeBookings extends HttpServlet {
+public class ShowMyBooking extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,12 +31,30 @@ public class MakeBookings extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
+   
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        ArrayList<Booking> allbookings;
+        
+         BookingService bookingservice = new BookingService();
+         allbookings=bookingservice.getallMyBookings();
        
-         String nextJSP = "/Views/User/login.jsp";
+         request.setAttribute("allbookings", allbookings);
+         
+         
+         String nextJSP = "/Views/Booking/BookingList.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request,response);
         
@@ -50,8 +71,10 @@ public class MakeBookings extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        
+        doGet(request,response);
     }
+    
 
     /**
      * Returns a short description of the servlet.

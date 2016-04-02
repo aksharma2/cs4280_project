@@ -24,9 +24,7 @@ public class Booking {
             setUserID(UserID);
          }
 
-    public Booking() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     public String getUserID() {
         return userID;

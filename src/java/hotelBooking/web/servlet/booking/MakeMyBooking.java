@@ -45,7 +45,7 @@ public class MakeMyBooking extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        String nextJSP = "/Views/Boooking/makebooking.jsp";
+        String nextJSP = "/Views/Booking/makebooking.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request,response);
         
@@ -79,10 +79,10 @@ public class MakeMyBooking extends HttpServlet {
             
             String userName=Long.toString(id);
             
-            Booking b = new Booking();
-            b.setHotelID(hotel);
-            b.setRoomID(room);
-            b.setUserID(userName);
+            Booking b = new Booking(hotel,room,userName);
+           // b.setHotelID(hotel);
+            //b.setRoomID(room);
+            //b.setUserID(userName);
             
             
            BookingService bookingservice = new BookingService();
@@ -108,7 +108,7 @@ public class MakeMyBooking extends HttpServlet {
                 room = "";
             }
             
-            String nextJSP = "/Views/Boooking/makebooking.jsp";
+            String nextJSP = "/Views/Booking/makebooking.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request,response);
             
