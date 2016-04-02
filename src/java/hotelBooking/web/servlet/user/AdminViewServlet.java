@@ -23,13 +23,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author spanda2
  */
+//Servlet path: /admin/view
 public class AdminViewServlet extends HttpServlet {
 
    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("loginTabStyle", "active");
+        //request.setAttribute("loginTabStyle", "active");
         
-        UserRole requiredRole = new UserRole(UserRole.ADMIN);
+        UserRole requiredRole = new UserRole(UserRole.HOTEL_MANAGER);
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         
@@ -41,12 +42,33 @@ public class AdminViewServlet extends HttpServlet {
         if(authorized)
         {
             nextJSP = "/Views/User/userList.jsp";
+            
+            
+            ArrayList<User> users = UserService.findUser();
+            if(users!=null)
+            {
+                
+                request.setAttribute("userList", users);
+                request.setAttribute("userCount", users.size());
+            }
+            
+            
+            
+            
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
             dispatcher.forward(request,response);
         }
         else
         {
-            response.sendRedirect("../user/login");
+            
+            
+            response.sendRedirect("../user/login?referer=" + "../admin/view");
+            /**
+            StringBuffer requestURL = request.getRequestURL();
+            request.setAttribute("error", requestURL);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+            dispatcher.forward(request,response);
+            * **/
         }
        
     }

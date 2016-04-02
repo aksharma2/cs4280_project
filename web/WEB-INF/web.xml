@@ -40,6 +40,10 @@
         <servlet-name>MakeMyBooking</servlet-name>
         <servlet-class>hotelBooking.web.servlet.booking.MakeMyBooking</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditUserAccess</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.user.EditUserAccess</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/Test</url-pattern>
@@ -80,6 +84,10 @@
         <servlet-name>MakeMyBooking</servlet-name>
         <url-pattern>/MakeMyBooking</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserAccess</servlet-name>
+        <url-pattern>/admin/editAccess</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -88,5 +96,4 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-   
 </web-app>

@@ -22,11 +22,11 @@ public class DBKeyGen {
     
      public static void main(String[] arg) throws ClassNotFoundException
     {  
-         UserCredential u = new UserCredential();
-         u.setUserID("spanda2");
-         u.setPassword("123123");
-         
-         boolean res = UserService.authenticate(u);
+        User u = new User("spanda2","spanda2");
+         ArrayList<UserRole> roles = UserService.findRolesAssignedToUser(u);
+         String roleName = roles.get(0).getRoleName();
+                 
+                 
          
          int x = 6;
     }
