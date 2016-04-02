@@ -49,6 +49,7 @@ public class UserService {
     //Returns User Instance for only 1 id
     public static User findUser(String id)
     {
+       
         User u = null;
         UserDBHandler db = null;
         db = new UserDBHandler();
@@ -58,6 +59,7 @@ public class UserService {
         }
         db.closeConnection();
         return u;
+        
     
     }
     

@@ -55,7 +55,7 @@
 
                 <c:if test="${empty requestScope.userList}">
                     <div class="alert alert-info">
-                        <div align="center">No one is registered to the system... Even you're fucking removed, mate!</div>
+                        <div align="center">No one is registered to the system.</div>
                     </div>
                 </c:if>
 

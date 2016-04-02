@@ -88,37 +88,5 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    <!--
-    Security
-    -->
-    <!--
-    <login-config>
-        <auth-method>FORM</auth-method>
-        <realm-name>Web Demo</realm-name>
-        <form-login-config>
-            <form-login-page>/Views/User/login.jsp</form-login-page>
-            <form-error-page>/Views/User/loginfail.jsp</form-error-page>
-        </form-login-config>
-    </login-config>
-    
-    <security-constraint>
-	<web-resource-collection>
-            <web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
-            <url-pattern>/*</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-	</web-resource-collection>
-	<auth-constraint>
-            <role-name>dude</role-name>
-	</auth-constraint>
-
-	<user-data-constraint>
-           
-            <transport-guarantee>NONE</transport-guarantee>
-	</user-data-constraint>
-    </security-constraint>
-    -->
-    <!--
-    End of security
-    -->
+   
 </web-app>

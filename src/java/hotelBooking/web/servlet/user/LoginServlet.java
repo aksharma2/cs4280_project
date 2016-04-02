@@ -8,10 +8,14 @@ package hotelBooking.web.servlet.user;
 
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserCredential;
+import hotelBooking.core.jdbc.UserDBHandler;
 import hotelBooking.core.services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +33,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("loginTabStyle", "active");
         String nextJSP = "/Views/User/login.jsp";
+       
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request,response);
     }
@@ -45,6 +50,7 @@ public class LoginServlet extends HttpServlet {
         cred.setPassword(request.getParameter("password"));
         cred.setUserID(request.getParameter("userID"));
         
+        //
         if(UserService.authenticate(cred))
         {
             
@@ -63,7 +69,18 @@ public class LoginServlet extends HttpServlet {
         }
         else
         {
-            errorText += "\n Bad Credentials";
+            
+            UserDBHandler db = new UserDBHandler();
+            try {
+                db.checkConnection();
+                db.closeConnection();
+                errorText += "\n Bad Credentials";
+            } catch (ClassNotFoundException ex) {
+                errorText += "Could'nt connect to the Database";
+            } catch (SQLException ex) {
+                errorText += "Some unknown excption";
+            }
+            
             request.setAttribute("error", errorText);
         }
             

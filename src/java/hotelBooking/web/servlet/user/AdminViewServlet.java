@@ -30,7 +30,6 @@ public class AdminViewServlet extends HttpServlet {
         request.setAttribute("loginTabStyle", "active");
         
         UserRole requiredRole = new UserRole(UserRole.ADMIN);
-        
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         
@@ -47,7 +46,7 @@ public class AdminViewServlet extends HttpServlet {
         }
         else
         {
-            response.sendRedirect("../user/login");  
+            response.sendRedirect("../user/login");
         }
        
     }

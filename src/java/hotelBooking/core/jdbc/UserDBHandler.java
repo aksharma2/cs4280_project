@@ -5,7 +5,7 @@
  */
 package hotelBooking.core.jdbc;
 
-//import com.microsoft.sqlserver.jdbc.SQLServerException;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserCredential;
 import hotelBooking.core.domain.UserRole;
@@ -46,6 +46,14 @@ public class UserDBHandler {
         }
         
         return success;
+    }
+    
+    public boolean checkConnection() throws ClassNotFoundException, SQLException
+    {
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        con = DriverManager.getConnection("jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad056_db", "aiad056", "aiad056");
+        
+        return true;
     }
     
     public void closeConnection()
