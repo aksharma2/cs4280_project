@@ -6,6 +6,7 @@
 package hotelBooking.web.servlet.booking;
 
 import hotelBooking.core.domain.Booking;
+import hotelBooking.core.domain.Room;
 import hotelBooking.core.domain.User;
 import hotelBooking.core.services.BookingService;
 import java.io.IOException;
@@ -97,6 +98,7 @@ public class MakeMyBooking extends HttpServlet {
             //b.setRoomID(room);
             //b.setUserID(userName);
             
+           
             
            BookingService bookingservice = new BookingService();
             
@@ -106,6 +108,31 @@ public class MakeMyBooking extends HttpServlet {
                 
             {
                out.println("<legend>New Booking is sucessfully made.</legend>");
+               
+            Long id_Room ;
+            Random randi = new Random();
+            id_Room=randi.nextLong();
+            String RoomID=Long.toString(id_Room);
+            boolean isRoomAvailable=false;
+            
+            
+            
+            Room r = new Room(hotel,RoomID,room,isRoomAvailable);
+            
+            boolean isRoomBooked = bookingservice.BookRoom(r);
+            
+            if(isRoomBooked)
+            {
+                out.println("<legend>New Room has been booked for you.</legend>");
+            }
+            
+            else
+                
+            {
+                 out.println("<legend>ERROR: Room Booking Failed.</legend>");
+            }
+            
+               
             
             }
             else {

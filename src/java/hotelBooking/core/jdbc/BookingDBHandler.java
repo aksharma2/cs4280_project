@@ -6,6 +6,7 @@
 package hotelBooking.core.jdbc;
 
 import hotelBooking.core.domain.Booking;
+import hotelBooking.core.domain.Room;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -144,4 +145,52 @@ public class BookingDBHandler {
         }
     }
     
+    
+    public boolean BookMyRoom(Room r)
+            
+    {
+        boolean successs= false;
+        
+        try
+        {
+            boolean Connectionmade = makeConnection();
+            
+            if(Connectionmade)
+            {
+                PreparedStatement pstmt1 = con.prepareStatement("INSERT INTO [PROJ_ROOM] ([hotelID],[id], [type],[isAvailable]) VALUES (?, ?, ?, ?)");
+                pstmt1.setString(1,r.getHotelID() );
+                pstmt1.setString(2,r.getId() );
+                pstmt1.setString(3,r.getType());
+                pstmt1.setBoolean(4,r.isIsAvailable());
+                
+                
+                
+                
+                 int rows = pstmt1.executeUpdate();
+                 
+                 if(rows>0)
+                 {
+                      successs=true;
+                     
+                      System.out.println("Your Booking Details are as follows.");
+                        if (rs != null && rs.next() != false) {
+                            System.out.println("Room: " + (r.getHotelID()));
+                            System.out.println("Hotel:" + (r.getId()) );
+                            System.out.println("User:" + (r.getType()));
+                            System.out.println("City:" + (r.isIsAvailable()));
+                            rs.close();
+                    }
+                    StatementClose(); 
+                    
+                 }
+            }
+                    
+        }catch(SQLException e)
+            
+        {
+            successs=false;
+        }
+       
+        return successs;
+    }
 }

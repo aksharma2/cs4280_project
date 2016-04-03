@@ -6,6 +6,7 @@
 package hotelBooking.core.services;
 
 import hotelBooking.core.domain.Booking;
+import hotelBooking.core.domain.Room;
 
 import hotelBooking.core.jdbc.BookingDBHandler;
 import hotelBooking.core.jdbc.BookingDBHandlerRetreive;
@@ -51,6 +52,23 @@ public class BookingService {
         
         return success;
     }
+    
+     public static boolean BookRoom(Room r )
+    {
+        boolean success=false;
+        
+         db = new BookingDBHandler();
+        
+        if(db.makeConnection())
+            
+        {
+            success=db.BookMyRoom(r);
+        }
+        db.closeConnection();
+        
+        return success;
+    }
+    
     
     public static ArrayList<Booking> getallMyBookings()
             

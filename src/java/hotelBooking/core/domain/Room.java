@@ -16,6 +16,15 @@ public class Room {
     public String type;
     public boolean isAvailable;
 
+    public Room(String hotel, String roomID , String room, boolean roomAvailable) {
+        
+       setHotelID(hotel);
+       setId(roomID);
+       setType(room);
+       setIsAvailable(roomAvailable);
+       
+          }
+
     public String getHotelID() {
         return hotelID;
     }

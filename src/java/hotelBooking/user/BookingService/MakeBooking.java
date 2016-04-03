@@ -62,7 +62,7 @@ public class MakeBooking extends HttpServlet {
             
             String userName=Long.toString(id);
             
-            Booking b = new Booking(hotel,room,userName);
+            Booking b = new Booking(hotel,room,userName,"gg");
             //b.setHotelID(hotel);
             //b.setRoomID(room);
             //b.setUserID(userName);
