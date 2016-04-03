@@ -1,12 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%--
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="/index">ASS Hotel Booking Service</a>
+            <a class="brand" href="${pageContext.request.contextPath}/index">ASS Hotel Booking Service</a>
 
-            <%--logged in mode --%>
+            <%--logged in mode --%><%--
             <c:if test="${sessionScope.user != null}">
             <ul class="nav">
                 <li class="${requestScope.homeTabStyle}"><a href="/todos">Home</a></li>
@@ -24,7 +24,7 @@
             </div>
             </c:if>
 
-            <%--not logged in mode --%>
+            <%--not logged in mode --%><%--
             <c:if test="${sessionScope.user == null}">
             <ul class="nav pull-right">
                 <li class="${requestScope.registerTabStyle}"><a href="${pageContext.request.contextPath}/user/register">Register</a></li>
@@ -35,3 +35,85 @@
         </div>
     </div>
 </div>
+            
+   --%>
+
+  
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">ASS Hotel Booking</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="${pageContext.request.contextPath}/user/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="${pageContext.request.contextPath}/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+  
+    <%--
+<div class="container">
+  <div class="row" id="login-container">
+  	<div class="col-md-6">
+    
+          <form class="form-horizontal" action="" method="POST">
+          <fieldset>
+            <div id="legend">
+              <legend class="">Register</legend>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="username">Username</label>
+              <div class="controls">
+                <input type="text" id="username" name="username" placeholder="" class="form-control input-lg">
+                <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <label class="control-label" for="email">E-mail</label>
+              <div class="controls">
+                <input type="email" id="email" name="email" placeholder="" class="form-control input-lg">
+                <p class="help-block">Please provide your E-mail</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <label class="control-label" for="password">Password</label>
+              <div class="controls">
+                <input type="password" id="password" name="password" placeholder="" class="form-control input-lg">
+                <p class="help-block">Password should be at least 6 characters</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <label class="control-label" for="password_confirm">Password (Confirm)</label>
+              <div class="controls">
+                <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="form-control input-lg">
+                <p class="help-block">Please confirm password</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <!-- Button -->
+              <div class="controls">
+                <button class="btn btn-success">Register</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+    
+    </div> 
+  </div>
+</div>--%>
