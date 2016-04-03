@@ -6,6 +6,7 @@
 package hotelBooking.web.servlet.booking;
 
 import hotelBooking.core.domain.Booking;
+import hotelBooking.core.domain.User;
 import hotelBooking.core.services.BookingService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -66,6 +68,7 @@ public class MakeMyBooking extends HttpServlet {
        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
       
+        String DEFAULT_CITY= "London";
      
         String hotel = request.getParameter("hotels");
         String room = request.getParameter("rooms");
@@ -79,7 +82,17 @@ public class MakeMyBooking extends HttpServlet {
             
             String userName=Long.toString(id);
             
-            Booking b = new Booking(hotel,room,userName);
+            /*
+             HttpSession session = request.getSession(true);
+          User currUser=(User)session.getAttribute("user");
+            String username=user.getName();
+            
+            String CityId = (String) session.getAttribute("city");
+            
+            Booking b = new Booking(hotel,room,username,CityId);
+            
+          */  
+            Booking b = new Booking(hotel,room,userName,DEFAULT_CITY);
            // b.setHotelID(hotel);
             //b.setRoomID(room);
             //b.setUserID(userName);
@@ -96,7 +109,7 @@ public class MakeMyBooking extends HttpServlet {
             
             }
             else {
-                out.println("<legend>ERROR: New record is failed to create.</legend>");
+                out.println("<legend>ERROR: Booking Failed.</legend>");
             }
         }
         

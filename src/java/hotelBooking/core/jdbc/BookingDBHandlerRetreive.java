@@ -98,7 +98,7 @@ public class BookingDBHandlerRetreive {
              rs = pstmt.executeQuery("SELECT * FROM [PROJ_BOOKING] ");
              while(rs.next())
              {
-                 Booking b = new Booking(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"));
+                 Booking b = new Booking(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"));
                  allbookings.add(b);
              }
          } catch (SQLException ex) {
@@ -107,6 +107,15 @@ public class BookingDBHandlerRetreive {
          
          return allbookings;
      }
+     
+     /*
+     public Booking findBooking(String id)
+             
+     {
+         Booking b = new Booking("a","b","c");
+         return b;
+     }
+     */
      
     public Statement returnStatement()
     {

@@ -52,10 +52,12 @@ public class BookingDBHandler {
         
         try
         {
-             PreparedStatement pstmt = con.prepareStatement("INSERT INTO [PROJ_BOOKING] ([roomID], [hotelID], [userID]) VALUES (?, ?, ?)");
+             PreparedStatement pstmt = con.prepareStatement("INSERT INTO [PROJ_BOOKING] ([roomID], [hotelID], [userID],[city]) VALUES (?, ?, ?, ?)");
                 pstmt.setString(1, b.getRoomID());
                 pstmt.setString(2, b.getHotelID());
                 pstmt.setString(3,b.getUserID());
+                pstmt.setString(4,b.getCityID());
+                
                 
                  int rows = pstmt.executeUpdate();
                  if(rows>0)
@@ -67,6 +69,7 @@ public class BookingDBHandler {
                             System.out.println("Room: " + (b.getRoomID()));
                             System.out.println("Hotel:" + (b.getHotelID()) );
                             System.out.println("User:" + (b.getUserID()));
+                            System.out.println("City:" + (b.getCityID()));
                             rs.close();
                     }
                     StatementClose(); 
@@ -87,8 +90,8 @@ public class BookingDBHandler {
     public ResultSet returnResult() throws SQLException
             
     {
-          stmt = con.createStatement();
-         rs = stmt.executeQuery("SELECT @@IDENTITY AS [@@IDENTITY]");
+       stmt = con.createStatement();
+       rs = stmt.executeQuery("SELECT @@IDENTITY AS [@@IDENTITY]");
         return rs;
         
     }

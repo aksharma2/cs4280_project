@@ -14,14 +14,16 @@ public class Booking {
     private String userID;
     private String roomID;
     private String hotelID;
+    private String CityID;
     
     
 
-    public Booking(String HotelID, String RoomID, String UserID) {
+    public Booking(String HotelID, String RoomID, String UserID,String CityID) {
        
             setHotelID(HotelID);
             setRoomID(RoomID);
             setUserID(UserID);
+            setCityID(CityID);
          }
 
    
@@ -49,5 +51,15 @@ public class Booking {
     public void setHotelID(String hotelID) {
         this.hotelID = hotelID;
     }
+
+    public void setCityID(String CityID) {
+       
+        this.CityID = CityID;
+    }
     
+    public String getCityID()
+            
+    {
+       return this.CityID; 
+    }
 }

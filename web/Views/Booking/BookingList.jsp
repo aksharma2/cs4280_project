@@ -30,6 +30,7 @@
                         <th>Hotel</th>
                         <th>Room Type</th>
                         <th>UserName</th>
+                        <th>City</th>
                         
                     </tr>
                     </thead>
@@ -40,6 +41,7 @@
                             <td>${Booking.getHotelID()}</td>
                             <td>${Booking.getRoomID()}</td>
                             <td>${Booking.getUserID()}</td>
+                            <td>${Booking.getCityID()}</td>
                             
                         </tr>
                     </c:forEach>
