@@ -36,10 +36,14 @@ public class EditUserAccess extends HttpServlet {
      @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(request.getParameter("idToDel") != null)
-            UserService.deleteUser((String) request.getParameter("idToDel"));
-        else
-            UserService.dropUserTables();
+        if(request.getParameter("idToEdit") != null)
+        {
+            User u = UserService.findUser((String) request.getParameter("idToEdit"));
+            String isCheckedHotelManager = (String) request.getParameter("role_hotel_manager");
+            String isCheckedAdmin = (String) request.getParameter("role_admin");
+        
+            
+        }  
         
         String  nextJSP = "/Views/User/userList.jsp";
         ArrayList<User> users = UserService.findUser();

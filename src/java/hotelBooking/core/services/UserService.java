@@ -56,6 +56,21 @@ public class UserService {
         if(db.setupConnection())
         {
             u = db.findUser(id);
+            
+            if(u !=  null)
+            {
+                ArrayList<UserRole> assignedRoles = findRolesAssignedToUser(u);
+                UserRole admin = new UserRole(UserRole.ADMIN);
+                UserRole hotel_manager = new UserRole(UserRole.HOTEL_MANAGER);
+                if(admin.checkPreviledge(assignedRoles))
+                    u.setIsAdmin(true);
+                else if(hotel_manager.checkPreviledge(assignedRoles))
+                    u.setIsManager(true);
+                
+            }
+            
+            
+            
         }
         db.closeConnection();
         return u;
@@ -131,6 +146,19 @@ public class UserService {
         db.closeConnection();
         return allroles;
     
+    }
+    
+    public static boolean editUserAccess(User user, ArrayList<UserRole> assignedRoles)
+    {
+        boolean success = false;
+        UserDBHandler db = new UserDBHandler();
+        db = new UserDBHandler();
+        if(db.setupConnection())
+        {
+            success = db.editUserAccess(user, assignedRoles);
+        }
+        db.closeConnection();
+        return success;
     }
     
 }

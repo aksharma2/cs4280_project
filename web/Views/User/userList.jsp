@@ -3,11 +3,12 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../common/header.jspf"%>
+<%@ include file="../common/sidebar.jspf"%>
 
 <div class="container">
     <div class="row">
         <div class="span3">
-            <%@ include file="../common/sidebar.jspf"%>
+            
         </div>
         <div class="span9">
             <div class="well">
@@ -34,27 +35,31 @@
                             <td>${currentUser.id}</td>
                             <td>${currentUser.name}</td>
                             <td>
-                                
+                                <form action="${pageContext.request.contextPath}/admin/editAccess" method="post">
+                                    <p>User Access</p>
+                                    <input type="hidden" name="idToEdit" value=${currentUser.id}>
+                                    <div class="checkbox">
+                                        <c:if test="${currentUser.isAdmin == true}">
+                                            <label><input name="role_admin" type="checkbox" value="ROLE_ADMIN" checked>ADMINISTRATOR</label>
+                                        </c:if>
+                                        <c:if test="${currentUser.isAdmin == false}">
+                                            <label><input name="role_admin" type="checkbox" value="ROLE_ADMIN" >ADMINISTRATOR</label>
+                                        </c:if>
+                                    </div>
+                                    <div class="checkbox">
+                                         <c:if test="${currentUser.isManager == true}">
+                                            <label><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" checked>HOTEL MANAGER</label>
+                                        </c:if>
+                                        <c:if test="${currentUser.isManager == false}">
+                                            <label><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER">HOTEL MANAGER</label>
+                                        </c:if>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">EDIT User Access</button>
+                                </form>
                                 <form action="${pageContext.request.contextPath}/user/delete" method="post">
                                     <input type="hidden" name="idToDel" value=${currentUser.id}>
                                     <button type="submit" class="btn btn-danger">DELETE</button>
                                 </form>
-                                    <form action="${pageContext.request.contextPath}/admin/editAccess" method="post">
-                                    <input type="hidden" name="idToEdit" value=${currentUser.id}>
-                                    <button type="submit" class="btn btn-warning">DELETE</button>
-                                </form>
-                                <p>User Access</p>
-                                    <form role="form">
-                                      <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                      </div>
-                                      <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 2</label>
-                                      </div>
-                                      <div class="checkbox disabled">
-                                        <label><input type="checkbox" value="" disabled>Option 3</label>
-                                      </div>
-                                    </form>
                             </td>
                             
                         </tr>
@@ -75,6 +80,8 @@
                         <div align="center">No one is registered to the system.</div>
                     </div>
                 </c:if>
+                        
+                
 
                 <c:if test="${not empty requestScope.userList}">
                 <div align="center">

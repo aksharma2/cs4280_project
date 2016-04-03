@@ -29,8 +29,7 @@ public class DeleteUserServlet extends HttpServlet {
 
         if(request.getParameter("idToDel") != null)
             UserService.deleteUser((String) request.getParameter("idToDel"));
-        else
-            UserService.dropUserTables();
+        
         
         String  nextJSP = "/Views/User/userList.jsp";
         ArrayList<User> users = UserService.findUser();

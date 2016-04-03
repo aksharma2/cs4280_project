@@ -252,4 +252,39 @@ public class UserDBHandler {
         return allroles;
     }
     
+    public boolean editUserAccess(User user, ArrayList<UserRole> assignedRole)
+    {
+        boolean success = true;
+        PreparedStatement pstmt;
+        try {
+            String userID = user.getId();
+            //Delete all previous roles assigned to the user
+            pstmt = con.prepareStatement("DELETE FROM [PROJ_ROLEMAPPING] WHERE [USERID] = (?)");
+            pstmt.setString(1, userID);
+            int rowsAffected = pstmt.executeUpdate();
+            if(rowsAffected <= 0)
+                success = false;
+           
+            //Insert the new roles
+            pstmt = con.prepareStatement("INSERT INTO [PROJ_ROLEMAPPING] ( [USERID], [ROLEID] ) VALUES (?, ?)");
+            
+            for(UserRole role: assignedRole)
+            {
+                pstmt.setString(1, userID);
+                pstmt.setString(2, role.getRoleName());
+                rowsAffected = pstmt.executeUpdate();
+                
+                if(rowsAffected <= 0)
+                    success = false;
+            }
+            
+        }
+        catch (SQLException ex) {
+            success = false;
+        }
+        return success;
+    
+    }
+
+    
 }

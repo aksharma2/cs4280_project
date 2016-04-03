@@ -14,6 +14,26 @@ public class User {
     private String name;
     private String id;
 
+    private boolean isManager = false;
+    private boolean isAdmin   = false;
+
+    public boolean isIsManager() {
+        return isManager;
+    }
+
+    public void setIsManager(boolean isManager) {
+        this.isManager = isManager;
+    }
+
+    public boolean isIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+    
+    
     public User(String name, String id) {
         this.name = name;
         this.id = id;

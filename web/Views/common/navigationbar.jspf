@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
+
+http://www.bootply.com/render/96266
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
@@ -61,10 +63,11 @@
     <c:if test="${sessionScope.user != null}">
         <ul class="nav navbar-nav navbar-right">
             
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Hi ${sessionScope.user.name}  <span class="glyphicon glyphicon-user"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">${sessionScope.user.name} <span class="glyphicon glyphicon-user"></span></a>
                 
             </li>
-            <li><a href="${pageContext.request.contextPath}/user/logout"><span ></span> Log Out </a></li>
+            <li><a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
+            <li><a href="#"><span ></span> </a></li>
         </ul>
     </c:if>
     <c:if test="${sessionScope.user == null}">

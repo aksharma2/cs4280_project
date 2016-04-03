@@ -77,7 +77,12 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("userCount", users.size());
             }
             
-            response.sendRedirect(nextServlet);
+            if(nextServlet!= null)
+                response.sendRedirect(nextServlet);
+            else
+            {
+                response.sendRedirect("../..");
+            }
             
         }
         else
