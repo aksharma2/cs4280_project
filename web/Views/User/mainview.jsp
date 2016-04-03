@@ -78,10 +78,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="h_right">
 			<!--start menu -->
 			<ul class="menu">
-				<li class="active"><a href="index.html">hotel</a></li> |
-				<li><a href="rooms.html">rooms & suits</a></li> |
+				<li class="active"><a href="../../index.jsp">hotel</a></li> |
+				<li><a href="account.jsp">rooms & suits</a></li> |
 				<li><a href="reservation.html">reservation</a></li> |
 				<li><a href="contact.html">contact</a></li> |
+                                <li><a href="login.jsp">Login</a></li> 
 					
 				<div class="clear"></div>
 			</ul>
@@ -90,8 +91,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="row">
 							<div class="grid_3 columns">
 								<select class="custom-select" id="select-1">
-									<option selected="selected">Welcome user xxx</option>
-									<option>Log out</option>
+									<option id="hide" selected="selected">Welcome user xxxxxxxx</option>
+                                                                        
+                                                                       <option>Log out</option>
 									
 								</select>
 							</div>		
@@ -243,11 +245,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="wrap">
 <div class="footer">
 			<div class="copy">
-				<p class="link"><span>© All rights reserved | </span></p>
+				<p class="link"><span>© All rights reserved | Paradise Booking Co. </span></p>
 			</div>
 			<div class="f_nav">
 				<ul>
-					<li><a href="index.html">home</a></li>
+					<li><a href="#">home</a></li>
 					<li><a href="reservation.html">reservation</a></li>
 					<li><a href="contact.html">Contact</a></li>
 				</ul>
