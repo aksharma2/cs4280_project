@@ -32,8 +32,13 @@ public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("loginTabStyle", "active");
         String nextJSP = "/Views/User/register.jsp";
+       
+        String nextServlet = request.getParameter("referer");
+        request.setAttribute("referer", nextServlet);
+        
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request,response);
+        
     }
     
     @Override
@@ -52,24 +57,26 @@ public class RegisterServlet extends HttpServlet {
         boolean added = false;
         
         String nextJSP = "/Views/User/register.jsp";
-        
+        String nextServlet = request.getParameter("referer");
+        request.setAttribute("referer", nextServlet);
+                
         if(valid)
         {
             added = UserService.registerUser(registration);
             
             if(added)
             {
-                nextJSP = "/Views/User/userList.jsp";
+                User u = UserService.findUser(registration.getUserID());
+                HttpSession session = request.getSession(true);
+                session.setAttribute("user", u);
                 
-                ArrayList<User> users = UserService.findUser();
-                if(users!=null)
+                if (request.getParameterMap().containsKey("referer") && !nextServlet.equals("")) {
+			response.sendRedirect(nextServlet);
+		}
+                else
                 {
-                    request.setAttribute("userList", users);
-                    request.setAttribute("userCount", users.size());
-                
-                    
+                    response.sendRedirect("/cs4280.project/");
                 }
-                
             }
             else{
                 
@@ -86,18 +93,23 @@ public class RegisterServlet extends HttpServlet {
                 }
                 
                 request.setAttribute("error", errorText);
+                
+                 
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+                dispatcher.forward(request,response);
+
             }
         }
         else
         {
             errorText += "\n Your password and confirmation password dont match Or is not 6 characters in length!";
             request.setAttribute("error", errorText);
+            
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+            dispatcher.forward(request,response);
         }
         
-        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request,response);
-
+       
         
         /*
         User user = new User(name, email, password);

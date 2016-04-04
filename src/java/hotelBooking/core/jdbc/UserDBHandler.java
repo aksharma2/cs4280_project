@@ -285,6 +285,32 @@ public class UserDBHandler {
         return success;
     
     }
+    
+    public boolean checkIfHotelBelongsToManager(String hotelID, String managerID)
+    {
+        PreparedStatement pstmt;
+        try {
+            pstmt = con.prepareStatement("SELECT * FROM [PROJ_HOTELMANAGER] WHERE HOTELID = (?)");
+            pstmt.setString(1, hotelID);
+            
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) 
+            {
+               String dbManagerID = rs.getString("MANAGERID");
+               String dbHotelID = rs.getString("HOTELID");
+               
+               if(hotelID.equals(dbHotelID) && managerID.equals(dbManagerID))
+                   return true;
+            }
+           
+        }
+        catch (SQLException ex) {
+            //DO nothing
+        }
+        
+        return false;
+    
+    }
 
     
 }

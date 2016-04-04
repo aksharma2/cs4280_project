@@ -65,22 +65,13 @@ public class LoginServlet extends HttpServlet {
             User u = UserService.findUser(cred.getUserID());
             HttpSession session = request.getSession(true);
             session.setAttribute("user", u);
-            
-            //String nextServlet = request.getParameter("referer");
-            //nextServlet = "../admin/view";
-            ArrayList<User> users = UserService.findUser();
-            if(users!=null)
-            {
-                
-                request.setAttribute("userList", users);
-                request.setAttribute("userCount", users.size());
+          
+            if (request.getParameterMap().containsKey("referer") && !nextServlet.equals("")) {
+			response.sendRedirect(nextServlet);
             }
-            
-            if(nextServlet!= null)
-                response.sendRedirect(nextServlet);
             else
             {
-                response.sendRedirect("../..");
+                response.sendRedirect("/cs4280.project/");
             }
             
         }

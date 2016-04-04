@@ -39,18 +39,18 @@
                                     <p>User Access</p>
                                     <input type="hidden" name="idToEdit" value=${currentUser.id}>
                                     <div class="checkbox">
-                                        <c:if test="${currentUser.isAdmin == true}">
+                                        <c:if test="${currentUser.isAdmin}">
                                             <label><input name="role_admin" type="checkbox" value="ROLE_ADMIN" checked>ADMINISTRATOR</label>
                                         </c:if>
-                                        <c:if test="${currentUser.isAdmin == false}">
+                                        <c:if test="${not currentUser.isAdmin}">
                                             <label><input name="role_admin" type="checkbox" value="ROLE_ADMIN" >ADMINISTRATOR</label>
                                         </c:if>
                                     </div>
                                     <div class="checkbox">
-                                         <c:if test="${currentUser.isManager == true}">
+                                        <c:if test="${currentUser.isManager}">
                                             <label><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" checked>HOTEL MANAGER</label>
                                         </c:if>
-                                        <c:if test="${currentUser.isManager == false}">
+                                        <c:if test="${not currentUser.isManager}">
                                             <label><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER">HOTEL MANAGER</label>
                                         </c:if>
                                     </div>

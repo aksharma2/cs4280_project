@@ -28,29 +28,23 @@ public class AdminViewServlet extends HttpServlet {
 
    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //request.setAttribute("loginTabStyle", "active");
         
-        UserRole requiredRole = new UserRole(UserRole.HOTEL_MANAGER);
-        HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute("user");
-        String requestURI = request.getRequestURI();
+        /*
         
+        So now if you require the user to have ADMIN role to access the Admin View Servlet then you gottal change the nexr line to... 
+        boolean authorized = UserService.checkForAccess(request, UserRole.ADMIN);
         
+        */
+        boolean authorized = UserService.checkForAccess(request, UserRole.AUTHENTICATED);
         
-        ArrayList<UserRole> assignedRoles = UserService.findRolesAssignedToUser(user);
-        boolean authorized = requiredRole.checkPreviledge(assignedRoles);
-       
         String nextJSP = "/Views/User/userList.jsp";
        
         if(authorized)
         {
             nextJSP = "/Views/User/userList.jsp";
-            
-            
             ArrayList<User> users = UserService.findUser();
             if(users!=null)
             {
-                
                 request.setAttribute("userList", users);
                 request.setAttribute("userCount", users.size());
             }
@@ -60,15 +54,7 @@ public class AdminViewServlet extends HttpServlet {
         }
         else
         {
-            
-            //"../admin/view"
-            response.sendRedirect("../user/login?referer=" + requestURI);
-            /**
-            StringBuffer requestURL = request.getRequestURL();
-            request.setAttribute("error", requestURL);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-            dispatcher.forward(request,response);
-            * **/
+            response.sendRedirect("../user/login?referer=" + request.getRequestURI());
         }
        
     }

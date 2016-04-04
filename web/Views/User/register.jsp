@@ -50,6 +50,13 @@
                         </div>
                     </div>
 
+                    <div class="control-group">
+                         <label class="control-label" for="userID">[Test] Referer</label>
+                        <div class="controls">
+                            <input type="text" id="referer" name="referer"  value="${requestScope.referer}" />
+                        </div>
+                    </div>
+                        
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary"><i class="icon-lock icon-white"></i> Sign up</button>
                     </div>

@@ -28,8 +28,10 @@ public class DBKeyGen {
          String roleName = roles.get(0).getRoleName();
          */
         
-        
-                 
+        User u = UserService.findUser("spanda2");
+       
+         boolean res = UserService.checkHotelMangerMapping("hotel2","spanda2");
+         
          
          int x = 6;
     }

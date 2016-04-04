@@ -16,6 +16,7 @@ public class UserRole {
     public static final int ADMIN = 0;
     public static final int HOTEL_MANAGER = 1;
     public static final int CUSTOMER = 2;
+    public static final int AUTHENTICATED = 3;
     
     private int role = -1;
 
@@ -54,7 +55,8 @@ public class UserRole {
     {
         if(rolesAssignedToUser == null || rolesAssignedToUser.size() < 1)
             return false;
-            
+        
+        
         for(UserRole r : rolesAssignedToUser)
         {
             if(r.getRole() == this.role)

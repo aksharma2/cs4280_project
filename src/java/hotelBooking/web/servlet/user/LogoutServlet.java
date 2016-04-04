@@ -21,9 +21,11 @@ public class LogoutServlet extends HttpServlet {
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().invalidate();
-        String nextJSP = "/Views/User/login.jsp";
+       /* String nextJSP = "/Views/User/login.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request,response);
+               */
+        response.sendRedirect("/cs4280.project/");
     }
 
 }

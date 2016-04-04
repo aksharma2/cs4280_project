@@ -7,6 +7,7 @@
 package hotelBooking.web.servlet.user;
 
 import hotelBooking.core.domain.User;
+import hotelBooking.core.domain.UserRole;
 import hotelBooking.core.services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,9 +40,20 @@ public class EditUserAccess extends HttpServlet {
         if(request.getParameter("idToEdit") != null)
         {
             User u = UserService.findUser((String) request.getParameter("idToEdit"));
-            String isCheckedHotelManager = (String) request.getParameter("role_hotel_manager");
-            String isCheckedAdmin = (String) request.getParameter("role_admin");
+            
+            boolean isCheckedHotelManager =  request.getParameter("role_hotel_manager") != null;
+            
+            boolean isCheckedAdmin =  request.getParameter("role_admin") != null;
         
+            
+            ArrayList<UserRole> assigned = new ArrayList<UserRole>();
+            if(isCheckedAdmin)
+                assigned.add(new UserRole(UserRole.ADMIN));
+            
+            if(isCheckedHotelManager)
+                assigned.add(new UserRole(UserRole.HOTEL_MANAGER));
+            
+            UserService.editUserAccess(u, assigned);
             
         }  
         
