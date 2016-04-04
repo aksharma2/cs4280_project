@@ -36,6 +36,7 @@ public class ViewHotel extends HttpServlet {
             String id=request.getParameter("id");
             String radio=request.getParameter("Q2");
             ArrayList<Hotel>hotels=new ArrayList<Hotel>();
+            hotels=null;
             HotelDBHandler db=new HotelDBHandler();
             boolean check=db.checkConnection();
             

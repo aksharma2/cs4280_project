@@ -24,7 +24,7 @@
        <form action="${pageContext.request.contextPath}/ViewHotel" method="post">
             
             Input<input type="text" value="Enter text" name="id">
-            City<input type = "radio" name = "Q2" value="city">
+            City<input type = "radio" name = "Q2" value="city" checked="checked">
             Id<input type = "radio" name = "Q2" value="id">
             All Hotels<input type = "radio" name = "Q2" value="allHotels">
             <input type="submit" value="submit">
