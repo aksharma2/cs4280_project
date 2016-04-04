@@ -52,6 +52,10 @@
         <servlet-name>ShowMyBooking</servlet-name>
         <servlet-class>hotelBooking.web.servlet.booking.ShowMyBooking</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewHotel</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.hotel.ViewHotel</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/Test</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>ShowMyBooking</servlet-name>
         <url-pattern>/ShowMyBooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewHotel</servlet-name>
+        <url-pattern>/ViewHotel</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
