@@ -8,9 +8,11 @@ package hotelBooking.web.servlet.user;
 
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserCredential;
+import hotelBooking.core.jdbc.UserDBHandler;
 import hotelBooking.core.services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -70,7 +72,19 @@ public class RegisterServlet extends HttpServlet {
                 
             }
             else{
-                errorText += "\n Duplicate User ID";
+                
+                
+                UserDBHandler db = new UserDBHandler();
+                try {
+                    db.checkConnection();
+                    db.closeConnection();
+                    errorText += "\n Duplicate User ID";
+                } catch (ClassNotFoundException ex) {
+                    errorText += "Could'nt connect to the Database";
+                } catch (SQLException ex) {
+                    errorText += "Some unknown error occured";
+                }
+                
                 request.setAttribute("error", errorText);
             }
         }

@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("loginTabStyle", "active");
         String nextJSP = "/Views/User/login.jsp";
-       
         
         String nextServlet = request.getParameter("referer");
         request.setAttribute("referer", nextServlet);
@@ -103,6 +102,7 @@ public class LoginServlet extends HttpServlet {
             
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
             dispatcher.forward(request,response);
+            
         }
             
        

@@ -33,6 +33,9 @@ public class AdminViewServlet extends HttpServlet {
         UserRole requiredRole = new UserRole(UserRole.HOTEL_MANAGER);
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
+        String requestURI = request.getRequestURI();
+        
+        
         
         ArrayList<UserRole> assignedRoles = UserService.findRolesAssignedToUser(user);
         boolean authorized = requiredRole.checkPreviledge(assignedRoles);
@@ -52,17 +55,14 @@ public class AdminViewServlet extends HttpServlet {
                 request.setAttribute("userCount", users.size());
             }
             
-            
-            
-            
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
             dispatcher.forward(request,response);
         }
         else
         {
             
-            
-            response.sendRedirect("../user/login?referer=" + "../admin/view");
+            //"../admin/view"
+            response.sendRedirect("../user/login?referer=" + requestURI);
             /**
             StringBuffer requestURL = request.getRequestURL();
             request.setAttribute("error", requestURL);

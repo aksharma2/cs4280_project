@@ -72,9 +72,9 @@ http://www.bootply.com/render/96266
     </c:if>
     <c:if test="${sessionScope.user == null}">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="${pageContext.request.contextPath}/user/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="${pageContext.request.contextPath}/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
+        <li><a href="${pageContext.request.contextPath}/user/register?referer=${pageContext.request.requestURI}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+        <li><a href="${pageContext.request.contextPath}/user/login?referer=${pageContext.request.requestURI}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
     </c:if>
   </div>
 </nav>
