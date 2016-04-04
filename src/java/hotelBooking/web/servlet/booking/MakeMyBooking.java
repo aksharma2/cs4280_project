@@ -6,12 +6,18 @@
 package hotelBooking.web.servlet.booking;
 
 import hotelBooking.core.domain.Booking;
+import hotelBooking.core.domain.Hotel;
 import hotelBooking.core.domain.Room;
 import hotelBooking.core.domain.User;
+import hotelBooking.core.jdbc.HotelDBHandler;
 import hotelBooking.core.services.BookingService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +55,30 @@ public class MakeMyBooking extends HttpServlet {
             throws ServletException, IOException {
        
         String nextJSP = "/Views/Booking/makebooking.jsp";
+        
+        ArrayList<Hotel>hotels= new ArrayList<Hotel>();
+        HotelDBHandler db=new HotelDBHandler();
+        
+        
+        boolean check=false;
+        try {
+            check = db.checkConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MakeMyBooking.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MakeMyBooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            if(check){
+             hotels=db.findHotel();
+                
+            }
+              
+            request.setAttribute("hotel", hotels);
+            
+        
+        
+        
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request,response);
         
@@ -81,19 +111,19 @@ public class MakeMyBooking extends HttpServlet {
             Random rand = new Random();
             id=rand.nextLong();
             
-            String userName=Long.toString(id);
+            //String userName=Long.toString(id);
             
-            /*
+            
              HttpSession session = request.getSession(true);
           User currUser=(User)session.getAttribute("user");
-            String username=user.getName();
+            String username=currUser.getId();
             
-            String CityId = (String) session.getAttribute("city");
+            //String CityId = (String) session.getAttribute("city");
             
-            Booking b = new Booking(hotel,room,username,CityId);
+            //Booking b = new Booking(hotel,room,username,CityId);
             
-          */  
-            Booking b = new Booking(hotel,room,userName,DEFAULT_CITY);
+            
+            Booking b = new Booking(hotel,room,username,DEFAULT_CITY);
            // b.setHotelID(hotel);
             //b.setRoomID(room);
             //b.setUserID(userName);

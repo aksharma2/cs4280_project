@@ -35,7 +35,7 @@ public class AdminViewServlet extends HttpServlet {
         boolean authorized = UserService.checkForAccess(request, UserRole.ADMIN);
         
         */
-        boolean authorized = UserService.checkForAccess(request, UserRole.AUTHENTICATED);
+        boolean authorized = UserService.checkForAccess(request, UserRole.ADMIN);
         
         String nextJSP = "/Views/User/userList.jsp";
        

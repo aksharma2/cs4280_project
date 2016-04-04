@@ -18,6 +18,10 @@
 
                 <%@ include file="../common/error.jspf"%>
                 
+                
+                <a href="${pageContext.request.contextPath}/MakeMyBooking" class="btn btn-info" role="button">Make Booking</a>
+                
+                
                 <table class="table table-bordered table-striped">
 
                     <thead>
