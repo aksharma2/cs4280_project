@@ -6,6 +6,7 @@
 package hotelBooking.core.jdbc;
 
 import hotelBooking.core.domain.Hotel;
+import hotelBooking.core.domain.HotelImg;
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserCredential;
 import hotelBooking.core.domain.UserRole;
@@ -152,6 +153,11 @@ public class HotelDBHandler {
          return allHotels;
     }
     
+    
+    
+    
+    
+    
     public ArrayList<Hotel> findHotelById(String id){
         
         PreparedStatement pstmt;
@@ -208,5 +214,34 @@ public class HotelDBHandler {
         
          return allHotels;
     }   
+    
+     
+     
+     
+    public ArrayList<HotelImg> getHotelImages(){
+        
+        ArrayList<HotelImg> hotelImgs = new ArrayList<HotelImg>();
+        
+        PreparedStatement pstmt;
+        try {
+            pstmt = con.prepareStatement("SELECT * FROM [PROJ_HOTEL_IMG]");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) 
+            {
+              HotelImg himg = new HotelImg(rs.getInt("H_Id"),rs.getString("H_Name"),rs.getString("H_City"),rs.getString("H_Img"));
+               
+               hotelImgs.add(himg);
+            }
+            
+        }
+        catch (SQLException ex) {
+            //DO nothing
+        }
+        
+         return hotelImgs;
+    }
+    
+    
+    
     
 }

@@ -56,6 +56,18 @@
         <servlet-name>ViewHotel</servlet-name>
         <servlet-class>hotelBooking.web.servlet.hotel.ViewHotel</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookHotel</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.BookHotel</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookMyRoom</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.BookMyRoom</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MakePayment</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.MakePayment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/Test</url-pattern>
@@ -111,6 +123,18 @@
     <servlet-mapping>
         <servlet-name>ViewHotel</servlet-name>
         <url-pattern>/ViewHotel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookHotel</servlet-name>
+        <url-pattern>/BookHotel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookMyRoom</servlet-name>
+        <url-pattern>/BookMyRoom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MakePayment</servlet-name>
+        <url-pattern>/MakePayment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
