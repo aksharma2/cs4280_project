@@ -4,6 +4,8 @@
     Author     : aksharma2
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../common/header.jspf"%>
@@ -31,30 +33,64 @@
            
         </form>
         
-        <table class="table table-bordered table-striped">
+       <table class="table table-bordered table-striped">
 
                     <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>City</th>
+                        <th>Hotel Images</th>
                         
                     </tr>
                     </thead>
-
-                    <tbody>
-                    <c:forEach items="${requestScope.hotel}" var="hot">
-                        <tr>
-                            <td>${hot.id}</td>
-                            <td>${hot.name}</td>
-                            <td>${hot.city}</td>
-                    </tr>
-                    </c:forEach>
+           
+          <tbody>
+                    
+         
+           <% try{ List<Hotel> myList = (ArrayList<Hotel>) request.getAttribute("hotel"); %>
+           
+                            <% for (Hotel h:myList){ %>
+                            <tr>
+                            <td><%=h.getId() %></td> 
+                            <td><%=h.getName() %></td>
+                            <td><%=h.getCity() %></td>
+                            
+                            
+                            <td> <% for(String s:h.getImg()){ %> 
+                                  <img src=" <%= s %> " width=90 height=90>  
+                            
+                           <% } %></td> </tr>
+                                
+                                <% } %>   <% }catch(NullPointerException n){
+                                        n.printStackTrace();
+                                        }  %>
+                                
+                                
+          
+                           
+                                
+                                
+                                
+                                
+                                   
+                   
+                            
+                                
+                                
+                    
                     </tbody>
-        </table>
+            </table>
        
         
-       
+                            
+                            
+                                
+                        
+                               
+                                
+                    
+        
       
     </body> 
 </html>

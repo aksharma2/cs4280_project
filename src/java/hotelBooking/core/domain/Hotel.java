@@ -5,6 +5,8 @@
  */
 package hotelBooking.core.domain;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author PANDA Sourav
@@ -14,7 +16,12 @@ public class Hotel {
     private String name;
     private String id;
     private String city;
-
+    private ArrayList<String>hotelImgs;
+    
+    public Hotel(){
+        hotelImgs=new ArrayList<String>();
+    }
+    
     public String getName() {
         return name;
     }
@@ -37,6 +44,14 @@ public class Hotel {
 
     public void setCity(String city) {
         this.city = city;
+    }
+    
+    public void setImg(String img){
+        hotelImgs.add(img);
+    }
+    
+    public ArrayList<String> getImg(){
+        return hotelImgs;
     }
 
 }

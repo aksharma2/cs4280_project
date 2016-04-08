@@ -32,7 +32,6 @@ public class ViewHotel extends HttpServlet {
        
         try {
             String nextJSP="/Views/User/hotelmgmt.jsp";
-            
             String id=request.getParameter("id");
             String radio=request.getParameter("Q2");
             ArrayList<Hotel>hotels=new ArrayList<Hotel>();
@@ -53,10 +52,7 @@ public class ViewHotel extends HttpServlet {
                 
             }
               
-            request.setAttribute("hotel", hotels);
-            
-           
-            
+            request.setAttribute("hotel", hotels); 
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
             dispatcher.forward(request,response);
             
@@ -71,22 +67,14 @@ public class ViewHotel extends HttpServlet {
             throws ServletException, IOException {
        
         String nextJSP="/Views/User/hotelmgmt.jsp";
-        
         String name="id";
         request.setAttribute("eid", name);
-        
-       
-        
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request,response);
-         response.sendRedirect("/Views/User/hotelmgmt.jsp");
-    }
+        response.sendRedirect("/Views/User/hotelmgmt.jsp");
+   
+     }
     
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

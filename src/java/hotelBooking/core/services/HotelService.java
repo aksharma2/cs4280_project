@@ -3,6 +3,7 @@ package hotelBooking.core.services;
 
 
 import hotelBooking.core.domain.Hotel;
+import hotelBooking.core.domain.HotelImages;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -30,7 +31,7 @@ public class HotelService extends HttpServlet{
           PrintWriter out = response.getWriter();
          out.println("<html>");
          out.println("<br/><a href='" + request.getRequestURI() + "?action=register'>Add a new hotel</a>");
-         out.println("<br/><a href='" + request.getRequestURI() + "?action=remove'>View & remove existing hotels</a>");
+         out.println("<br/><a href='" + request.getRequestURI() + "?action=remove'>View & remove existing hotels & add Hotel Images</a>");
          out.println("<html>");
                if (action != null) {
             // call different action depending on the action parameter
@@ -38,8 +39,11 @@ public class HotelService extends HttpServlet{
                         this.registerHotel(request, response);
                     } 
                     if (action.equalsIgnoreCase("remove")) {
-                        this.removeHotel(request, response);
-                        
+                        this.removeHotel(request, response);  
+                    }
+                    
+                    if (action.equalsIgnoreCase("addImg")) {
+                        this.addImgHotel(request, response);    
                     } 
                    
                 }
@@ -168,6 +172,7 @@ public class HotelService extends HttpServlet{
                  out.println("<td>" + this.htmlEncode(hotelName) + "</td>");
                  out.println("<td>" + hotelCity + "</td>");
                  out.println("<td> <a href='"+request.getRequestURI()+ "?id="+hotelId+"&action=remove '>Remove </a>" );
+                 out.println("<td> <a href='"+request.getRequestURI()+ "?id="+hotelId+ "&name="+hotelName+ "&city="+hotelCity+ "&action=addImg '>Add Image </a>" );
                  out.println("</td></form>");                 
                  out.println("</tr>");
             }
@@ -192,6 +197,86 @@ public class HotelService extends HttpServlet{
         }
 
     }   
+    
+    
+    private void addImgHotel(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    
+     response.setContentType("text/html;charset=UTF-8");
+     PrintWriter out = response.getWriter();
+     String url = "jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad056_db";
+     String username = "aiad056";
+     String password = "aiad056";
+    
+     try{
+         
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url,username,password);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM PROJ_HOTEL where hotelid='"+request.getParameter("id")+"'  ");
+            String id=request.getParameter("id");
+            String name=request.getParameter("name");
+            String city=request.getParameter("city");
+            
+            out.println("<html>");
+            out.println("<body>");
+            out.println("<div style='width:600px'>");
+            out.println("<fieldset>");
+            out.println("<legend>Current hotels</legend>");
+            out.println("<form action='" + request.getRequestURI() + "' ?action=addImg>");
+            out.println("<input name='action' type='hidden' value='addImg' />");
+            out.println("<div><table style='width:100%'>");
+            out.println("<thead>");
+            out.println("<th align='left'>Hotel Id</th><th align='left'>Hotel Name</th><th align='left'>Hotel City</th><th align='left'>Image link</th>");
+            out.println("</thead>");
+            out.println("<tbody>");
+            
+             while (rs != null && rs.next() != false) {
+
+                 out.println("<tr>");
+                 out.println("<td><input type='text' readonly=\"readonly\" value='" + id + "' name='hotid' > </td>");
+                 out.println("<td><input type='text' readonly=\"readonly\" value='" + name + "' name='hotname' > </td>");
+                 out.println("<td><input type='text' readonly=\"readonly\" value='" + city + "' name='hotcity'> </td>");
+                 out.println("<td><input type='text' name='hotelimg'> </td> ");
+                 out.println("<td><input type='submit' value='Add!' />");
+                 out.println("</td></form>");                 
+                 out.println("</tr>");
+                 
+             }
+                out.println("</tbody>");
+                out.println("</table>");
+                out.println("</body>");
+                out.println("</html>");
+            
+             
+                
+                HotelImages h=new HotelImages();
+                h.setHotelId(request.getParameter("hotid"));        //values obtained from form submission
+                h.setHotelName(request.getParameter("hotname"));
+                h.setHotelCity(request.getParameter("hotcity"));
+                h.setHotelImg(request.getParameter("hotelimg"));
+                
+                PreparedStatement pstmt = con.prepareStatement("INSERT INTO PROJ_HOTEL_IMG VALUES (?, ?, ?, ?)");
+                pstmt.setString(1, h.getHotelId());
+                pstmt.setString(2, h.getHotelName());
+                pstmt.setString(3, h.getHotelCity());
+                pstmt.setString(4, h.getHotelImg());
+                pstmt.executeUpdate();
+                
+                
+                
+                                
+                
+                                
+        }catch(SQLException e){
+         // out.println("<div style='color: red'>" + e.toString() +  "</div>");
+        }catch(ClassNotFoundException e){
+          out.println("<div style='color: red'>" + e.toString() +  "</div>");
+        }finally {
+          out.close();
+                  
+        }
+
+    } 
     
     
     private String htmlEncode(String s) {
