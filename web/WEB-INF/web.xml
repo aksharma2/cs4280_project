@@ -9,6 +9,10 @@
         <servlet-class>hotelBooking.web.servlet.user.LoginServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>BookMyRoom</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.BookMyRoom</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>hotelBooking.web.servlet.user.RegisterServlet</servlet-class>
     </servlet>
@@ -19,6 +23,10 @@
     <servlet>
         <servlet-name>MakeBooking</servlet-name>
         <servlet-class>hotelBooking.user.BookingService.MakeBooking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MakePayment</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.MakePayment</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ShowBookings</servlet-name>
@@ -97,6 +105,10 @@
         <url-pattern>/MakeMyBooking</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>BookMyRoom</servlet-name>
+        <url-pattern>/BookMyRoom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>EditUserAccess</servlet-name>
         <url-pattern>/admin/editAccess</url-pattern>
     </servlet-mapping>
@@ -107,6 +119,10 @@
     <servlet-mapping>
         <servlet-name>ShowMyBooking</servlet-name>
         <url-pattern>/ShowMyBooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MakePayment</servlet-name>
+        <url-pattern>/MakePayment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewHotel</servlet-name>
