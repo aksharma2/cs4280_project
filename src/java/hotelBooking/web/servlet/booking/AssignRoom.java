@@ -75,7 +75,8 @@ public class AssignRoom extends HttpServlet {
        String City = (String) session.getAttribute("HotelCity");
        String RoomType= (String) session.getAttribute("Roomtype");
        
-        
+       String nextJSP = "/Views/Booking/BookingList.jsp";
+       
        if (hotel != null && !hotel.equalsIgnoreCase("") &&
                 RoomType != null && !RoomType.equalsIgnoreCase("")) {
             
@@ -146,16 +147,16 @@ public class AssignRoom extends HttpServlet {
                 RoomType = "";
             }
             
-            String nextJSP = "/Views/Booking/BookRoom.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request,response);
+           nextJSP = "/Views/Booking/BookRoom.jsp";
+       
             
         }
         
-        String nextJSP = "/BookingList.jsp";
+        
+       
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request,response);
-            
+           
     }
 
     /**

@@ -88,6 +88,15 @@ public class HotelService extends HttpServlet{
                 out.println("<p>Hotel id:");
                 out.println("<input name='hotelid' value='' type='text' size='15' maxlength='15'> ");
                 
+                out.println("<p>Number of Rooms for Type : SINGLE");
+                out.println("<input name='singleRoom' value='' type='text' size='15' maxlength='15'> ");
+                
+                out.println("<p>Number of Rooms for Type : DELUXE");
+                out.println("<input name='deluxeRoom' value='' type='text' size='15' maxlength='15'> ");
+                
+                out.println("<p>Number of Rooms for Type : SUITE");
+                out.println("<input name='suiteRoom' value='' type='text' size='15' maxlength='15'> ");
+                
                 out.println("<input type='submit' value='register!' />");
                 out.println("</form>");        
                 out.println("</fieldset>");
@@ -99,6 +108,24 @@ public class HotelService extends HttpServlet{
                 h.setId(request.getParameter("hotelid"));        //values obtained from form submission
                 h.setName(request.getParameter("hotelname"));
                 h.setCity(request.getParameter("hotelcity"));
+                
+               Integer SingleRoom = Integer.parseInt(request.getParameter("singleRoom"));
+               Integer DeluxeRoom = Integer.parseInt(request.getParameter("deluxeRoom"));
+               Integer SuiteRoom = Integer.parseInt(request.getParameter("suiteRoom"));
+                
+                
+                BookingService  bs = new BookingService();
+                boolean result1 =  bs.setMaximumRooms(request.getParameter("hotelid"),"single",SingleRoom);
+                boolean result2 =  bs.setMaximumRooms(request.getParameter("hotelid"),"deluxe",DeluxeRoom);
+                boolean result3 =  bs.setMaximumRooms(request.getParameter("hotelid"),"suite",SuiteRoom);
+                
+               boolean finalresult = result1 && result2 && result3;
+               
+               
+               
+                
+                
+                
 
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 Connection con = DriverManager.getConnection(url,username,password);
@@ -108,7 +135,7 @@ public class HotelService extends HttpServlet{
                 pstmt.setString(3, h.getCity());
                 int rows= pstmt.executeUpdate();
 
-                if(rows>0) {
+                if(rows>0 && finalresult ) {
                     out.println("Hotel succesfully added");
                     Statement st=con.createStatement();
                     ResultSet rs = st.executeQuery("SELECT @@IDENTITY AS [@@IDENTITY]");

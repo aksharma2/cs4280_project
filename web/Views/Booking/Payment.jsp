@@ -41,6 +41,17 @@
         <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name" required="required">
       </div>
     </div>
+    
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="HotelName">Hotel:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="HotelName" value="${requestScope.HotlName}">
+      </div>
+    </div>
+    
+    
+    
      
      <div class="form-group">
       <label class="control-label col-sm-2" for="passport">Country of Passport:</label>

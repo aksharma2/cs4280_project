@@ -305,6 +305,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h3>$150</h3>
                         <h3>per day</h3>
                        <button type="submit" class="btn btn-warning" name="act" value="single">SELECT ROOM</button>
+                        <input type="hidden" name="hotlName" value="${requestScope.hname}"> 
+                          
                           </div>
 			</div>
 		<div class="grid1_of_3">
@@ -326,6 +328,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h3>$199</h3>
                         <h3>per day</h3>
                          <button type="submit" class="btn btn-warning" name="act" value="deluxe">SELECT ROOM</button>
+                          <input type="hidden" name="hotlName" value="${requestScope.hname}">
                      </div>
 			</div>
                   
@@ -349,11 +352,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <h3>$289</h3>
                         <h3>per day</h3>
                          <button type="submit" class="btn btn-warning" name="act" value="suitee">SELECT ROOM</button>
-                        
+                        <input type="hidden" name="hotlName" value="${requestScope.hname}">
                         
                         </div>
                         
-
+                </form>
                         
 					</div>
 		

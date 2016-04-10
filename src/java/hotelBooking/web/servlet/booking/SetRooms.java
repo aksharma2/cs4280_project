@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,24 +6,18 @@
  */
 package hotelBooking.web.servlet.booking;
 
-import hotelBooking.core.domain.Booking;
-import hotelBooking.core.domain.User;
-import hotelBooking.core.services.BookingService;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author shrankhla
  */
-public class ShowMyBooking extends HttpServlet {
+public class SetRooms extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +29,6 @@ public class ShowMyBooking extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
    
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -47,25 +41,6 @@ public class ShowMyBooking extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-         HttpSession session = request.getSession(true);
-          User currUser=(User)session.getAttribute("user");
-            String username=currUser.getId();
-        
-        
-        
-        ArrayList<Booking> allbookings;
-        
-         BookingService bookingservice = new BookingService();
-         allbookings=bookingservice.getallMyBookings(username);
-       
-         request.setAttribute("allbookings", allbookings);
-         
-         
-         String nextJSP = "/Views/Booking/BookingList.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request,response);
         
     }
 
@@ -81,9 +56,7 @@ public class ShowMyBooking extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        doGet(request,response);
     }
-    
 
     /**
      * Returns a short description of the servlet.

@@ -108,6 +108,42 @@ public class BookingDBHandlerRetreive {
          return allbookings;
      }
      
+     
+     
+     
+      public ArrayList<Booking> findMyBooking(String id)
+             
+     {
+         ArrayList<Booking> allbookings = new ArrayList<Booking>();
+         
+         //PreparedStatement pst;
+         
+         try{
+            // pst=con.prepareStatement("SELECT * FROM [PROJ_BOOKING] ");
+             
+             //rs=pst.executeQuery();
+            makeConnection();
+            
+            PreparedStatement pstmt;
+            // pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             
+              pstmt = con.prepareStatement("SELECT * FROM [PROJ_BOOKING] WHERE [userID] = (?) ");
+              pstmt.setString(1, id);
+                 rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 Booking b = new Booking(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"));
+                 allbookings.add(b);
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(BookingDBHandlerRetreive.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+         return allbookings;
+     }
+     
+     
+     
      /*
      public Booking findBooking(String id)
              

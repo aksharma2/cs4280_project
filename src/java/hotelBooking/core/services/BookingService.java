@@ -10,6 +10,7 @@ import hotelBooking.core.domain.Room;
 
 import hotelBooking.core.jdbc.BookingDBHandler;
 import hotelBooking.core.jdbc.BookingDBHandlerRetreive;
+import hotelBooking.core.jdbc.RoomDBHandler;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +21,8 @@ public class BookingService {
     
    public static  BookingDBHandler db;
    public static BookingDBHandlerRetreive dbr;
+   public static RoomDBHandler dbR;
+   
     
     public static boolean makeBooking(Booking b)
     {
@@ -69,13 +72,32 @@ public class BookingService {
         return success;
     }
     
+     
+   public static boolean setMaximumRooms(String hotelID , String roomType , int num )
+    {
+        boolean success=false;
+        
+         dbR = new RoomDBHandler();
+        
+        if(dbR.makeConnection())
+            
+        {
+            success=dbR.setMaxRoom(hotelID, roomType, num);
+        }
+        dbR.closeConnection();
+        
+        return success;
+    }  
+     
+     
+   
     
-    public static ArrayList<Booking> getallMyBookings()
+    public static ArrayList<Booking> getallMyBookings(String id)
             
     {
         ArrayList<Booking> mybookings;
         dbr=new BookingDBHandlerRetreive();
-        mybookings=dbr.findBooking();
+        mybookings=dbr.findMyBooking(id);
         
         return mybookings;
         

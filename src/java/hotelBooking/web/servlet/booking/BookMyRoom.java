@@ -56,11 +56,11 @@ public class BookMyRoom extends HttpServlet {
        
        
         
-        /*
+        
           HttpSession session = request.getSession(true);
           session.setAttribute("HotelCity", HCity);
           session.setAttribute("HotelName", HName);
-        */  
+         
           
         
        

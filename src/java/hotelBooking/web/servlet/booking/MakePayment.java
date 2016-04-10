@@ -67,6 +67,7 @@ public class MakePayment extends HttpServlet {
          if(authorized)
         {
           String roomtype = request.getParameter("act");
+          String hotlname= request.getParameter("hotlName");
           String nextJSP="/Views/Booking/Payment.jsp";
           Integer tariff = null;
           
@@ -93,10 +94,12 @@ public class MakePayment extends HttpServlet {
           
           request.setAttribute("tariff", tariff);
           request.setAttribute("roomType", roomtype);
-          /*
+          request.setAttribute("HotlName", hotlname);
+          
+          
            HttpSession session = request.getSession(true);
            session.setAttribute("Roomtype", roomtype);
-        */
+        
           
           RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
           dispatcher.forward(request,response);
