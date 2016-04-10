@@ -5,6 +5,8 @@
  */
 package hotelBooking.web.servlet.booking;
 
+import hotelBooking.core.domain.UserRole;
+import hotelBooking.core.services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -12,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -59,6 +62,10 @@ public class MakePayment extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+         boolean authorized = UserService.checkForAccess(request, UserRole.AUTHENTICATED);
+         
+         if(authorized)
+        {
           String roomtype = request.getParameter("act");
           String nextJSP="/Views/Booking/Payment.jsp";
           Integer tariff = null;
@@ -68,7 +75,7 @@ public class MakePayment extends HttpServlet {
               nextJSP="/Views/Booking/BookRoom.jsp";
           }
           
-          if(roomtype.equals("single"))
+          else if(roomtype.equals("single"))
           {
               tariff=150;
           }
@@ -86,15 +93,19 @@ public class MakePayment extends HttpServlet {
           
           request.setAttribute("tariff", tariff);
           request.setAttribute("roomType", roomtype);
-          
-          
-        
+          /*
+           HttpSession session = request.getSession(true);
+           session.setAttribute("Roomtype", roomtype);
+        */
           
           RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request,response);
+          dispatcher.forward(request,response);
         
+    }else
+        {
+            response.sendRedirect("./user/login?referer=" + request.getRequestURI());
+        }
     }
-
     /**
      * Returns a short description of the servlet.
      *

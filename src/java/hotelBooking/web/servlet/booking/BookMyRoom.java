@@ -5,13 +5,18 @@
  */
 package hotelBooking.web.servlet.booking;
 
+import hotelBooking.core.domain.User;
+import hotelBooking.core.domain.UserRole;
+import hotelBooking.core.services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,18 +39,31 @@ public class BookMyRoom extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String nextJSP = "/Views/Booking/BookRoom.jsp";
         
-        String HName = request.getParameter("hotelN");
-        String HURL = request.getParameter("hotelU");
-        String HCity = request.getParameter("hotelC");
         
-        request.setAttribute("hname", HName);
-        request.setAttribute("hurl", HURL);
-        request.setAttribute("hcity", HCity);
+            String nextJSP = "/Views/Booking/BookRoom.jsp";
+       
+            String HName = request.getParameter("hotelN");
+            String HURL = request.getParameter("hotelU");
+            String HCity = request.getParameter("hotelC");
+
+            request.setAttribute("hname", HName);
+            request.setAttribute("hurl", HURL);
+            request.setAttribute("hcity", HCity);
+            
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+            dispatcher.forward(request,response);
+       
+       
         
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request,response);
+        /*
+          HttpSession session = request.getSession(true);
+          session.setAttribute("HotelCity", HCity);
+          session.setAttribute("HotelName", HName);
+        */  
+          
+        
+       
        
     }
 

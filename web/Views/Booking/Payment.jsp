@@ -27,25 +27,25 @@
               <h1>Guest Details </h1>
               
   
-  <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/MakePayment" method="post" >
+  <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/AssignRoom" method="post" >
     <div class="form-group">
       <label class="control-label col-sm-2" for="firstname">Guest First Name:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="firstname" placeholder="Enter First Name">
+        <input type="text" class="form-control" id="firstname" placeholder="Enter First Name" required="required">
       </div>
     </div>
     
     <div class="form-group">
       <label class="control-label col-sm-2" for="lastname">Guest Last Name:</label>
       <div class="col-sm-10">          
-        <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name">
+        <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name" required="required">
       </div>
     </div>
      
      <div class="form-group">
-      <label class="control-label col-sm-2"for="passport">Country of Passport:</label>
+      <label class="control-label col-sm-2" for="passport">Country of Passport:</label>
       <div class="col-sm-10">
-      <select class="form-control" id="passport">
+      <select class="form-control" id="passport" required="required">
         <option>CH:Switzerland</option>
         <option>GB:United Kingdom</option>
         <option>US:United States</option>
@@ -65,7 +65,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="paymethod"> Payment Method</label>
       <div class="col-sm-10">
-      <select class="form-control" id="paymethod">
+      <select class="form-control" id="paymethod" required="required">
         <option>Visa</option>
         <option>Master Card</option>
         <option>American Express</option>
@@ -79,14 +79,14 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="cardnum">Card Number:</label>
       <div class="col-sm-10">          
-        <input type="text" class="form-control" id="cardnum" placeholder="Enter Credit Card Num">
+        <input type="text" class="form-control" id="cardnum" placeholder="Enter Credit Card Num" required="required">
       </div>
     </div>
     
     <div class="form-group">
       <label class="control-label col-sm-2" for="cardname">Card Holder Name:</label>
       <div class="col-sm-10">          
-        <input type="text" class="form-control" id="cardname" placeholder="Enter Card Holder Name">
+        <input type="text" class="form-control" id="cardname" placeholder="Enter Card Holder Name" required="required">
       </div>
     </div>
     
@@ -94,7 +94,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="expdate">Expiry Date</label>
       <div class="col-sm-10">
-      <select class="form-control" id="expdate">
+      <select class="form-control" id="expdate" required="required">
         <option value=''>Month</option>
     <option value='01'>Janaury</option>
     <option value='02'>February</option>
@@ -111,7 +111,7 @@
       
       </select>
       
-    <select class="form-control" id="expdatem">
+    <select class="form-control" id="expdatem" required="required">
         <option value=''>Year</option>
         <option value='10'>2010</option>
         <option value='11'>2011</option>
@@ -124,13 +124,13 @@
      <div class="form-group">
       <label class="control-label col-sm-2" for="cvv">CVV Number:</label>
       <div class="col-sm-10">          
-        <input type="text" class="form-control" id="CVV">
+        <input type="text" class="form-control" id="CVV" required="required">
       </div>
     </div>
     
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" >Submit</button>
       </div>
     </div>
   </form>

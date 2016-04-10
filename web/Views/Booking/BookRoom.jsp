@@ -1,5 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -22,27 +21,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-<link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<script src="../../static/js/jquery.min.js"></script>
+<link href="${pageContext.request.contextPath}/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
 <!--start slider -->
-<link rel="stylesheet" href="../../static/css/fwslider.css" media="all">
-<script src="../../static/js/jquery-ui.min.js"></script>
-<script src="../../static/js/css3-mediaqueries.js"></script>
-<script src="../../static/js/fwslider.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/fwslider.css" media="all">
+<script src="${pageContext.request.contextPath}/static/js/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/css3-mediaqueries.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/fwslider.js"></script>
 <!--end slider -->
 <!---strat-date-piker---->
-<link rel="stylesheet" href="../../static/css/jquery-ui.css" />
-<script src="../../static/js/jquery-ui.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/jquery-ui.css" />
+<script src="${pageContext.request.contextPath}/static/js/jquery-ui.js"></script>
 		  <script>
 				  $(function() {
 				    $( "#datepicker,#datepicker1" ).datepicker();
 				  });
 		  </script>
 <!---/End-date-piker---->
-<link type="text/css" rel="stylesheet" href="../../static/css/JFGrid.css" />
-<link type="text/css" rel="stylesheet" href="../../static/css/JFFormStyle-1.css" />
-		<script type="text/javascript" src="../../static/js/JFCore.js"></script>
-		<script type="text/javascript" src="../../static/js/JFForms.js"></script>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/JFGrid.css" />
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/JFFormStyle-1.css" />
+		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/JFCore.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/JFForms.js"></script>
 		<!-- Set here the key for your domain in order to hide the watermark on the web server -->
 		<script type="text/javascript">
 			(function() {
@@ -155,20 +154,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="wrap">
 	<div class="header">
 		<div class="logo">
-			<a href="index.html"><img src="../../static/img/logo.png" width="159" height="45" alt=""></a>
+			<a href="index.html"><img src="${pageContext.request.contextPath}/static/img/logo.png" width="159px" height="45px" alt=""></a>
 		</div>
-		<div class="h_right">
-			<!--start menu -->
+		
+                <div class="h_right">
+	                					<!--start menu -->
+	                <%@ include file="../common/header.jspf"%>		
+               
+                
+		
+               
+			
 			<ul class="menu">
-				<li class="active"><a href="../../index.jsp">hotel</a></li> 
+				<li class="active"><a href="${pageContext.request.contextPath}/index.jsp">hotel</a></li> 
 				<li><a href="account.jsp">rooms & suits</a></li> 
 				<li><a href="reservation.html">reservation</a></li> 
 				<li><a href="contact.html">contact</a></li> 
                                 <li><a href="login.jsp">Login</a></li> 
-					
+				
+                                <div class="clear"></div>
 				
 			</ul>
-			<!-- start profile_details -->
+			
 					<form class="style-1 drp_dwn">
 						<div class="row">
 							<div class="grid_3 columns">
@@ -183,8 +190,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</form>
 		</div>
 		<div class="clear"></div>
-		<div class="top-nav">
-		<nav class="clearfix">
+                <div class="top-nav">
+		
+                    <nav class="clearfix">
 				<ul>
 				<li class="active"><a href="index.html">hotel</a></li> 
 				<li><a href="rooms.html">rooms & suits</a></li> 
@@ -194,7 +202,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</ul>
 				<a href="#" id="pull">Menu</a>
 			</nav>
+                
 		</div>
+                
 	</div>
 </div>
 </div>
@@ -205,7 +215,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		        <div class="slider_container">
 		            <div class="slide"> 
 		                <!-- Slide image -->
-		                    <img src="../../static/img/slider-bg.jpg" alt=""/>
+		                    <img src="${pageContext.request.contextPath}/static/img/slider-bg.jpg" alt=""/>
+                               
 		                <!-- /Slide image -->
 		                <!-- Texts container -->
 		                <div class="slide_content">
@@ -220,7 +231,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		            </div>
 		            <!-- /Duplicate to create more slides -->
 		            <div class="slide">
-		                <img src="../../static/img/slider-bg.jpg" alt=""/>
+		                <img src="${pageContext.request.contextPath}/static/img/slider-bg.jpg" alt=""/>
 		                <div class="slide_content">
 		                     <div class="slide_content_wrap">
 		                        <!-- Text title -->
@@ -251,12 +262,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         
         
         
-      <div class="img-slider">
-			<!-- start slider -->
+     <!--
+        <div class="img-slider">
+			
 		    <div id="fwslider">
 		        <div class="slider_container">
 		            <div class="slide"> 
-		                <!-- Slide image -->
+		               
                                 <h1>${requestScope.hname}</h1>
                                 <h1>${requestScope.hcity}</h1>
                                 
@@ -266,7 +278,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
       </div>
                                 
-        
+       --> 
         
         
 	<!--start grids_of_3 -->
@@ -274,7 +286,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="grid1_of_3">
 			<div class="grid1_of_3_img">
 				<a href="details.html">
-					<img src="../../static/img/pic2.jpg" alt="" />
+					<img src="${pageContext.request.contextPath}/static/img/pic2.jpg" alt="" />
 					<span class="next"> </span>
 				</a>
 			</div>
@@ -298,7 +310,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="grid1_of_3">
 			<div class="grid1_of_3_img">
 				<a href="details.html">
-					<img src="../../static/img/pic1.jpg" alt="" />
+					<img src="${pageContext.request.contextPath}/static/img/pic1.jpg" alt="" />
 					<span class="next"> </span>
 				</a>
 			</div>
@@ -321,7 +333,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="grid1_of_3">
 			<div class="grid1_of_3_img">
 				<a href="details.html">
-					<img src="../../static/img/pic3.jpg" alt="" />
+					<img src="${pageContext.request.contextPath}/static/img/pic3.jpg" alt="" />
 					<span class="next"> </span>
 				</a>
 			</div>
@@ -358,7 +370,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="wrap">
 <div class="footer">
 			<div class="copy">
-				<p class="link"><span>Â© All rights reserved | Paradise Booking Co. </span></p>
+				<p class="link"><span>© All rights reserved | Paradise Booking Co. </span></p>
 			</div>
 			<div class="f_nav">
 				<ul>

@@ -65,15 +65,15 @@
                            <td>
                                 <form action="${pageContext.request.contextPath}/BookMyRoom" method="get">
                                     
-                                    <% for(String s:h.getImg()){ %> 
-                                 
-                                  <INPUT TYPE=hidden NAME="hotelU" VALUE=" <%= s %>">
                                     <INPUT TYPE=hidden NAME="hotelN" VALUE="<%=h.getName() %>">
                                     <INPUT TYPE=hidden NAME="hotelC" VALUE="<%=h.getCity() %>">
                                     
-                                  
-                            
-                           <% } %>
+                                    
+                                    <% for(String s:h.getImg()){ %> 
+                                 
+                                        <INPUT TYPE=hidden NAME="hotelU" VALUE=" <%= s %>">
+                                      
+                                    <% } %>
                                     
                                    <button type="submit" class="btn btn-warning">BOOK NOW!</button>
                                 </form>
