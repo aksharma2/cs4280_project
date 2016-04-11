@@ -1,7 +1,5 @@
+
 package hotelBooking.core.services;
-
-
-
 import hotelBooking.core.domain.Hotel;
 import hotelBooking.core.domain.HotelImages;
 import java.io.IOException;
@@ -64,11 +62,15 @@ public class HotelService extends HttpServlet{
                 out.println("<title>Hotel register(Manager Access)</title>");
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<div style='width:600px'>");
+                out.println("<div style='width:600px height:100px'>");
+                
                 out.println("<fieldset>");
-                out.println("<legend>Add a new hotel(Manager)</legend>");
+                
+                out.println("<div class='testbox' style='width:600px' />");
                 out.println("<form method='GET' action='" + request.getRequestURI() + "'>");
+                
                 out.println("<input name='action' type='hidden' value='register' />");
+                 out.println("<legend>Add a new hotel(Manager)</legend>");
                 out.println("<p>Hotel:");
                 out.println(" <select name=\"hotelname\">\n" +
                             "    <option value=\"hilton\">Hilton</option>\n" +
@@ -182,9 +184,9 @@ public class HotelService extends HttpServlet{
             out.println("<legend>Current hotels</legend>");
             out.println("<form action='" + request.getRequestURI() + "'>");
             out.println("<input name='action' type='hidden' value='remove' />");
-            out.println("<div><table style='width:100%'>");
+            out.println("<div class=\"box-table\"><table style='width:100%'>");
             out.println("<thead>");
-            out.println("<th align='left'>Hotel Id</th><th align='left'>Hotel Name</th><th align='left'>City</th><th align='left'>Action</th>");
+            out.println("<th align='left'>Hotel Id</th><th align='left'>Hotel Name</th><th align='left'>City</th><th align='left'>Action</th><th align='left'>Image</th>");
             out.println("</thead>");
             out.println("<tbody>");
             
