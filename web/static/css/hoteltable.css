@@ -177,6 +177,15 @@ body{
   padding:0.5em;
   animation: table_loader 10s infinite ease;
 }
+
+caption {
+  text-align: left;
+  color: silver;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 5px;
+}
+
 @keyframes table_loader{50%{width:100%}}
 @-webkit-keyframes table_loader{50%{width:100%}}
 @-moz-keyframes table_loader{50%{width:100%}}
