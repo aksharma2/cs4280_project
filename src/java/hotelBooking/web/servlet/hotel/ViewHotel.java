@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
  * @author aksharma2
@@ -51,10 +52,12 @@ public class ViewHotel extends HttpServlet {
                     hotels=db.findHotel();
                 
             }
-              
+            
+            
             request.setAttribute("hotel", hotels); 
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
             dispatcher.forward(request,response);
+            
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ViewHotel.class.getName()).log(Level.SEVERE, null, ex);

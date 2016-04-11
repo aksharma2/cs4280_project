@@ -8,8 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../common/header.jspf"%>
-<%@ include file="../common/sidebar.jspf"%>
+<%@ include file="../common/newheader.jsp"%>
 <%@page import="hotelBooking.core.domain.Hotel"%>
 <%@page import="hotelBooking.core.jdbc.HotelDBHandler"%>
 <%-- <%@page contentType="text/html" pageEncoding="UTF-8"%> --%>
@@ -17,23 +16,44 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/form.css" />
+         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/hoteltable.css" />
+         
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Test hotels!</h1>
-      
-       
-       <form action="${pageContext.request.contextPath}/ViewHotel" method="post">
-            
-            Input<input type="text" value="Enter text" name="id">
-            City<input type = "radio" name = "Q2" value="city" checked="checked">
-            Id<input type = "radio" name = "Q2" value="id">
-            All Hotels<input type = "radio" name = "Q2" value="allHotels">
-            <input type="submit" value="submit">
-           
-        </form>
+        <h1>View hotels!</h1>
         
-       <table class="table table-bordered table-striped">
+        <div class="testbox">
+  <h1>Input parameter</h1>
+
+  <form action="${pageContext.request.contextPath}/ViewHotel" method="post">
+      <hr>
+    <div class="accounttype">
+      <input type="radio" value="city" id="radioOne" name="Q2" checked/>
+      <label for="radioOne" class="radio" chec>By City</label>
+      <input type="radio" value="id" id="radioTwo" name="Q2" />
+      <label for="radioTwo" class="radio">By id</label>
+       <input type="radio" value="allHotels" id="radioThree" name="Q2" />
+      <label for="radioThree" class="radio">All Hotels</label>
+    </div>
+  <hr>
+  
+  <input type="text" name="id" id="name" placeholder="Enter text" />
+  
+  <div class="gender">
+    
+   </div> 
+   <p>By clicking Submit, you agree on our <a href="#">terms and condition</a>.</p>
+   <input type="submit" value="submit">
+  </form>
+</div>
+      
+     
+        
+        
+      <div class="box-table">  
+       <table>
 
                     <thead>
                     <tr>
@@ -57,10 +77,10 @@
                             <td><h3><%=h.getCity() %></h3></td>
                             
                             
-                            <td> <% for(String s:h.getImg()){ %> 
+                             <td> <% for(String s:h.getImg()){ %> 
                                   <img src=" <%= s %> " height="200" width="150">  
                             
-                           <% } %></td> 
+                                  <% } %></td> 
                             
                            <td>
                                 <form action="${pageContext.request.contextPath}/BookMyRoom" method="get">
@@ -100,7 +120,9 @@
                     
                     </tbody>
             </table>
+      </div>
        
+    
         
                             
                             

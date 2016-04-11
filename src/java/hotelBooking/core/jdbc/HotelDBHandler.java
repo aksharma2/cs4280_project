@@ -184,15 +184,15 @@ public class HotelDBHandler {
                     h.setCity(rs.getString("hotelcity"));
                     
                     PreparedStatement pstmt1 = con.prepareStatement("SELECT * FROM [PROJ_HOTEL_IMG] WHERE H_Id= '"+h.getId()+"' ");
-               ResultSet rs1 = pstmt1.executeQuery(); 
-               while(rs1.next()){
-                   
-                   HotelImages h1= new HotelImages();
-                   h1.setHotelId(rs1.getString("H_Id"));
-                   h1.setHotelName(rs1.getString("H_Name"));
-                   h1.setHotelCity(rs1.getString("H_City"));
-                   h1.setHotelImg(rs1.getString("H_Img"));
-                   h.setImg(h1.getHotelImg());
+                    ResultSet rs1 = pstmt1.executeQuery(); 
+                    while(rs1.next()){
+
+                        HotelImages h1= new HotelImages();
+                        h1.setHotelId(rs1.getString("H_Id"));
+                        h1.setHotelName(rs1.getString("H_Name"));
+                        h1.setHotelCity(rs1.getString("H_City"));
+                        h1.setHotelImg(rs1.getString("H_Img"));
+                        h.setImg(h1.getHotelImg());
                    
                }
                     
@@ -218,8 +218,8 @@ public class HotelDBHandler {
             pstmt.setString(1, city);
                         
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) 
-            {
+            while (rs.next()) {
+                
                if(rs.getString("hotelcity").equalsIgnoreCase(city)){
                     Hotel h = new Hotel();
                     h.setId(rs.getString("hotelid"));
@@ -227,19 +227,19 @@ public class HotelDBHandler {
                     h.setCity(rs.getString("hotelcity"));
                     
                     PreparedStatement pstmt1 = con.prepareStatement("SELECT * FROM [PROJ_HOTEL_IMG] WHERE H_Id= '"+h.getId()+"' ");
-               ResultSet rs1 = pstmt1.executeQuery(); 
-               while(rs1.next()){
-                   
-                   HotelImages h1= new HotelImages();
-                   h1.setHotelId(rs1.getString("H_Id"));
-                   h1.setHotelName(rs1.getString("H_Name"));
-                   h1.setHotelCity(rs1.getString("H_City"));
-                   h1.setHotelImg(rs1.getString("H_Img"));
-                   h.setImg(h1.getHotelImg());
-                   
-               }
+                    ResultSet rs1 = pstmt1.executeQuery(); 
+                    while(rs1.next()){
+                        
+                        HotelImages h1= new HotelImages();
+                        h1.setHotelId(rs1.getString("H_Id"));
+                        h1.setHotelName(rs1.getString("H_Name"));
+                        h1.setHotelCity(rs1.getString("H_City"));
+                        h1.setHotelImg(rs1.getString("H_Img"));
+                        h.setImg(h1.getHotelImg());
+                        
+                    }
                     
-                    allHotels.add(h);
+                  allHotels.add(h);
                     
                  }
             }
