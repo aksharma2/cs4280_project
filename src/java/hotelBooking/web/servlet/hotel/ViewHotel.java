@@ -40,7 +40,9 @@ public class ViewHotel extends HttpServlet {
             HotelDBHandler db=new HotelDBHandler();
             boolean check=db.checkConnection();
             
-            if(check){
+            String hotelchosen = request.getParameter("hotelchosen");
+            
+            if(check && radio!=null){
                 
                 if(radio.equals("city"))
                     hotels=db.findHotelByCity(id);
@@ -53,6 +55,11 @@ public class ViewHotel extends HttpServlet {
                 
             }
             
+            else if(hotelchosen!=null)
+                
+            {
+               hotels=db.findHotelByCity(hotelchosen);
+            }
             
             request.setAttribute("hotel", hotels); 
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);

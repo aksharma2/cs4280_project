@@ -18,6 +18,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
 <script src="../../static/js/jquery.min.js"></script>
 <!--start slider -->
 <link rel="stylesheet" href="../../static/css/fwslider.css" media="all">
@@ -47,6 +54,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				})();
 		</script>
 <!--nav-->
+
+   
+
+
+
 <script>
 		$(function() {
 			var pull 		= $('#pull');
@@ -167,74 +179,90 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 	</div>
 	<!--start grids_of_3 -->
+        
+         <form action="${pageContext.request.contextPath}/ViewHotel" method="post">
+        
 	<div class="grids_of_3">
 		<div class="grid1_of_3">
 			<div class="grid1_of_3_img">
-				<a href="details.html">
+				<!--<a href="${pageContext.request.contextPath}/ViewHotel?hotelchosen=london"> -->
 					<img src="../../static/img/pic2.jpg" alt="" />
-					<span class="next"> </span>
-				</a>
+                                        <span class="next"> </span>
+			
 			</div>
 			<h4><a href="#"><span>London</span></a></h4>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-		</div>
+                         <button type="submit" class="btn btn-success" name="hotelchosen" value="london"> BOOK NOW </button>
+                                              
+                                
+                </div>
 		<div class="grid1_of_3">
 			<div class="grid1_of_3_img">
-				<a href="details.html">
+				<!--a href="${pageContext.request.contextPath}/ViewHotel?hotelchosen=hk"-->
 					<img src="../../static/img/pic1.jpg" alt="" />
 					<span class="next"> </span>
-				</a>
+				
 			</div>
 			<h4><a href="#"><span>Hong Kong</span></a></h4>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-		</div>
+                        <button type="submit" class="btn btn-success" name="hotelchosen" value="hk"> BOOK NOW </button>
+                          
+                </div>
 		<div class="grid1_of_3">
 			<div class="grid1_of_3_img">
-				<a href="details.html">
+				<!--a href="${pageContext.request.contextPath}/ViewHotel?hotelchosen=ny" -->
 					<img src="../../static/img/pic3.jpg" alt="" />
 					<span class="next"> </span>
-				</a>
+				
 			</div>
 			<h4><a href="#"><span>New York</span></a></h4>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-		</div>
+                        <button type="submit" class="btn btn-success" name="hotelchosen" value="ny"> BOOK NOW </button>
+                          
+                </div>
 		
 		<div class="grids_of_3">
 		<div class="grid2_of_3">
 			<div class="grid2_of_3_img">
-				<a href="details.html">
+				<!--a href="${pageContext.request.contextPath}/ViewHotel?hotelchosen=paris" -->
 					<img src="../../static/img/pic3.jpg" alt="" />
 					<span class="next"> </span>
-				</a>
+			
 			</div>
 			<h4><a href="#"><span>Paris</span></a></h4>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-		</div>
+                        <button type="submit" class="btn btn-success" name="hotelchosen" value="paris"> BOOK NOW </button>
+                          
+                </div>
 
 		<div class="grid2_of_3">
 			<div class="grid2_of_3_img">
-				<a href="details.html">
+				<!--a href="${pageContext.request.contextPath}/ViewHotel?hotelchosen=tokyo" -->
 					<img src="../../static/img/pic3.jpg" alt="" />
 					<span class="next"> </span>
-				</a>
+				
 			</div>
 			<h4><a href="#"><span>Tokyo</span></a></h4>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-		</div>
+                        <button type="submit" class="btn btn-success" name="hotelchosen" value="tokyo"> BOOK NOW </button>
+                          
+                </div>
 
 
 		<div class="grid2_of_3">
 			<div class="grid2_of_3_img">
-				<a href="details.html">
+				<!--a href="${pageContext.request.contextPath}/ViewHotel?hotelchosen=vancouver" -->
 					<img src="../../static/img/pic3.jpg" alt="" />
 					<span class="next"> </span>
-				</a>
+				
 			</div>
 			<h4><a href="#"><span>Vancouver</span></a></h4>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-		</div>
+                        <button type="submit" class="btn btn-success" name="vancouver" value="london"> BOOK NOW </button>
+                          
+                </div>
 			
-
+                                        </form>
 
 		<div class="clear"></div>
 	</div>	
