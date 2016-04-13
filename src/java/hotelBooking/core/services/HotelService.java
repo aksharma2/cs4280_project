@@ -68,38 +68,42 @@ public class HotelService extends HttpServlet{
                 
                 out.println("<fieldset>");
                 
-                out.println("<div class='testbox' style='width:600px' />");
+                out.println("<div class='testbox' style='width:400px' />");
+                 out.println("<h1>Input Hotel details</h1><hr>");
                 out.println("<form method='GET' action='" + request.getRequestURI() + "'>");
+                
                 
                 out.println("<input name='action' type='hidden' value='register' />");
                  //out.println("<legend>Add a new hotel(Manager)</legend>");
-                out.println("<p>Hotel:");
-                out.println(" <select name=\"hotelname\">\n" +
+                out.println("<p><h3>Hotel:</h3>");
+                out.println(" <select style='height:35px' name=\"hotelname\">\n" +
                             "    <option value=\"hilton\">Hilton</option>\n" +
                             "    <option value=\"sheraton\">Sheraton</option>\n" +
                             "    <option value=\"royalplaza\">Royal Plaza</option>\n" +
                             "    <option value=\"grand\">Grand</option>\n" +
-                            "    </select></p>");
+                            "    </select>");
            
-                out.println("<p>City:");
-                out.println(" <select name=\"hotelcity\">\n" +
+                out.println("<p><h3>City:</h3>");
+                out.println(" <select style='height:35px' name=\"hotelcity\">\n" +
                             "    <option value=\"hk\">HK</option>\n" +
                             "    <option value=\"london\">London</option>\n" +
                             "    <option value=\"paris\">Paris</option>\n" +
                             "    <option value=\"ny\">New York</option>\n" +
-                            "    </select></p>");
+                            "    </select></p><br /><br />");
                 
                 out.println("<p>Hotel id:");
                 out.println("<input name='hotelid' value='' type='text' size='15' maxlength='15'> ");
                 
-                out.println("<p>Number of Rooms for Type : SINGLE");
-                out.println("<input name='singleRoom' value='' type='text' size='15' maxlength='15'> ");
+                out.println("<p>Number of SINGLE Rooms<br />");
+                out.println("<input name='singleRoom' value='' type='text' size='15' maxlength='15'> </p><br><br>");
                 
-                out.println("<p>Number of Rooms for Type : DELUXE");
+                out.println("<p>Number of DELX Rooms");
                 out.println("<input name='deluxeRoom' value='' type='text' size='15' maxlength='15'> ");
                 
-                out.println("<p>Number of Rooms for Type : SUITE");
+                out.println("<p>Number of SUITES");
                 out.println("<input name='suiteRoom' value='' type='text' size='15' maxlength='15'> ");
+                out.println("<div class='gender' >");
+                out.println("</div>");
                 
                 out.println("<input type='submit' value='register!' />");
                 out.println("</form>");        
