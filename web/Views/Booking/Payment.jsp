@@ -4,18 +4,56 @@
     Author     : shrankhla
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../common/newheader.jsp"%>
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <html>
     <head>
-        <title>Please Pay Here</title>
+        <title>Hotel Checkout Form</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Hotel Checkout Form Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="${pageContext.request.contextPath}/myStatic/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="${pageContext.request.contextPath}/myStatic/js/jquery.min.js"></script>
+<link href='//fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+ 
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <!-- script for close -->
+<script>
+$(document).ready(function(c) {
+	$('.alert-close').on('click', function(c){
+		$('.vlcone').fadeOut('slow', function(c){
+			$('.vlcone').remove();
+		});
+	});	  
+});
+</script>
+  
     </head>
     
+    
+    <!--form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/AssignRoom" method="post" -->
+  
+    <!--
     <body>
         <h1>You have selected the RoomType : 
         ${requestScope.roomType}</h1>
@@ -27,7 +65,6 @@
               <h1>Guest Details </h1>
               
   
-  <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/AssignRoom" method="post" >
     <div class="form-group">
       <label class="control-label col-sm-2" for="firstname">Guest First Name:</label>
       <div class="col-sm-10">
@@ -150,4 +187,94 @@
              
     
     </body>
+    
+    -->
+    
+    <body>
+<div class="main">
+	<h1>HOTEL CHECKOUT FORM : ${requestScope.HotlName}</h1>
+	
+	<div class="hotel-right  vlcone">
+		<div class="alert-close"> </div>
+		<div class="hotel-form">
+			<h3>Receipt Form</h3>
+			<ul class="list_ins1">
+                                                
+						<li>Room No.</li>
+						<li>Room Charges</li>
+						<li>Services Charges</li>
+						<li>Vat</li>
+						<li>Total</li>
+			</ul>
+			<ul class="list_ins2">
+                                                
+						<li>: 201</li>
+						<li>: $ ${requestScope.tariff}</li>
+						<li>: $10.00</li>
+						<li>: $0.00</li>
+						<li>:  $510.00</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="pay-form">
+			<form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/AssignRoom" method="post">
+				<h3>Payment Information</h3>
+				<h5>Name On Credit Card</h5>
+				<input type="text" value="James Thompson" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'James Thompson';}" required="">
+
+				<h5>Credit Card Number</h5>
+				<input class="card_logo" type="text" value="2525 2525 2525 2525" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '2525 2525 2525 2525';}" required="">
+
+				<h5>Expires On</h5>
+				<select id="country" onchange="change_country(this.value)" class="frm-field required">
+					<option value="null">January</option>
+					<option value="null">February</option>         
+					<option value="AX">March</option>
+					<option value="AX">April</option>
+					<option value="AX">May</option>
+					<option value="AX">June</option>
+					<option value="AX">July</option>
+					<option value="AX">August</option>
+					<option value="AX">September</option>
+					<option value="AX">October</option>
+					<option value="AX">November</option>
+					<option value="AX">December</option>
+				</select>
+				<ul>
+					<li>
+						<input type="number" class="text_box" type="text" value="1988" min="1" />	
+					</li>
+				</ul>
+				<div class="clear"></div>
+				<h5>CVC</h5>
+				<input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
+
+				<input type="submit" value="BOOK SECURELY">
+			</form>
+			<p><span></span>Your credit card information is encrypted.</p>
+		</div>
+	</div>
+	<div class="hotel-left">
+		<div class="hotel-text">
+			<h2>ROYAL PALACE</h2>
+			<h3> $250.00 / <span>night</span></h3>
+			<p>Entire Room for 5 members.</p>
+			<p>Thursday, Dec 10, 2014 to Thursday, Dec 12, 2014.</p>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<p class="footer">&copy; 2015 Hotel Checkout Form. All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
+</div>
+</body>
+  
+    
+    
+    
+    
+    
+    
+    
+    
 </html>
+
+<%@ include file="../common/newfooter.jsp"%>
