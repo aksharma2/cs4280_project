@@ -10,6 +10,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../common/newheader.jsp"%>
+
+
+
 <%@page import="hotelBooking.core.domain.Hotel"%>
 <%@page import="hotelBooking.core.jdbc.HotelDBHandler"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
@@ -22,5 +25,8 @@
     </head>
     <body>
         <jsp:include page="/HotelService" />
+        
     </body>
+    
 </html>
+<%@ include file="../common/newfooter.jsp"%>

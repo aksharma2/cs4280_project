@@ -34,6 +34,7 @@ body {
 	font-size: 100%;
 }
 .wrap{
+        
 	margin:0 auto;
 	width:80%;
 	-moz-transition:all .2s linear;
@@ -370,6 +371,12 @@ select option{
 /* start footer */
 .footer{
 	padding: 4% 2% 2%;
+        
+}
+
+.footer_bg{
+    bottom: 0;
+    position: relative;
 }
 .copy{
 	float: left;
@@ -863,6 +870,7 @@ span.next:hover {
 @media only screen and (max-width: 1366px) {
 	.wrap{
 		width:95%;
+                
 	}
 	.span_of_2 {
 		padding: 3% 0;
@@ -892,6 +900,7 @@ span.next:hover {
 @media only screen and (max-width: 1024px) {
 	.wrap{
 		width:95%;
+                
 	}
 	.menu li {
 		margin: 10px 8px;

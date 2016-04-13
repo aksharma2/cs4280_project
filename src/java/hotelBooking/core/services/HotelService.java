@@ -29,8 +29,8 @@ public class HotelService extends HttpServlet{
           String action = request.getParameter("action");
           PrintWriter out = response.getWriter();
          out.println("<html>");
-         out.println("<br/><a href='" + request.getRequestURI() + "?action=register'>Add a new hotel</a>");
-         out.println("<br/><a href='" + request.getRequestURI() + "?action=remove'>View & remove existing hotels & add Hotel Images</a>");
+         out.println("<center><br/><a href='" + request.getRequestURI() + "?action=register'>Add a new hotel</a>");
+         out.println("<center><br/><a href='" + request.getRequestURI() + "?action=remove'>Remove existing hotels & add Images to hotels</a>");
          out.println("<html>");
                if (action != null) {
             // call different action depending on the action parameter
@@ -105,7 +105,7 @@ public class HotelService extends HttpServlet{
                 out.println("<div class='gender' >");
                 out.println("</div>");
                 
-                out.println("<input type='submit' value='register!' />");
+                out.println("<input type='submit' value='Register!' />");
                 out.println("</form>");        
                 out.println("</fieldset>");
                 out.println("</div>");
