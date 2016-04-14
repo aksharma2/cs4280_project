@@ -90,7 +90,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="h_right">
 			<!--start menu -->
 			<ul class="menu">
-				<li class="active"><a href="../../index.jsp">hotel</a></li> |
+				<li class="active"><a href="hotelmgmt.jsp">View hotels</a></li> |
 				<li><a href="account.jsp">rooms & suits</a></li> |
 				<li><a href="reservation.html">reservation</a></li> |
 				<li><a href="contact.html">contact</a></li> |

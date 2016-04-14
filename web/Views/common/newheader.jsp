@@ -74,7 +74,7 @@
 		<div class="h_right">
 			<!--start menu -->
 			<ul class="menu">
-				<li class="active"><a href="${pageContext.request.contextPath}/Views/User/index.jsp">hotel</a></li> |
+				<li class="active"><a href="${pageContext.request.contextPath}/Views/User/hotelmgmt.jsp">View hotels</a></li> |
 				<li><a href="${pageContext.request.contextPath}/Views/User/account.jsp">rooms & suits</a></li> |
 				<li><a href="${pageContext.request.contextPath}/Views/User/register.jsp">reservation</a></li> |
 				<li><a href="${pageContext.request.contextPath}/Views/User/contact.html">contact</a></li> |

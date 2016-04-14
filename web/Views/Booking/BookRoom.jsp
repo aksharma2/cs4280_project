@@ -169,7 +169,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			
 			<ul class="menu">
 				<li class="active"><a href="${pageContext.request.contextPath}/index.jsp">hotel</a></li> 
-				<li><a href="account.jsp">rooms & suits</a></li> 
+                                    <li><a href="./Views/User/account.jsp">rooms & suits</a></li> 
 				<li><a href="reservation.html">reservation</a></li> 
 				<li><a href="contact.html">contact</a></li> 
                                 <li><a href="login.jsp">Login</a></li> 

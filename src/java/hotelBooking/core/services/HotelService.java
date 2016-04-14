@@ -245,7 +245,7 @@ public class HotelService extends HttpServlet{
     
      try{
          
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection(url,username,password);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM PROJ_HOTEL where hotelid='"+request.getParameter("id")+"'  ");

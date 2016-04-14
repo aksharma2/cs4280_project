@@ -19,10 +19,45 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/form.css" />
          <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/hoteltable.css" />
-         
+         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/sliderman.css" />
+         <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.9.1.min.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
+        
+        <script type="text/javascript">
+            
+            var imgArray = new Array();
+            var i=0;
+            
+            <% try {List<Hotel> hList = (ArrayList<Hotel>)request.getAttribute("hotel"); 
+            
+            for(Hotel h:hList){
+                
+                for(String s:h.getImg()){ %>
+                   
+                   imgArray.push(s);
+                           
+                <% } %>
+                
+            <% } }catch(NullPointerException n){
+                                        n.printStackTrace();
+                                        }  %>  
+             
+             
+            
+          function swapImage()
+{
+   document.getElementbyId("imgslide").src = imgArray[i];
+   if(i < imgArray.length - 1) i++; else i = 0;
+   setInterval("swapImage()",3000);
+}
+           
+            </script>
+        
+        
+        
+        
         <h1>View hotels!</h1>
         
         <div class="testbox">
@@ -51,7 +86,9 @@
 </div>
       
      
-        
+   
+
+
         
       <div class="box-table">  
        <table>
@@ -70,18 +107,38 @@
           <tbody>
                     
           <% try{ List<Hotel> myList = (ArrayList<Hotel>) request.getAttribute("hotel"); %>
-           
+                  
                             <% for (Hotel h:myList){ %>
+                            <%! List<String> strList = new ArrayList<String>(); %>
+                            
                             <tr>
                             <td><h3><%=h.getId() %></h3></td> 
                             <td><h3><%=h.getName() %></h3></td>
                             <td><h3><%=h.getCity() %></h3></td>
                             
                             
-                             <td> <% for(String s:h.getImg()){ %> 
-                                  <img src=" <%= s %> " height="200" width="150">  
-                            
-                                  <% } %></td> 
+                              <td> <% for(String s:h.getImg()){  
+                                 
+                                 strList.add(s);
+                               %>
+                                 
+                               
+                                
+                                 
+                                
+                                  
+                                   
+                               <img onload="swapImage()" src =<%=s %> width="100px" height="100px" id="imgslide" >
+                                  
+                                 <% }     %>     
+                                  </td>
+                                   
+                             
+                             
+                             
+                             
+                             
+                             
                             
                            <td>
                                 <form action="${pageContext.request.contextPath}/BookMyRoom" method="get">
