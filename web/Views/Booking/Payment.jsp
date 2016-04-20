@@ -37,6 +37,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   
+  <style>
+      
+      
+      .ni {
+         
+      }
+      
+      
+  </style>
+  
+  
   <!-- script for close -->
 <script>
 $(document).ready(function(c) {
@@ -47,6 +58,7 @@ $(document).ready(function(c) {
 	});	  
 });
 </script>
+  
   
     </head>
     
@@ -220,8 +232,13 @@ $(document).ready(function(c) {
 			<form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/AssignRoom" method="post">
 				<h3>Payment Information</h3>
 				<h5>Name On Credit Card</h5>
-				<input type="text" value="James Thompson" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'James Thompson';}" required="">
+				
+                  <input type="text"  value="James Thompson" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'James Thompson';}" required="">
 
+                          
+                            
+ 
+                              
 				<h5>Credit Card Number</h5>
 				<input class="card_logo" type="text" value="2525 2525 2525 2525" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '2525 2525 2525 2525';}" required="">
 

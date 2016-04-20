@@ -71,6 +71,9 @@ public class MakePayment extends HttpServlet {
           String nextJSP="/Views/Booking/Payment.jsp";
           Integer tariff = null;
           
+        
+         
+          
           if(roomtype==null)
           {
               nextJSP="/Views/Booking/BookRoom.jsp";
