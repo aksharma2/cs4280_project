@@ -46,29 +46,13 @@ public class MakePayment extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-      doPost(request,response);
-       
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-         boolean authorized = UserService.checkForAccess(request, UserRole.AUTHENTICATED);
+     boolean authorized = UserService.checkForAccess(request, UserRole.AUTHENTICATED);
          
          if(authorized)
         {
           String roomtype = request.getParameter("act");
           String hotlname= request.getParameter("hotlName");
-          String nextJSP="/Views/Booking/Payment.jsp";
+          String nextJSP="/Views/Booking/BookDates.jsp";
           Integer tariff = null;
           
         
@@ -95,13 +79,15 @@ public class MakePayment extends HttpServlet {
               tariff=289;
           }
           
-          request.setAttribute("tariff", tariff);
-          request.setAttribute("roomType", roomtype);
-          request.setAttribute("HotlName", hotlname);
+         // request.setAttribute("tariff", tariff);
+          //request.setAttribute("roomType", roomtype);
+          //request.setAttribute("HotlName", hotlname);
           
           
            HttpSession session = request.getSession(true);
            session.setAttribute("Roomtype", roomtype);
+           session.setAttribute("tariff", tariff);
+           session.setAttribute("HotlName", hotlname);
         
           
           RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
@@ -111,6 +97,46 @@ public class MakePayment extends HttpServlet {
         {
             response.sendRedirect("./user/login?referer=" + request.getRequestURI());
         }
+       
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String nextJSP="/Views/Booking/Payment.jsp";
+        
+         // request.setAttribute("tariff", tariff);
+          //request.setAttribute("roomType", roomtype);
+          //request.setAttribute("HotlName", hotlname);
+          
+          
+          
+          
+          
+          
+           HttpSession session = request.getSession(true);
+           request.setAttribute("tariff", session.getAttribute("tariff"));
+           request.setAttribute("roomType", session.getAttribute("Roomtype"));
+           request.setAttribute("HotlName", session.getAttribute("HotlName"));
+           
+           
+           //session.setAttribute("Roomtype", roomtype);
+         //  session.setAttribute("tariff", tariff);
+          // session.setAttribute("HotlName", hotlname);
+        
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+          dispatcher.forward(request,response);
+        
+        
     }
     /**
      * Returns a short description of the servlet.

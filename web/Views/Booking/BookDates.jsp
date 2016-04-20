@@ -43,7 +43,7 @@
 
 		<h1>Book Your Suite!</h1>
 
-                 <form action="${pageContext.request.contextPath}/MakePayment" method="get">
+                 <form action="${pageContext.request.contextPath}/MakePayment" method="post">
                 
 		<div class="members">
 			<div class="adult">
@@ -108,7 +108,7 @@
 
 		<!--Date Picker-->
 			
-			<script src="js/jquery-ui.js"></script>
+			<script src="${pageContext.request.contextPath}/NewStatic/js/jquery-ui.js"></script>
 					  <script>
 							  $(function() {
 							    $( "#datepicker,#datepicker1,#datepicker2" ).datepicker();

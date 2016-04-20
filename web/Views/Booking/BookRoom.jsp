@@ -254,7 +254,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</a>
 			</div>
                     
-                  <form action="${pageContext.request.contextPath}/MakePayment" method="post">
+                  <form action="${pageContext.request.contextPath}/MakePayment" method="get">
                     
                     <div class="panel-heading">
 			<h4><a href="#"><span>Basic:Single Room</span></a></h4>
