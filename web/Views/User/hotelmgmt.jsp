@@ -36,7 +36,7 @@
                 
                 for(String s:h.getImg()){ %>
                    
-                   imgArray.push(s);
+                   imgArray.push("<%=s %>");
                            
                 <% } %>
                 
@@ -48,10 +48,14 @@
             
           function swapImage()
 {
-   document.getElementbyId("imgslide").src = imgArray[i];
+   document.imgslide.src = imgArray[i];
    if(i < imgArray.length - 1) i++; else i = 0;
-   setInterval("swapImage()",3000);
+   setTimeout("swapImage()",3000);
+   
 }
+
+window.onload=swapImage;
+
            
             </script>
         
@@ -117,21 +121,10 @@
                             <td><h3><%=h.getCity() %></h3></td>
                             
                             
-                              <td> <% for(String s:h.getImg()){  
-                                 
-                                 strList.add(s);
-                               %>
-                                 
-                               
-                                
-                                 
-                                
+                            <td><center><img src ="" width="100px" height="100px" name="imgslide" ></center> </td>
                                   
-                                   
-                               <img onload="swapImage()" src =<%=s %> width="100px" height="100px" id="imgslide" >
                                   
-                                 <% }     %>     
-                                  </td>
+                                 
                                    
                              
                              
