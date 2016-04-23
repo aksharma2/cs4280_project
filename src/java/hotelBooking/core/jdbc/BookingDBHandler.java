@@ -46,18 +46,20 @@ public class BookingDBHandler {
         return success;
     }
     
-    public boolean makeMybooking(Booking b)
+    public boolean makeMybooking(Booking b,String checkinDate , String checkoutDate)
             
     {
         boolean success= false;
         
         try
         {
-             PreparedStatement pstmt = con.prepareStatement("INSERT INTO [PROJ_BOOKING] ([roomID], [hotelID], [userID],[city]) VALUES (?, ?, ?, ?)");
+             PreparedStatement pstmt = con.prepareStatement("INSERT INTO [PROJ_BOOKING] ([roomID], [hotelID], [userID],[city] ,[checkinDate] , [checkoutDate]) VALUES (?, ?, ?, ?,?,?)");
                 pstmt.setString(1, b.getRoomID());
                 pstmt.setString(2, b.getHotelID());
                 pstmt.setString(3,b.getUserID());
                 pstmt.setString(4,b.getCityID());
+                pstmt.setString(5,checkinDate);
+                pstmt.setString(6,checkoutDate);
                 
                 
                  int rows = pstmt.executeUpdate();
@@ -146,7 +148,7 @@ public class BookingDBHandler {
     }
     
     
-    public boolean BookMyRoom(Room r)
+    public boolean BookMyRoom(Room r , int numofAdults, int numOfChilren )
             
     {
         boolean successs= false;
@@ -157,11 +159,14 @@ public class BookingDBHandler {
             
             if(Connectionmade)
             {
-                PreparedStatement pstmt1 = con.prepareStatement("INSERT INTO [PROJ_ROOM] ([hotelID],[id], [type],[isAvailable]) VALUES (?, ?, ?, ?)");
+                PreparedStatement pstmt1 = con.prepareStatement("INSERT INTO [PROJ_ROOM] ([hotelID],[id], [type],[isAvailable],[NoOfAdults] , [NoOfChildren]) VALUES (?, ?, ?, ?, ?, ?)");
                 pstmt1.setString(1,r.getHotelID() );
                 pstmt1.setString(2,r.getId() );
                 pstmt1.setString(3,r.getType());
                 pstmt1.setBoolean(4,r.isIsAvailable());
+                pstmt1.setInt(5,numofAdults);
+                pstmt1.setInt(6,numOfChilren);
+                 
                 
                 
                 
