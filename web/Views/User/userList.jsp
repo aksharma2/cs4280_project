@@ -5,24 +5,9 @@
 <%@ include file="../common/header.jspf"%>
 <%-- <%@ include file="../common/sidebar.jspf"%> --%>
 <%@ include file="../common/newheader.jsp"%>
-<div  >
-    <div class="row" >
-        <div class="span3">
-            
-        </div>
-        <div class="span9">
-            <div class="well">
-                <div class="page-header">
-                    <h1>User's Registered to this system</h1>
-                </div>
-
-                <%@ include file="../common/error.jspf"%>
-                
-                
-                <a href="${pageContext.request.contextPath}/ViewHotel" class="btn btn-info" role="button">Make Booking</a>
-                
-                
-                <table class="table table-bordered table-striped">
+<div >
+    
+                <table >
 
                     <thead>
                     <tr>
@@ -94,12 +79,13 @@
                         <button type="submit" class="btn btn-primary">Clear Table</button>
                     </form>
                     
+                    
                 </div>
                 </c:if>
-
+<%--
             </div>
         </div>
-    </div>
+    </div> --%>
 </div>
 
 <%--end content--%>

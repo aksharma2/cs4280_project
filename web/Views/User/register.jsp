@@ -1,6 +1,8 @@
 <%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> --%>
 <%@ include file="../common/header.jspf"%>
+<%-- <%@ include file="../common/sidebar.jspf"%> --%>
+<%@ include file="../common/newheader.jsp"%>
 <%--content--%>
 
 <div class="container">
@@ -53,7 +55,7 @@
                     <div class="control-group">
                          <label class="control-label" for="userID">[Test] Referer</label>
                         <div class="controls">
-                            <input type="text" id="referer" name="referer"  value="${requestScope.referer}" />
+                            <input type="hidden" id="referer" name="referer"  value="${requestScope.referer}" />
                         </div>
                     </div>
                         

@@ -122,17 +122,7 @@ window.onload=swapImage;
                             
                             
                             <td><center><img src ="" width="100px" height="100px" name="imgslide" ></center> </td>
-                                  
-                                  
-                                 
-                                   
                              
-                             
-                             
-                             
-                             
-                             
-                            
                            <td>
                                 <form action="${pageContext.request.contextPath}/BookMyRoom" method="get">
                                     

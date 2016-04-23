@@ -4,7 +4,8 @@
     Author     : aksharma2
 --%>
 
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <html>
     <head>
@@ -91,22 +92,7 @@
 					
 				<div class="clear"></div>
 			</ul>
-			<!-- start profile_details -->
-                        <!--
-					<form class="style-1 drp_dwn">
-						<div class="row">
-							<div class="grid_3 columns">
-								<select class="custom-select" id="select-1">
-									 
-                                                                    <option id="hide" selected="selected">Welcome user xxxxxxxx</option> 
-                                                                    <option>Log out</option>
-									
-								</select>
-							</div>		
-						</div>		
-					</form>
-                        -->
-                        
+			
 		</div>
 		<div class="clear"></div>
 		<div class="top-nav">
