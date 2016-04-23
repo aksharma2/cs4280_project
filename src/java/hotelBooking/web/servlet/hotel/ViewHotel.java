@@ -37,7 +37,7 @@ public class ViewHotel extends HttpServlet {
             String id=request.getParameter("id");
             String radio=request.getParameter("Q2");
             int lowerLmt=Integer.parseInt(request.getParameter("lowerval"));
-             int upperLmt=Integer.parseInt(request.getParameter("upperval"));
+            int upperLmt=Integer.parseInt(request.getParameter("upperval"));
             ArrayList<Hotel>hotels=new ArrayList<Hotel>();
             hotels=null;
             HotelDBHandler db=new HotelDBHandler();

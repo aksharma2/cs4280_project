@@ -96,7 +96,8 @@ public class HotelService extends HttpServlet{
                 
                 out.println("<p>Number of SINGLE Rooms<br />");
                 out.println("<input name='singleRoom' value='' type='text' size='15' maxlength='15'> </p><br><br>");
-                out.println("<p>TEST</p>");
+                out.println("<p>Price</p>");
+                out.println("<input name='hotelprice' value='' type='text' size='15' maxlength='15'> ");
                 out.println("<p>Number of DELX Rooms");
                 out.println("<input name='deluxeRoom' value='' type='text' size='15' maxlength='15'> ");
                 
@@ -116,6 +117,7 @@ public class HotelService extends HttpServlet{
                 h.setId(request.getParameter("hotelid"));        //values obtained from form submission
                 h.setName(request.getParameter("hotelname"));
                 h.setCity(request.getParameter("hotelcity"));
+                h.setPrice(Integer.parseInt(request.getParameter("hotelprice")));
                 
                Integer SingleRoom = Integer.parseInt(request.getParameter("singleRoom"));
                Integer DeluxeRoom = Integer.parseInt(request.getParameter("deluxeRoom"));
@@ -193,7 +195,7 @@ public class HotelService extends HttpServlet{
             out.println("<div class=\"box-table\"><table style='width:100%'>");
             out.println("<caption>All Hotels</caption>");
             out.println("<thead>");
-            out.println("<th align='left'>Hotel Id</th><th align='left'>Hotel Name</th><th align='left'>City</th><th align='left'>Action</th><th align='left'>Image</th>");
+            out.println("<th align='left'>Hotel Id</th><th align='left'>Hotel Name</th><th align='left'>City</th><th align='left'>Price tag</th><th align='left'>Action</th><th align='left'>Image</th>");
             out.println("</thead>");
             out.println("<tbody>");
             
@@ -202,11 +204,13 @@ public class HotelService extends HttpServlet{
                  String hotelId=rs.getString("hotelid");
                  String hotelName=rs.getString("hotelname");
                  String hotelCity=rs.getString("hotelcity");
+                 int hotelPrice=rs.getInt("price");
                  
                  out.println("<tr>");
                  out.println("<td>" + hotelId + "</td>");
                  out.println("<td>" + this.htmlEncode(hotelName) + "</td>");
                  out.println("<td>" + hotelCity + "</td>");
+                 out.println("<td>" + hotelPrice + "</td>");
                  out.println("<td> <a href='"+request.getRequestURI()+ "?id="+hotelId+"&action=remove '>Remove </a>" );
                  out.println("<td> <a href='"+request.getRequestURI()+ "?id="+hotelId+ "&name="+hotelName+ "&city="+hotelCity+ "&action=addImg '>Add Image </a>" );
                  out.println("</td></form>");                 

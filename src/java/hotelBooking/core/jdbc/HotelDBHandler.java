@@ -156,7 +156,7 @@ public class HotelDBHandler {
                    h.setImg(h1.getHotelImg());
                    
                }
-               if(h.getPrice()<=low && h.getPrice()>=high)
+               if(h.getPrice()>=low && h.getPrice()<=high)
                      allHotels.add(h);
             }
             
@@ -198,7 +198,7 @@ public class HotelDBHandler {
                    
                }
                  
-                  if(h.getPrice()<=low && h.getPrice()>=high)   
+                  if(h.getPrice()>=low && h.getPrice()<=high)   
                        hotel.add(h);
                     
                }
@@ -243,7 +243,7 @@ public class HotelDBHandler {
                         
                     }
                     
-                if(h.getPrice()<=low && h.getPrice()>=high)  
+                if(h.getPrice()>=low && h.getPrice()<=high)  
                     allHotels.add(h);
                     
                  }

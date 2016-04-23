@@ -101,6 +101,7 @@ window.onload=swapImage;
     </div>
   <hr>
   
+  <input type="text" name="id" id="name" placeholder="Enter text" />
   <label for="amount">Price range:</label>
 	<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
         
@@ -108,12 +109,12 @@ window.onload=swapImage;
         <input type="hidden" id="lower" name="lowerval">
         <input type="hidden" id="upper" name="upperval">
   
-  <input type="text" name="id" id="name" placeholder="Enter text" />
+  
   
   <div class="gender">
     
    </div> 
-   <p>By clicking Submit, you agree on our <a href="#">terms and condition</a>.</p>
+  
    <input type="submit" value="submit">
   </form>
 </div>
