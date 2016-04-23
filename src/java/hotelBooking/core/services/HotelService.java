@@ -139,10 +139,11 @@ public class HotelService extends HttpServlet{
 
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 Connection con = DriverManager.getConnection(url,username,password);
-                PreparedStatement pstmt = con.prepareStatement("INSERT INTO PROJ_HOTEL VALUES (?, ?, ?)");
+                PreparedStatement pstmt = con.prepareStatement("INSERT INTO PROJ_HOTEL VALUES (?, ?, ?, ?)");
                 pstmt.setString(1, h.getId());
                 pstmt.setString(2, h.getName());
                 pstmt.setString(3, h.getCity());
+                pstmt.setInt(4, h.getPrice());
                 int rows= pstmt.executeUpdate();
 
                 if(rows>0 && finalresult ) {
