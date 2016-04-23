@@ -78,8 +78,8 @@
 				<li class="active"><a href="${pageContext.request.contextPath}/Views/User/hotelmgmt.jsp">View hotels</a></li> |
 				<li ><a href="${pageContext.request.contextPath}/Views/User/account.jsp">rooms & suits</a></li> |
 				<li ><a href="${pageContext.request.contextPath}/Views/User/register.jsp">reservation</a></li> |
-				<li ><a href="${pageContext.request.contextPath}/Views/User/contact.html">contact</a></li> |
-                                
+				<li ><a href="${pageContext.request.contextPath}/admin/view">admin console</a></li> |
+                                <li ><a href="${pageContext.request.contextPath}/Views/Booking/CreateHotel_Admin.jsp">hotel manager console</a></li> |
                                 
                                 <c:if test="${sessionScope.user != null}">
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Welcome ${sessionScope.user.name}</a></li> |
