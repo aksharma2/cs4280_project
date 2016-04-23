@@ -96,7 +96,7 @@ public class HotelService extends HttpServlet{
                 
                 out.println("<p>Number of SINGLE Rooms<br />");
                 out.println("<input name='singleRoom' value='' type='text' size='15' maxlength='15'> </p><br><br>");
-                
+                out.println("<p>TEST</p>");
                 out.println("<p>Number of DELX Rooms");
                 out.println("<input name='deluxeRoom' value='' type='text' size='15' maxlength='15'> ");
                 
