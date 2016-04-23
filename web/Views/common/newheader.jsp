@@ -78,23 +78,35 @@
 				<li><a href="${pageContext.request.contextPath}/Views/User/account.jsp">rooms & suits</a></li> |
 				<li><a href="${pageContext.request.contextPath}/Views/User/register.jsp">reservation</a></li> |
 				<li><a href="${pageContext.request.contextPath}/Views/User/contact.html">contact</a></li> |
-                                <li><a href="${pageContext.request.contextPath}/Views/User/login.jsp">Login</a></li> 
+                                
+                                
+                                <c:if test="${sessionScope.user != null}">
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Welcome ${sessionScope.user.name}</a></li> |
+                                    <li><a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
+                                </c:if>
+                                <c:if test="${sessionScope.user == null}">
+                                  <li><a href="${pageContext.request.contextPath}/user/register?referer=${pageContext.request.requestURI}">Register</a></li> |
+                                  <li><a href="${pageContext.request.contextPath}/user/login?referer=${pageContext.request.requestURI}">Login</a></li>
+                                </c:if>
 					
 				<div class="clear"></div>
 			</ul>
 			<!-- start profile_details -->
+                        <!--
 					<form class="style-1 drp_dwn">
 						<div class="row">
 							<div class="grid_3 columns">
 								<select class="custom-select" id="select-1">
-									<option id="hide" selected="selected">Welcome user xxxxxxxx</option>
-                                                                        
-                                                                       <option>Log out</option>
+									 
+                                                                    <option id="hide" selected="selected">Welcome user xxxxxxxx</option> 
+                                                                    <option>Log out</option>
 									
 								</select>
 							</div>		
 						</div>		
 					</form>
+                        -->
+                        
 		</div>
 		<div class="clear"></div>
 		<div class="top-nav">

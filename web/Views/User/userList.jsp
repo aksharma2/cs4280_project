@@ -3,10 +3,10 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../common/header.jspf"%>
-<%@ include file="../common/sidebar.jspf"%>
-
-<div class="container">
-    <div class="row">
+<%-- <%@ include file="../common/sidebar.jspf"%> --%>
+<%@ include file="../common/newheader.jsp"%>
+<div  >
+    <div class="row" >
         <div class="span3">
             
         </div>
