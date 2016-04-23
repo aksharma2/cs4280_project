@@ -58,7 +58,7 @@
                             <td>${booking.getCityID()}</td>
                             <td>${booking.userID}</td>
                             <td>${booking.roomID}</td>
-                            <td> <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/ViewHotel" method="post">
+                            <td> <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/ViewHotel" method="get">
                              
                             <input type="hidden" name="bookingUserID" value="${booking.getBookingID()}">
                                     

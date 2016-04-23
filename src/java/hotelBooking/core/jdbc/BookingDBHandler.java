@@ -90,6 +90,55 @@ public class BookingDBHandler {
         return success;
     }
     
+    
+    public boolean UpdateMybooking(Booking b,String checkinDate , String checkoutDate,int id)
+            
+    {
+        boolean success= false;
+        
+        try
+        {
+             PreparedStatement pstmt = con.prepareStatement("UPDATE [PROJ_BOOKING] SET [roomID] =? , [hotelID] =? , [userID] =? ,[city] =?  ,[checkinDate] =?  , [checkoutDate] =?  WHERE [bookingID] =? ");
+                pstmt.setString(1, b.getRoomID());
+                pstmt.setString(2, b.getHotelID());
+                pstmt.setString(3,b.getUserID());
+                pstmt.setString(4,b.getCityID());
+                pstmt.setString(5,checkinDate);
+                pstmt.setString(6,checkoutDate);
+                pstmt.setInt(7, id);
+                
+                
+                 int rows = pstmt.executeUpdate();
+                 if(rows>0)
+                 {
+                      success=true;
+                     
+                      System.out.println("Your Booking Details are as follows.");
+                        if (rs != null && rs.next() != false) {
+                            System.out.println("Room: " + (b.getRoomID()));
+                            System.out.println("Hotel:" + (b.getHotelID()) );
+                            System.out.println("User:" + (b.getUserID()));
+                            System.out.println("City:" + (b.getCityID()));
+                            rs.close();
+                    }
+                    StatementClose(); 
+                    
+                 }
+                 
+            
+                    
+        }catch(SQLException e)
+            
+        {
+            success=false;
+        }
+       
+        return success;
+    }
+    
+    
+    
+    
     public ResultSet returnResult() throws SQLException
             
     {

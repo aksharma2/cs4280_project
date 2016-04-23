@@ -82,7 +82,7 @@ public class AssignRoom extends HttpServlet {
          Integer numOfChilren = (Integer)(session.getAttribute("noofchildren"));
             
             
-       
+        String MyBookingId = (String) session.getAttribute("Bookingid");
        
        
        
@@ -90,7 +90,7 @@ public class AssignRoom extends HttpServlet {
        String nextJSP = "/Views/Booking/BookingList.jsp";
        
        if (hotel != null && !hotel.equalsIgnoreCase("") &&
-                RoomType != null && !RoomType.equalsIgnoreCase("")) {
+                RoomType != null && !RoomType.equalsIgnoreCase("") && MyBookingId==null) {
             
             
            /*
@@ -151,7 +151,63 @@ public class AssignRoom extends HttpServlet {
             }
         }
         
+       
+       else if (hotel != null && !hotel.equalsIgnoreCase("") &&
+                RoomType != null && !RoomType.equalsIgnoreCase("") && MyBookingId!=null)
+           
+       {
+             Booking b = new Booking(hotel,RoomType,username,City);
+             
+              BookingService bookingservice = new BookingService();
+              
+              int myid = Integer.parseInt(MyBookingId);
+            
+            boolean isConnectionMade = bookingservice.UpdateBooking(b,CheckInDate,CheckOutDate,myid );
+            
+            if(isConnectionMade)
+                
+            {
+               out.println("<legend>New Booking is sucessfully Updated .</legend>");
+               
+            Long id_Room ;
+            Random randi = new Random();
+            id_Room=randi.nextLong();
+            String RoomID=Long.toString(id_Room);
+            boolean isRoomAvailable=false;
+            
+            
+            
+            Room r = new Room(hotel,RoomID,RoomType,isRoomAvailable);
+            
+            boolean isRoomBooked = bookingservice.BookRoom(r,numofAdults,numOfChilren);
+            
+            if(isRoomBooked)
+            {
+                out.println("<legend>New Room has been booked for you.</legend>");
+            }
+            
+            else
+                
+            {
+                 out.println("<legend>ERROR: Room Booking Failed.</legend>");
+            }
+            
+               
+            
+            }
+            else {
+                out.println("<legend>ERROR: Booking Failed.</legend>");
+            }
+             
+             
+       }
+       
+       
+       
         else{
+           
+           
+           
              if (hotel == null) {
                 hotel = "";
             }

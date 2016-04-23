@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -80,6 +81,14 @@ public class ViewHotel extends HttpServlet {
        
         String nextJSP="/Views/User/hotelmgmt.jsp";
         String name="id";
+        
+        
+        int Bookingid = Integer.parseInt(request.getParameter("bookingUserID"));
+         HttpSession session = request.getSession(true);
+         session.setAttribute("Bookingid", Bookingid);
+        
+        
+        
         request.setAttribute("eid", name);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request,response);

@@ -74,6 +74,24 @@ public class BookingService {
     }
     
      
+      public static boolean UpdateBooking(Booking b , String checkinDate, String checkoutdate , int id)
+    {
+        boolean success=false;
+        
+         db = new BookingDBHandler();
+        
+        if(db.makeConnection())
+            
+        {
+            success=db.UpdateMybooking(b, checkinDate , checkoutdate , id);
+            
+        }
+        db.closeConnection();
+        
+        return success;
+    }
+     
+     
    public static boolean setMaximumRooms(String hotelID , String roomType , int num )
     {
         boolean success=false;
