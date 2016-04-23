@@ -16,6 +16,7 @@ public class Hotel {
     private String name;
     private String id;
     private String city;
+    private int price;
     private ArrayList<String>hotelImgs;
     
     public Hotel(){
@@ -44,6 +45,15 @@ public class Hotel {
 
     public void setCity(String city) {
         this.city = city;
+    }
+    
+    
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
     
     public void setImg(String img){

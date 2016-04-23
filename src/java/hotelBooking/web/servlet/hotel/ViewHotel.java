@@ -35,6 +35,8 @@ public class ViewHotel extends HttpServlet {
             String nextJSP="/Views/User/hotelmgmt.jsp";
             String id=request.getParameter("id");
             String radio=request.getParameter("Q2");
+            int lowerLmt=Integer.parseInt(request.getParameter("lowerval"));
+             int upperLmt=Integer.parseInt(request.getParameter("upperval"));
             ArrayList<Hotel>hotels=new ArrayList<Hotel>();
             hotels=null;
             HotelDBHandler db=new HotelDBHandler();
@@ -45,20 +47,20 @@ public class ViewHotel extends HttpServlet {
             if(check && radio!=null){
                 
                 if(radio.equals("city"))
-                    hotels=db.findHotelByCity(id);
+                    hotels=db.findHotelByCity(id,lowerLmt,upperLmt);
                 
                 else if(radio.equals("id"))
-                    hotels=db.findHotelById(id);
+                    hotels=db.findHotelById(id,lowerLmt,upperLmt);
                 
                 else if(radio.equals("allHotels"))
-                    hotels=db.findHotel();
+                    hotels=db.findHotel(lowerLmt,upperLmt);
                 
             }
             
             else if(hotelchosen!=null)
                 
             {
-               hotels=db.findHotelByCity(hotelchosen);
+               hotels=db.findHotelByCity(hotelchosen,lowerLmt,upperLmt);
             }
             
             request.setAttribute("hotel", hotels); 

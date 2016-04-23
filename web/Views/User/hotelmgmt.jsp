@@ -21,6 +21,10 @@
          <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/hoteltable.css" />
          <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/sliderman.css" />
          <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.9.1.min.js"></script>
+         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/resources/demos/style.css">
         <title>JSP Page</title>
     </head>
     <body>
@@ -58,6 +62,24 @@ window.onload=swapImage;
 
            
             </script>
+                                        
+ <script>
+	$(function() {
+		$( "#slider-range" ).slider({
+			range: true,
+			min: 0,
+			max: 2000,
+			values: [ 75, 300 ],
+			slide: function( event, ui ) {
+				$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                                $(" #lower ").val(ui.values[0]);
+                                 $("#upper ").val(ui.values[1]);
+			}
+		});
+		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+			" - $" + $( "#slider-range" ).slider( "values", 1 ) );
+	});
+	</script>
         
         
         
@@ -78,6 +100,13 @@ window.onload=swapImage;
       <label for="radioThree" class="radio">All Hotels</label>
     </div>
   <hr>
+  
+  <label for="amount">Price range:</label>
+	<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        
+        <div id="slider-range"></div>
+        <input type="hidden" id="lower" name="lowerval">
+        <input type="hidden" id="upper" name="upperval">
   
   <input type="text" name="id" id="name" placeholder="Enter text" />
   

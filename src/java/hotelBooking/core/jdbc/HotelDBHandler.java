@@ -127,7 +127,7 @@ public class HotelDBHandler {
     
     }
     
-    public ArrayList<Hotel> findHotel(){
+    public ArrayList<Hotel> findHotel(int low,int high){
         
         ArrayList<Hotel> allHotels = new ArrayList<Hotel>();
         
@@ -142,6 +142,7 @@ public class HotelDBHandler {
                h.setId(rs.getString("hotelid"));
                h.setName(rs.getString("hotelname"));
                h.setCity(rs.getString("hotelcity"));
+               h.setPrice(rs.getInt("price"));
                
                PreparedStatement pstmt1 = con.prepareStatement("SELECT * FROM [PROJ_HOTEL_IMG] WHERE H_Id= '"+h.getId()+"' ");
                ResultSet rs1 = pstmt1.executeQuery(); 
@@ -155,8 +156,8 @@ public class HotelDBHandler {
                    h.setImg(h1.getHotelImg());
                    
                }
-               
-               allHotels.add(h);
+               if(h.getPrice()<=low && h.getPrice()>=high)
+                     allHotels.add(h);
             }
             
         }
@@ -167,7 +168,7 @@ public class HotelDBHandler {
          return allHotels;
     }
     
-    public ArrayList<Hotel> findHotelById(String id){
+    public ArrayList<Hotel> findHotelById(String id,int low, int high){
         
         PreparedStatement pstmt;
         ArrayList<Hotel>hotel=new ArrayList<Hotel>();
@@ -182,6 +183,7 @@ public class HotelDBHandler {
                     h.setId(rs.getString("hotelid"));
                     h.setName(rs.getString("hotelname"));
                     h.setCity(rs.getString("hotelcity"));
+                    h.setPrice(rs.getInt("price"));
                     
                     PreparedStatement pstmt1 = con.prepareStatement("SELECT * FROM [PROJ_HOTEL_IMG] WHERE H_Id= '"+h.getId()+"' ");
                     ResultSet rs1 = pstmt1.executeQuery(); 
@@ -195,8 +197,9 @@ public class HotelDBHandler {
                         h.setImg(h1.getHotelImg());
                    
                }
-                    
-                    hotel.add(h);
+                 
+                  if(h.getPrice()<=low && h.getPrice()>=high)   
+                       hotel.add(h);
                     
                }
             }
@@ -209,7 +212,7 @@ public class HotelDBHandler {
          return hotel;
     }   
     
-     public ArrayList<Hotel> findHotelByCity(String city){
+     public ArrayList<Hotel> findHotelByCity(String city,int low, int high){
         
         PreparedStatement pstmt;
         ArrayList<Hotel>allHotels=new ArrayList<Hotel>();
@@ -225,6 +228,7 @@ public class HotelDBHandler {
                     h.setId(rs.getString("hotelid"));
                     h.setName(rs.getString("hotelname"));
                     h.setCity(rs.getString("hotelcity"));
+                    h.setPrice(rs.getInt("price"));
                     
                     PreparedStatement pstmt1 = con.prepareStatement("SELECT * FROM [PROJ_HOTEL_IMG] WHERE H_Id= '"+h.getId()+"' ");
                     ResultSet rs1 = pstmt1.executeQuery(); 
@@ -239,7 +243,8 @@ public class HotelDBHandler {
                         
                     }
                     
-                  allHotels.add(h);
+                if(h.getPrice()<=low && h.getPrice()>=high)  
+                    allHotels.add(h);
                     
                  }
             }
