@@ -129,7 +129,8 @@ public class MakePayment extends HttpServlet {
           
           
            HttpSession session = request.getSession(true);
-           request.setAttribute("tariff", session.getAttribute("tariff"));
+           Integer tariff = (Integer) session.getAttribute("tariff");
+           request.setAttribute("tariff",tariff );
            request.setAttribute("roomType", session.getAttribute("Roomtype"));
            request.setAttribute("HotlName", session.getAttribute("HotlName"));
            

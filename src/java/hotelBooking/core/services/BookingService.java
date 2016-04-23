@@ -6,6 +6,7 @@
 package hotelBooking.core.services;
 
 import hotelBooking.core.domain.Booking;
+import hotelBooking.core.domain.BookingType;
 import hotelBooking.core.domain.Room;
 
 import hotelBooking.core.jdbc.BookingDBHandler;
@@ -92,10 +93,10 @@ public class BookingService {
      
    
     
-    public static ArrayList<Booking> getallMyBookings(String id)
+    public static ArrayList<BookingType> getallMyBookings(String id)
             
     {
-        ArrayList<Booking> mybookings;
+        ArrayList<BookingType> mybookings;
         dbr=new BookingDBHandlerRetreive();
         mybookings=dbr.findMyBooking(id);
         

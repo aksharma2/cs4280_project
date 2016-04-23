@@ -55,8 +55,32 @@ $(document).ready(function(c) {
 		$('.vlcone').fadeOut('slow', function(c){
 			$('.vlcone').remove();
 		});
-	});	  
+	});	
+        
+   var x = ":$ " (500 + (${requestScope.tariff}));
+
+ 
+
+$('#detailslist li').click(function() {
+     //Get the id of list items
+     $(this).text(x)
+     
+   });     
+        
 });
+
+
+
+
+
+
+
+    
+
+
+
+
+
 </script>
   
   
@@ -218,13 +242,13 @@ $(document).ready(function(c) {
 						<li>Vat</li>
 						<li>Total</li>
 			</ul>
-			<ul class="list_ins2">
+			<ul class="list_ins2" id="detailslist">
                                                 
-						<li>: 201</li>
+						<li>: $201</li>
 						<li>: $ ${requestScope.tariff}</li>
 						<li>: $10.00</li>
 						<li>: $0.00</li>
-						<li>:  $510.00</li>
+						<li>510</li>
 			</ul>
 			<div class="clear"></div>
 		</div>

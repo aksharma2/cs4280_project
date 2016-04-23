@@ -9,7 +9,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../common/newheader.jsp"%>
+
+<!--%@ include file="../common/newheader.jsp"%-->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 
@@ -29,8 +30,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/NewStatic/css/jquery-ui.css" />
 <!-- JavaScript --> <script type="text/javascript" src="${pageContext.request.contextPath}/NewStatic/js/jquery.min.js"></script>
 
-        
-        
+  
         
         
         

@@ -4,7 +4,8 @@
     Author     : aksharma2
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!--
+ -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <html>
     <head>
@@ -21,7 +22,7 @@
 <div class="wrap">
 <div class="footer">
 			<div class="copy">
-				<p class="link"><span>Â© All rights reserved | Paradise Booking Co. </span></p>
+				<p class="link"><span>© All rights reserved | Paradise Booking Co. </span></p>
 			</div>
 			<div class="f_nav">
 				<ul>

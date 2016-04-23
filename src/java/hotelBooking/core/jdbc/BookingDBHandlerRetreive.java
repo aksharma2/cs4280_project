@@ -6,6 +6,7 @@
 package hotelBooking.core.jdbc;
 
 import hotelBooking.core.domain.Booking;
+import hotelBooking.core.domain.BookingType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -80,10 +81,10 @@ public class BookingDBHandlerRetreive {
         return success;
     }
     
-     public ArrayList<Booking> findBooking()
+     public ArrayList<BookingType> findBooking()
              
      {
-         ArrayList<Booking> allbookings = new ArrayList<Booking>();
+         ArrayList<BookingType> allbookings = new ArrayList<BookingType>();
          
          PreparedStatement pst;
          
@@ -98,7 +99,7 @@ public class BookingDBHandlerRetreive {
              rs = pstmt.executeQuery("SELECT * FROM [PROJ_BOOKING] ");
              while(rs.next())
              {
-                 Booking b = new Booking(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"));
+                 BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
                  allbookings.add(b);
              }
          } catch (SQLException ex) {
@@ -111,10 +112,10 @@ public class BookingDBHandlerRetreive {
      
      
      
-      public ArrayList<Booking> findMyBooking(String id)
+      public ArrayList<BookingType> findMyBooking(String id)
              
      {
-         ArrayList<Booking> allbookings = new ArrayList<Booking>();
+         ArrayList<BookingType> allbookings = new ArrayList<BookingType>();
          
          //PreparedStatement pst;
          
@@ -132,7 +133,7 @@ public class BookingDBHandlerRetreive {
                  rs = pstmt.executeQuery();
              while(rs.next())
              {
-                 Booking b = new Booking(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"));
+                 BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
                  allbookings.add(b);
              }
          } catch (SQLException ex) {

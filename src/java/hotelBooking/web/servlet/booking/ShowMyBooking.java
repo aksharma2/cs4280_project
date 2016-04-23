@@ -6,6 +6,7 @@
 package hotelBooking.web.servlet.booking;
 
 import hotelBooking.core.domain.Booking;
+import hotelBooking.core.domain.BookingType;
 import hotelBooking.core.domain.User;
 import hotelBooking.core.services.BookingService;
 import java.io.IOException;
@@ -55,7 +56,7 @@ public class ShowMyBooking extends HttpServlet {
         
         
         
-        ArrayList<Booking> allbookings;
+        ArrayList<BookingType> allbookings;
         
          BookingService bookingservice = new BookingService();
          allbookings=bookingservice.getallMyBookings(username);

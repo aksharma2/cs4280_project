@@ -7,11 +7,11 @@ package hotelBooking.core.domain;
 
 /**
  *
- * @author PANDA Sourav
+ * @author shrankhla
  */
-public class Booking {
+public class BookingType {
     
-    private String userID;
+   private String userID;
     private String roomID;
     private String hotelID;
     private String CityID;
@@ -19,13 +19,13 @@ public class Booking {
     
     
 
-    public Booking(String HotelID, String RoomID, String UserID,String CityID) {
+    public BookingType(String HotelID, String RoomID, String UserID,String CityID,int bookingID) {
        
             setHotelID(HotelID);
             setRoomID(RoomID);
             setUserID(UserID);
             setCityID(CityID);
-            //setBookingID(bookingID);
+            setBookingID(bookingID);
          }
 
    
@@ -65,7 +65,6 @@ public class Booking {
        return this.CityID; 
     }
 
-    /*
     public void setBookingID(int bookingID) {
         
         this.BookingID=bookingID;
@@ -76,6 +75,6 @@ public class Booking {
     {
         return this.BookingID;
     }
+     
     
-*/
 }

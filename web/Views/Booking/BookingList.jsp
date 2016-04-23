@@ -1,9 +1,12 @@
+<%@page import="hotelBooking.core.domain.BookingType"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>s
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../common/header.jspf"%>
 <%@ include file="../common/sidebar.jspf"%>
+
+<%@ page import="java.io.*,java.util.*" %>
 
 <div class="container">
     <div class="row">
@@ -38,9 +41,11 @@
                     <thead>
                     <tr>
                         <th>Hotel ID</th>
+                        <th>Booking ID</th>
                         <th>City</th>
                         <th>User</th>
                         <th>Room Assigned</th>
+                        <th>Edit Booking </th>
                         
                     </tr>
                     </thead>
@@ -49,9 +54,19 @@
                     <c:forEach items="${requestScope.allbookings}" var="booking">
                         <tr>
                             <td>${booking.hotelID}</td>
+                            <td>${booking.getBookingID()}</td>
                             <td>${booking.getCityID()}</td>
                             <td>${booking.userID}</td>
                             <td>${booking.roomID}</td>
+                            <td> <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/ViewHotel" method="post">
+                             
+                            <input type="hidden" name="bookingUserID" value="${booking.getBookingID()}">
+                                    
+                            <button type="submit" class="btn btn-warning">Modify Booking</button>
+                            <br><br>
+                            <button type="submit" class="btn btn-success">Delete Booking</button>
+                           </form>
+                            </td>
                             
                             
                         </tr>
