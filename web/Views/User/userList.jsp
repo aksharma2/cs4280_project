@@ -5,9 +5,9 @@
 <%@ include file="../common/header.jspf"%>
 <%-- <%@ include file="../common/sidebar.jspf"%> --%>
 <%@ include file="../common/newheader.jsp"%>
-<div >
+<div class="container">
     
-                <table >
+                <table class="table table-bordered table-striped">
 
                     <thead>
                     <tr>
@@ -29,18 +29,18 @@
                                     <input type="hidden" name="idToEdit" value=${currentUser.id}>
                                     <div class="checkbox">
                                         <c:if test="${currentUser.isAdmin}">
-                                            <label><input name="role_admin" type="checkbox" value="ROLE_ADMIN" checked>ADMINISTRATOR</label>
+                                            <label style="color:black"><input name="role_admin" type="checkbox" value="ROLE_ADMIN" checked >ADMINISTRATOR</label>
                                         </c:if>
                                         <c:if test="${not currentUser.isAdmin}">
-                                            <label><input name="role_admin" type="checkbox" value="ROLE_ADMIN" >ADMINISTRATOR</label>
+                                            <label style="color:black"><input name="role_admin" type="checkbox" value="ROLE_ADMIN" >ADMINISTRATOR</label>
                                         </c:if>
                                     </div>
                                     <div class="checkbox">
                                         <c:if test="${currentUser.isManager}">
-                                            <label><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" checked>HOTEL MANAGER</label>
+                                            <label style="color:black"><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" checked >HOTEL MANAGER</label>
                                         </c:if>
                                         <c:if test="${not currentUser.isManager}">
-                                            <label><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER">HOTEL MANAGER</label>
+                                            <label style="color:black"><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" >HOTEL MANAGER</label>
                                         </c:if>
                                     </div>
                                     <button type="submit" class="btn btn-warning">EDIT User Access</button>

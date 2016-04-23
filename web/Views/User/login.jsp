@@ -5,7 +5,7 @@
 
 <div class="container">
 
-    <div class="row">
+    <div class="reg">
         <div class="span6 offset3">
             <div class="page-header">
                 <h1>Sign in</h1>
@@ -14,25 +14,25 @@
             <%@ include file="../common/error.jspf"%>
 
             <form class="well form-horizontal" method="post" action="${pageContext.request.contextPath}/user/login">
-                <fieldset>
+                <fieldset >
 
                     <div class="control-group">
-                        <label class="control-label" for="userID">User ID:</label>
+                        <label class="control-label" for="userID" style="color:black">User ID:</label>
                         <div class="controls">
                             <input id="email" name="userID" type="text" class="input-medium" required="required"/>
                             
                         </div>
                     </div>
 
-                    <div class="control-group">
-                        <label class="control-label" for="password">Password:</label>
+                    <div class="control-group" style="color:black">
+                        <label class="control-label" for="password" style="color:black">Password:</label>
                         <div class="controls">
                             <input type="password" id="password" name="password" class="input-medium" placeholder="min 6 characters" required="required"/>
                             
                         </div>
                     </div>
 
-                     <div class="control-group">
+                     <div class="control-group" style="color:black">
                          <label class="control-label" for="userID">[Test] Referer</label>
                         <div class="controls">
                             <input type="hidden" id="referer" name="referer"  value="${requestScope.referer}" />
@@ -54,6 +54,8 @@
         </div>
     </div>
 </div>
+
+                    
 
 
 
