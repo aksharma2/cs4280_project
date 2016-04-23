@@ -120,6 +120,11 @@ public class MakePayment extends HttpServlet {
           
           
           
+          Integer numofChildren = Integer.parseInt(request.getParameter("noofchildren"));
+          Integer numofAdults = Integer.parseInt(request.getParameter("noofadults"));
+          
+          String checkinDate = request.getParameter("Date1");
+          String checkoutDate = request.getParameter("Date2");
           
           
           
@@ -127,6 +132,11 @@ public class MakePayment extends HttpServlet {
            request.setAttribute("tariff", session.getAttribute("tariff"));
            request.setAttribute("roomType", session.getAttribute("Roomtype"));
            request.setAttribute("HotlName", session.getAttribute("HotlName"));
+           
+           session.setAttribute("noofchildren", numofChildren);
+           session.setAttribute("noofadults", numofAdults);
+           session.setAttribute("checkindate", checkinDate);
+           session.setAttribute("checkoutdate", checkoutDate);
            
            
            //session.setAttribute("Roomtype", roomtype);

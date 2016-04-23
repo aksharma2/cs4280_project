@@ -24,7 +24,7 @@ public class BookingService {
    public static RoomDBHandler dbR;
    
     
-    public static boolean makeBooking(Booking b)
+    public static boolean makeBooking(Booking b , String checkinDate, String checkoutdate)
     {
         boolean success=false;
         
@@ -33,7 +33,7 @@ public class BookingService {
         if(db.makeConnection())
             
         {
-            success=db.makeMybooking(b);
+            success=db.makeMybooking(b, checkinDate , checkoutdate);
             
         }
         db.closeConnection();
@@ -56,7 +56,7 @@ public class BookingService {
         return success;
     }
     
-     public static boolean BookRoom(Room r )
+     public static boolean BookRoom(Room r , int numofAdults , int numOfChilren)
     {
         boolean success=false;
         
@@ -65,7 +65,7 @@ public class BookingService {
         if(db.makeConnection())
             
         {
-            success=db.BookMyRoom(r);
+            success=db.BookMyRoom(r,numofAdults,numOfChilren);
         }
         db.closeConnection();
         

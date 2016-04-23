@@ -71,9 +71,21 @@ public class AssignRoom extends HttpServlet {
           User currUser=(User)session.getAttribute("user");
             String username=currUser.getId();
             
-       String hotel = (String) session.getAttribute("HotelName");
-       String City = (String) session.getAttribute("HotelCity");
-       String RoomType= (String) session.getAttribute("Roomtype");
+         String hotel = (String) session.getAttribute("HotelName");
+         String City = (String) session.getAttribute("HotelCity");
+         String RoomType= (String) session.getAttribute("Roomtype");
+         
+         String CheckInDate = (String) session.getAttribute("checkindate");
+         String CheckOutDate = (String) session.getAttribute("checkoutdate");
+         
+         Integer numofAdults = (Integer) session.getAttribute("noofadults");
+         Integer numOfChilren = (Integer)(session.getAttribute("noofchildren"));
+            
+            
+       
+       
+       
+       
        
        String nextJSP = "/Views/Booking/BookingList.jsp";
        
@@ -101,7 +113,7 @@ public class AssignRoom extends HttpServlet {
           
            BookingService bookingservice = new BookingService();
             
-            boolean isConnectionMade = bookingservice.makeBooking(b);
+            boolean isConnectionMade = bookingservice.makeBooking(b,CheckInDate,CheckOutDate );
             
             if(isConnectionMade)
                 
@@ -118,7 +130,7 @@ public class AssignRoom extends HttpServlet {
             
             Room r = new Room(hotel,RoomID,RoomType,isRoomAvailable);
             
-            boolean isRoomBooked = bookingservice.BookRoom(r);
+            boolean isRoomBooked = bookingservice.BookRoom(r,numofAdults,numOfChilren);
             
             if(isRoomBooked)
             {

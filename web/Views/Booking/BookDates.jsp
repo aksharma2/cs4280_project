@@ -49,7 +49,7 @@
 			<div class="adult">
 				<h2>No. of Adults</h2>
 					<div class="dropdown-button">           			
-				    	<select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
+				    	<select class="dropdown" name="noofadults" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
 								<option value="0">0</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -63,8 +63,8 @@
 			<div class="child">
 				<h2>No. of Children</h2>
 					<div class="dropdown-button">         			
-			    		<select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
-							<option value="">0</option>
+			    		<select class="dropdown" name="noofchildren" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
+							<option value="0">0</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -75,6 +75,10 @@
 		<div class="clear"></div>
 		</div>
 
+                     
+                     
+               <!--      
+                     
 		<div class="suite">
 			<div class="dropdown-button">
 				<h2>Suite</h2>           			
@@ -93,15 +97,18 @@
 			</div>
 		</div>
 
+                     
+                  -->   
+                     
 		<div class="book-pag">
 			<h2>Select Date</h2>
 			<div class="book-pag-frm1">
 				<label>Check In</label>
-				<input class="date" id="datepicker1" type="text" value="Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
+				<input class="date" name="Date1" id="datepicker1" type="text" value="Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
 			</div>
 			<div class="book-pag-frm2">
 				<label>Check Out</label>
-				<input class="date" id="datepicker2" type="text" value="Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
+				<input class="date" name="Date2" id="datepicker2" type="text" value="Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
 			</div>
 		<div class="clear"></div>
 		</div>	

@@ -67,6 +67,7 @@ public class MakeBooking extends HttpServlet {
             //b.setRoomID(room);
             //b.setUserID(userName);
             
+            /*
             
            BookingService bookingservice = new BookingService();
             
@@ -117,9 +118,10 @@ public class MakeBooking extends HttpServlet {
         out.close();
         
         
-                    
+        */            
                
         
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -161,7 +163,7 @@ public class MakeBooking extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
+}
     /*
      private String htmlEncode(String s) {
 
@@ -202,4 +204,4 @@ public class MakeBooking extends HttpServlet {
 
    */ 
     
-}
+

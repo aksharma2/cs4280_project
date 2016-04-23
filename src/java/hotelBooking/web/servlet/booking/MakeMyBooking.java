@@ -132,8 +132,10 @@ public class MakeMyBooking extends HttpServlet {
             
            BookingService bookingservice = new BookingService();
             
-            boolean isConnectionMade = bookingservice.makeBooking(b);
+         //   boolean isConnectionMade = bookingservice.makeBooking(b);
             
+         boolean isConnectionMade=true;
+         
             if(isConnectionMade)
                 
             {
@@ -149,8 +151,10 @@ public class MakeMyBooking extends HttpServlet {
             
             Room r = new Room(hotel,RoomID,room,isRoomAvailable);
             
-            boolean isRoomBooked = bookingservice.BookRoom(r);
+          //  boolean isRoomBooked = bookingservice.BookRoom(r);
             
+            boolean isRoomBooked=true;
+          
             if(isRoomBooked)
             {
                 out.println("<legend>New Room has been booked for you.</legend>");
