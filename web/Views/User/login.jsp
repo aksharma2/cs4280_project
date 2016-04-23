@@ -1,6 +1,7 @@
+<%@ include file="../common/newheader.jsp"%>
 <%@ include file="../common/header.jspf"%>
 <%-- <%@ include file="../common/sidebar.jspf"%> --%>
-<%@ include file="../common/newheader.jsp"%>
+
 <%--content--%>
 
 <div class="container">
@@ -33,7 +34,7 @@
                     </div>
 
                      <div class="control-group" style="color:black">
-                         <label class="control-label" for="userID">[Test] Referer</label>
+                         
                         <div class="controls">
                             <input type="hidden" id="referer" name="referer"  value="${requestScope.referer}" />
                         </div>

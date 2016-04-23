@@ -68,17 +68,17 @@
 <!-- start header -->
 <div class="header_bg">
 <div class="wrap">
-	<div class="header">
+	<div class="header" class="nav-list">
 		<div class="logo">
 			<a href="index.html"><img src="${pageContext.request.contextPath}/static/img/logo.png" width="159px" height="45px" alt=""></a>
 		</div>
-		<div class="h_right">
+		<div >
 			<!--start menu -->
-			<ul class="menu">
+			<ul class="menu" >
 				<li class="active"><a href="${pageContext.request.contextPath}/Views/User/hotelmgmt.jsp">View hotels</a></li> |
-				<li><a href="${pageContext.request.contextPath}/Views/User/account.jsp">rooms & suits</a></li> |
-				<li><a href="${pageContext.request.contextPath}/Views/User/register.jsp">reservation</a></li> |
-				<li><a href="${pageContext.request.contextPath}/Views/User/contact.html">contact</a></li> |
+				<li ><a href="${pageContext.request.contextPath}/Views/User/account.jsp">rooms & suits</a></li> |
+				<li ><a href="${pageContext.request.contextPath}/Views/User/register.jsp">reservation</a></li> |
+				<li ><a href="${pageContext.request.contextPath}/Views/User/contact.html">contact</a></li> |
                                 
                                 
                                 <c:if test="${sessionScope.user != null}">

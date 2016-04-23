@@ -68,15 +68,15 @@ public class MakeMyBooking extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(MakeMyBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+            /*
             if(check){
              hotels=db.findHotel();
-                
+            
             }
               
             request.setAttribute("hotel", hotels);
             
-        
+          */  
         
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
