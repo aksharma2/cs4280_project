@@ -2,6 +2,7 @@
 package hotelBooking.core.services;
 import hotelBooking.core.domain.Hotel;
 import hotelBooking.core.domain.HotelImages;
+import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserRole;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -61,6 +63,10 @@ public class HotelService extends HttpServlet{
      String url = "jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad056_db";
      String username = "aiad056";
      String password = "aiad056";
+     
+     HttpSession session = request.getSession(false);
+     User currUser=(User)session.getAttribute("user");
+     String managerID = currUser.getId();
      
         try{
                 out.println("<html>");
@@ -204,6 +210,11 @@ public class HotelService extends HttpServlet{
                         out.println("<p>City:" + (h.getCity()) + "</p>");
                         rs.close();
                     }
+                    
+                    pstmt = con.prepareStatement("INSERT INTO PROJ_HOTELMANAGER VALUES (?,?)");
+                    pstmt.setString(1, h.getId());
+                    pstmt.setString(2, managerID);
+                    rows= pstmt.executeUpdate();
                 }    
             
         }catch(SQLException e){
