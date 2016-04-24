@@ -122,5 +122,28 @@ public class BookingService {
         
     }
     
+    
+    
+    public static ArrayList<Integer> getOriginalPrice()
+            
+    {
+        ArrayList<Integer> originalPrice ;
+         dbr=new BookingDBHandlerRetreive();
+         originalPrice = dbr.getOriginalprice();
+         
+         return originalPrice;
+    }
+    
+    
+    public static ArrayList<Integer> getDiscountedPrice()
+            
+    {
+        ArrayList<Integer> discountedPrice ;
+         dbr=new BookingDBHandlerRetreive();
+         discountedPrice = dbr.getDiscountedprice();
+         
+         return discountedPrice;
+    }
+   
    
 }

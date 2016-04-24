@@ -144,6 +144,81 @@ public class BookingDBHandlerRetreive {
      }
      
      
+      
+      
+      public ArrayList<Integer> getOriginalprice()
+             
+     {
+         ArrayList<Integer> originalPrice = new ArrayList<Integer>();
+         
+         //PreparedStatement pst;
+         
+         try{
+            // pst=con.prepareStatement("SELECT * FROM [PROJ_BOOKING] ");
+             
+             //rs=pst.executeQuery();
+            makeConnection();
+            
+            PreparedStatement pstmt;
+            // pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             
+              pstmt = con.prepareStatement("SELECT [price] FROM [PROJ_ROOMASSIGNMENT]  ");
+            
+              
+                 rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 
+                 originalPrice.add(rs.getInt("price"));
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(BookingDBHandlerRetreive.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+         return originalPrice;
+     }
+      
+      
+    public ArrayList<Integer> getDiscountedprice()
+             
+     {
+         ArrayList<Integer> discountedPrice = new ArrayList<Integer>();
+         
+         //PreparedStatement pst;
+         
+         try{
+            // pst=con.prepareStatement("SELECT * FROM [PROJ_BOOKING] ");
+             
+             //rs=pst.executeQuery();
+            makeConnection();
+            
+            PreparedStatement pstmt;
+            // pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             
+              pstmt = con.prepareStatement("SELECT [discountedPrice] FROM [PROJ_ROOMASSIGNMENT]  ");
+            
+              
+                 rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 
+                 discountedPrice.add(rs.getInt("discountedPrice"));
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(BookingDBHandlerRetreive.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+         return discountedPrice;
+     }
+      
+      
+      
+      
+      
+      
+      
      
      /*
      public Booking findBooking(String id)

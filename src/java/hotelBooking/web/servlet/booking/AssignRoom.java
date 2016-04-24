@@ -82,7 +82,7 @@ public class AssignRoom extends HttpServlet {
          Integer numOfChilren = (Integer)(session.getAttribute("noofchildren"));
             
             
-        String MyBookingId = (String) session.getAttribute("Bookingid");
+        int MyBookingId = (Integer) session.getAttribute("Bookingid");
        
        
        
@@ -90,7 +90,7 @@ public class AssignRoom extends HttpServlet {
        String nextJSP = "/Views/Booking/BookingList.jsp";
        
        if (hotel != null && !hotel.equalsIgnoreCase("") &&
-                RoomType != null && !RoomType.equalsIgnoreCase("") && MyBookingId==null) {
+                RoomType != null && !RoomType.equalsIgnoreCase("") && MyBookingId==0) {
             
             
            /*
@@ -153,16 +153,16 @@ public class AssignRoom extends HttpServlet {
         
        
        else if (hotel != null && !hotel.equalsIgnoreCase("") &&
-                RoomType != null && !RoomType.equalsIgnoreCase("") && MyBookingId!=null)
+                RoomType != null && !RoomType.equalsIgnoreCase("") && MyBookingId!=0)
            
        {
              Booking b = new Booking(hotel,RoomType,username,City);
              
               BookingService bookingservice = new BookingService();
               
-              int myid = Integer.parseInt(MyBookingId);
+             // int myid = Integer.parseInt(MyBookingId);
             
-            boolean isConnectionMade = bookingservice.UpdateBooking(b,CheckInDate,CheckOutDate,myid );
+            boolean isConnectionMade = bookingservice.UpdateBooking(b,CheckInDate,CheckOutDate,MyBookingId );
             
             if(isConnectionMade)
                 
