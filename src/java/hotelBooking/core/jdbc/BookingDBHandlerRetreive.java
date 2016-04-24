@@ -197,9 +197,12 @@ public class BookingDBHandlerRetreive {
             PreparedStatement pstmt;
             // pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
              
-              pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID] = (?) ");
+             pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID] = (?) ");
              pstmt.setString(1, id);
-              rs = pstmt.executeQuery();
+             rs = pstmt.executeQuery();
+            
+             
+             
              while(rs.next())
              {
                  //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
@@ -271,8 +274,7 @@ public class BookingDBHandlerRetreive {
              
               pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID]= (?)");
              pstmt.setString(1, id);
-              
-                 rs = pstmt.executeQuery();
+              rs = pstmt.executeQuery();
              while(rs.next())
              {
                  //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));

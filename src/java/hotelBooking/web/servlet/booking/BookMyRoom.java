@@ -69,13 +69,13 @@ public class BookMyRoom extends HttpServlet {
                BookingService bookingservice = new BookingService();
                
                ArrayList<Integer> orgprice = new ArrayList<Integer>();
-              // orgprice = bookingservice.getOriginalPriceOfHotel(HID);
+              orgprice = bookingservice.getOriginalPriceOfHotel(HID);
                
-               orgprice = bookingservice.getOriginalPrice()
+             //  orgprice = bookingservice.getOriginalPrice();
                
                ArrayList<Integer> discountedsprice = new ArrayList<Integer>();
-              // discountedsprice = bookingservice.getDiscountedPriceofHotel(HID);
-               discountedsprice = bookingservice.getDiscountedPrice()
+               discountedsprice = bookingservice.getDiscountedPriceofHotel(HID);
+              // discountedsprice = bookingservice.getDiscountedPrice();
             
             request.setAttribute("isAuthenticated",authorized);
             request.setAttribute("singlePrice", orgprice.get(0));

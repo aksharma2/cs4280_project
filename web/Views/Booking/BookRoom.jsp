@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>s
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%@ include file="../common/newheader.jsp"%>
+
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -166,7 +169,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                
                 
 		
-               
+               <!--
 			
 			<ul class="menu">
 				<li class="active"><a href="${pageContext.request.contextPath}/index.jsp">hotel</a></li> 
@@ -177,7 +180,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				
                                 <div class="clear"></div>
 				
-			</ul>
+			</ul> -->
 			
 					<form class="style-1 drp_dwn">
 						<div class="row">
@@ -268,7 +271,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                           <div class="panel-footer">
                         
                         <c:if test="${requestScope.isAuthenticated}">
-                            <h3><strike>${requestScope.singlePrice}</strike> ${requestScope.singlePriceDisc}</h3>
+                            <h3><strike>${requestScope.singlePrice} $</strike> ${requestScope.singlePriceDisc} $</h3>
                         </c:if>
                         <c:if test="${not requestScope.isAuthenticated}">
                             <h3>${requestScope.singlePrice}</h3>
@@ -296,7 +299,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                      </div>
                      <div class="panel-footer">
                         <c:if test="${requestScope.isAuthenticated}">
-                            <h3><strike>${requestScope.deluxePrice}</strike> ${requestScope.deluxePriceDisc}</h3>
+                            <h3><strike>${requestScope.deluxePrice} $</strike> ${requestScope.deluxePriceDisc} $</h3>
                         </c:if>
                         <c:if test="${not requestScope.isAuthenticated}">
                             <h3>${requestScope.deluxePrice}</h3>
@@ -325,7 +328,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <div class="panel-footer">
                             <c:if test="${requestScope.isAuthenticated}">
-                            <h3><strike>${requestScope.suiteePrice}</strike> ${requestScope.suiteePriceDisc}</h3>
+                            <h3><strike>${requestScope.suiteePrice} $</strike> ${requestScope.suiteePriceDisc} $</h3>
                             </c:if>
                             <c:if test="${not requestScope.isAuthenticated}">
                                 <h3>${requestScope.suiteePrice}</h3>
