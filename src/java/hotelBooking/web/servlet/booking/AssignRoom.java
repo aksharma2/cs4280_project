@@ -67,7 +67,7 @@ public class AssignRoom extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         
-          HttpSession session = request.getSession(true);
+          HttpSession session = request.getSession(false);
           User currUser=(User)session.getAttribute("user");
             String username=currUser.getId();
             
