@@ -45,17 +45,19 @@ public class RoomDBHandler {
     }
     
     
-    public boolean setMaxRoom (String hotelID, String roomType, int num)
+    public boolean setMaxRoom (String hotelID, String roomType, int num, int price, int discPrice)
             
     {
         boolean success= false;
         
         try
         {
-             PreparedStatement pstmt = con.prepareStatement("INSERT INTO [PROJ_ROOMASSIGNMENT] ( [hotelID], [roomType],[maxNum]) VALUES (?, ?, ?)");
+             PreparedStatement pstmt = con.prepareStatement("INSERT INTO [PROJ_ROOMASSIGNMENT] ( [hotelID], [roomType],[maxNum],[price],[discountedPrice]) VALUES (?, ?, ?, ?, ?)");
                 pstmt.setString(1, hotelID);
                 pstmt.setString(2, roomType);
                 pstmt.setInt(3,num);
+                pstmt.setInt(4,price);
+                pstmt.setInt(5,discPrice);
                 
                 int rows = pstmt.executeUpdate();
                 

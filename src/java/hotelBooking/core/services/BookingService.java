@@ -92,7 +92,7 @@ public class BookingService {
     }
      
      
-   public static boolean setMaximumRooms(String hotelID , String roomType , int num )
+   public static boolean setMaximumRooms(String hotelID , String roomType , int num, int price, int discPrice )
     {
         boolean success=false;
         
@@ -101,7 +101,7 @@ public class BookingService {
         if(dbR.makeConnection())
             
         {
-            success=dbR.setMaxRoom(hotelID, roomType, num);
+            success=dbR.setMaxRoom(hotelID, roomType, num, price, discPrice);
         }
         dbR.closeConnection();
         

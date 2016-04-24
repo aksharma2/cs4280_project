@@ -2,6 +2,7 @@
 package hotelBooking.core.services;
 import hotelBooking.core.domain.Hotel;
 import hotelBooking.core.domain.HotelImages;
+import hotelBooking.core.domain.UserRole;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -25,6 +26,9 @@ public class HotelService extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 
+        boolean authorized = UserService.checkForAccess(request, UserRole.HOTEL_MANAGER);
+        
+        
           response.setContentType("text/html;charset=UTF-8");
           String action = request.getParameter("action");
           PrintWriter out = response.getWriter();
@@ -34,14 +38,15 @@ public class HotelService extends HttpServlet{
          out.println("<html>");
                if (action != null) {
             // call different action depending on the action parameter
-                    if (action.equalsIgnoreCase("register")) {
+                    if(!authorized)
+                       out.println("<p>Login first!</p>");
+                    else if (action.equalsIgnoreCase("register")) {
                         this.registerHotel(request, response);
                     } 
-                    if (action.equalsIgnoreCase("remove")) {
+                    else if (action.equalsIgnoreCase("remove")) {
                         this.removeHotel(request, response);  
                     }
-                    
-                    if (action.equalsIgnoreCase("addImg")) {
+                    else if (action.equalsIgnoreCase("addImg")) {
                         this.addImgHotel(request, response);    
                     } 
                    
@@ -101,10 +106,32 @@ public class HotelService extends HttpServlet{
                 out.println("<p>Number of DELX Rooms");
                 out.println("<input name='deluxeRoom' value='' type='text' size='15' maxlength='15'> ");
                 
+                
+                
                 out.println("<p>Number of SUITES");
                 out.println("<input name='suiteRoom' value='' type='text' size='15' maxlength='15'> ");
                 out.println("<div class='gender' >");
                 out.println("</div>");
+                
+                //-----------------------Price
+                out.println("<p>Price Single room<br />");
+                out.println("<input name='singleRoomPrice' value='' type='text' size='15' maxlength='15'> </p><br><br>");
+                out.println("<p>Discounted Price Single room");
+                out.println("<input name='singleRoomDiscPrice' value='' type='text' size='15' maxlength='15'> ");
+                //-----------------------------
+                //-----------------------Price
+                out.println("<p>Price DELX room<br />");
+                out.println("<input name='dELXRoomPrice' value='' type='text' size='15' maxlength='15'> </p><br><br>");
+                out.println("<p>Discounted Price DELX room");
+                out.println("<input name='dELXRoomDiscPrice' value='' type='text' size='15' maxlength='15'> ");
+                //-----------------------------
+                //-----------------------Price
+                out.println("<p>Price Suite room<br />");
+                out.println("<input name='suiteRoomPrice' value='' type='text' size='15' maxlength='15'> </p><br><br>");
+                out.println("<p>Discounted Price Suite room");
+                out.println("<input name='suiteRoomDiscPrice' value='' type='text' size='15' maxlength='15'> ");
+                //-----------------------------
+                
                 
                 out.println("<input type='submit' value='Register!' />");
                 out.println("</form>");        
@@ -113,25 +140,45 @@ public class HotelService extends HttpServlet{
                 out.println("</body>");
                 out.println("</html>");
 
-                Hotel h=new Hotel();
-                h.setId(request.getParameter("hotelid"));        //values obtained from form submission
-                h.setName(request.getParameter("hotelname"));
-                h.setCity(request.getParameter("hotelcity"));
-                h.setPrice(Integer.parseInt(request.getParameter("hotelprice")));
+                
                 
                Integer SingleRoom = Integer.parseInt(request.getParameter("singleRoom"));
                Integer DeluxeRoom = Integer.parseInt(request.getParameter("deluxeRoom"));
                Integer SuiteRoom = Integer.parseInt(request.getParameter("suiteRoom"));
                 
-                
+               //---retreive pricing information
+               //Default Price
+               Integer singleRoomPrice = Integer.parseInt(request.getParameter("singleRoomPrice"));
+               Integer deluxeRoomPrice = Integer.parseInt(request.getParameter("dELXRoomPrice"));
+               Integer suiteRoomPrice = Integer.parseInt(request.getParameter("suiteRoomPrice"));
+               //Discounted price
+               Integer singleRoomPrice_disc = Integer.parseInt(request.getParameter("singleRoomDiscPrice"));
+               Integer deluxeRoomPrice_disc = Integer.parseInt(request.getParameter("dELXRoomDiscPrice"));
+               Integer suiteRoomPrice_disc = Integer.parseInt(request.getParameter("suiteRoomDiscPrice"));
+               //==============================
+               
+               //-----Avg price calculation-----
+               Integer singleRoomAvg = (Integer)(singleRoomPrice + singleRoomPrice_disc)/2;
+               Integer deluxeRoomAvg = (Integer)(deluxeRoomPrice + deluxeRoomPrice_disc)/2;
+               Integer suiteRoomAvg  = (Integer)(suiteRoomPrice + suiteRoomPrice_disc)/2;
+               Integer sumOfCost  = (singleRoomAvg*SingleRoom) + (DeluxeRoom*deluxeRoomAvg) +  (SuiteRoom*suiteRoomAvg);//the first arg in each bracketed seg is the # of rooms
+               Integer sumOfRooms = SingleRoom + DeluxeRoom  + SuiteRoom;
+               Integer hotelAvgPrice   = sumOfCost/sumOfRooms; 
+               
+               //================================
+               
                 BookingService  bs = new BookingService();
-                boolean result1 =  bs.setMaximumRooms(request.getParameter("hotelid"),"single",SingleRoom);
-                boolean result2 =  bs.setMaximumRooms(request.getParameter("hotelid"),"deluxe",DeluxeRoom);
-                boolean result3 =  bs.setMaximumRooms(request.getParameter("hotelid"),"suite",SuiteRoom);
+                boolean result1 =  bs.setMaximumRooms(request.getParameter("hotelid"),"single",SingleRoom,singleRoomPrice,singleRoomPrice_disc);
+                boolean result2 =  bs.setMaximumRooms(request.getParameter("hotelid"),"deluxe",DeluxeRoom,deluxeRoomPrice,deluxeRoomPrice_disc);
+                boolean result3 =  bs.setMaximumRooms(request.getParameter("hotelid"),"suite",SuiteRoom,suiteRoomPrice,suiteRoomPrice_disc);
                 
-               boolean finalresult = result1 && result2 && result3;
+                boolean finalresult = result1 && result2 && result3;
                
-               
+                Hotel h=new Hotel();
+                h.setId(request.getParameter("hotelid"));        //values obtained from form submission
+                h.setName(request.getParameter("hotelname"));
+                h.setCity(request.getParameter("hotelcity"));
+                h.setPrice(hotelAvgPrice);
                
                 
                 
