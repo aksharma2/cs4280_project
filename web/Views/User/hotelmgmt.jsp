@@ -86,7 +86,7 @@ window.onload=swapImage;
         
         <h1>View hotels!</h1>
         
-        <div class="testbox">
+        <div class="testbox" style="height:450px">
   <h1>Input parameter</h1>
 
   <form action="${pageContext.request.contextPath}/ViewHotel" method="post">
@@ -102,6 +102,7 @@ window.onload=swapImage;
   <hr>
   
   <input type="text" name="id" id="name" placeholder="Enter text" />
+  
   <label for="amount">Price range:</label>
 	<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
         

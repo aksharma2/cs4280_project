@@ -71,10 +71,11 @@ public class HotelDBHandler {
         try {
             
             //Create Entry in the PROJ_USER table
-            pstmt = con.prepareStatement("INSERT INTO [PROJ_HOTEL] ( [hotelid], [hotelname] , [hotelcity] ) VALUES (?, ?, ?)");
+            pstmt = con.prepareStatement("INSERT INTO [PROJ_HOTEL] ( [hotelid], [hotelname] , [hotelcity], [price] ) VALUES (?, ?, ?, ?)");
             pstmt.setString(1, h.getId());
             pstmt.setString(2, h.getName());
-            pstmt.setString(2, h.getCity());
+            pstmt.setString(3, h.getCity());
+            pstmt.setInt(4, h.getPrice());
             
             int rowsUser = pstmt.executeUpdate();
             
