@@ -158,6 +158,7 @@ window.onload=swapImage;
                                     
                                     <INPUT TYPE=hidden NAME="hotelN" VALUE="<%=h.getName() %>">
                                     <INPUT TYPE=hidden NAME="hotelC" VALUE="<%=h.getCity() %>">
+                                    <INPUT TYPE=hidden NAME="HotelID" VALUE="<%=h.getId() %>">
                                     
                                     
                                     <% for(String s:h.getImg()){ %> 

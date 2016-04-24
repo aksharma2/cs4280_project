@@ -84,8 +84,16 @@ public class ViewHotel extends HttpServlet {
         
         
         int Bookingid = Integer.parseInt(request.getParameter("bookingUserID"));
+        
+        String bookingid = request.getParameter("bookingUserID");
+       // int dBookingID = Integer.parseInt(request.getParameter("Bookinguserid"));
+        
+        
          HttpSession session = request.getSession(true);
          session.setAttribute("Bookingid", Bookingid);
+         session.setAttribute("bookingid", bookingid);
+         
+         //session.setAttribute("dBookingID", dBookingID);
         
         
         

@@ -57,7 +57,7 @@ public class BookingService {
         return success;
     }
     
-     public static boolean BookRoom(Room r , int numofAdults , int numOfChilren)
+     public static boolean BookRoom(Room r , int numofAdults , int numOfChilren ,String username)
     {
         boolean success=false;
         
@@ -66,7 +66,25 @@ public class BookingService {
         if(db.makeConnection())
             
         {
-            success=db.BookMyRoom(r,numofAdults,numOfChilren);
+            success=db.BookMyRoom(r,numofAdults,numOfChilren ,username);
+        }
+        db.closeConnection();
+        
+        return success;
+    }
+     
+     
+     
+   public static boolean deleteRoom(String username)
+    {
+        boolean success=false;
+        
+         db = new BookingDBHandler();
+        
+        if(db.makeConnection())
+            
+        {
+            success=db.DeleteMyRoom(username);
         }
         db.closeConnection();
         
@@ -91,6 +109,25 @@ public class BookingService {
         return success;
     }
      
+    public static boolean deleteBooking(int id)
+    {
+        boolean success=false;
+        
+         db = new BookingDBHandler();
+        
+        if(db.makeConnection())
+            
+        {
+            success=db.DeleteMybooking(id);
+            
+        }
+        db.closeConnection();
+        
+        return success;
+    }
+      
+      
+    
      
    public static boolean setMaximumRooms(String hotelID , String roomType , int num, int price, int discPrice )
     {
@@ -135,12 +172,36 @@ public class BookingService {
     }
     
     
+    public static ArrayList<Integer> getOriginalPriceOfHotel(String id)
+            
+    {
+        ArrayList<Integer> originalPrice ;
+         dbr=new BookingDBHandlerRetreive();
+         originalPrice = dbr.getOriginalpriceofHotel(id);
+         
+         return originalPrice;
+    }
+    
+    
+    
     public static ArrayList<Integer> getDiscountedPrice()
             
     {
         ArrayList<Integer> discountedPrice ;
          dbr=new BookingDBHandlerRetreive();
          discountedPrice = dbr.getDiscountedprice();
+         
+         return discountedPrice;
+    }
+   
+    
+    
+    public static ArrayList<Integer> getDiscountedPriceofHotel(String id)
+            
+    {
+        ArrayList<Integer> discountedPrice ;
+         dbr=new BookingDBHandlerRetreive();
+         discountedPrice = dbr.getDiscountedpriceofHotel(id);
          
          return discountedPrice;
     }

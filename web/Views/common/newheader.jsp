@@ -77,7 +77,7 @@
 			<ul class="menu" >
 				<li class="active"><a href="${pageContext.request.contextPath}/Views/User/hotelmgmt.jsp">View hotels</a></li> |
 				<li ><a href="${pageContext.request.contextPath}/Views/User/account.jsp">rooms & suits</a></li> |
-				<li ><a href="${pageContext.request.contextPath}/Views/User/register.jsp">reservation</a></li> |
+				<li ><a href="${pageContext.request.contextPath}/Views/Booking/BookingList.jsp">reservation</a></li> |
 				<li ><a href="${pageContext.request.contextPath}/admin/view">admin console</a></li> |
                                 <li ><a href="${pageContext.request.contextPath}/Views/Booking/CreateHotel_Admin.jsp">hotel manager console</a></li> |
                                 

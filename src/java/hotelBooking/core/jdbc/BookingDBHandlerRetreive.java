@@ -178,6 +178,44 @@ public class BookingDBHandlerRetreive {
          
          return originalPrice;
      }
+    
+      
+      
+      public ArrayList<Integer> getOriginalpriceofHotel(String id)
+             
+     {
+         ArrayList<Integer> originalPrice = new ArrayList<Integer>();
+         
+         //PreparedStatement pst;
+         
+         try{
+            // pst=con.prepareStatement("SELECT * FROM [PROJ_BOOKING] ");
+             
+             //rs=pst.executeQuery();
+            makeConnection();
+            
+            PreparedStatement pstmt;
+            // pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             
+              pstmt = con.prepareStatement("SELECT [price] FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID] =?  ");
+             pstmt.setString(1, id);
+              rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 
+                 originalPrice.add(rs.getInt("price"));
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(BookingDBHandlerRetreive.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+         return originalPrice;
+     }
+      
+      
+      
+      
       
       
     public ArrayList<Integer> getDiscountedprice()
@@ -198,6 +236,41 @@ public class BookingDBHandlerRetreive {
              
               pstmt = con.prepareStatement("SELECT [discountedPrice] FROM [PROJ_ROOMASSIGNMENT]  ");
             
+              
+                 rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 
+                 discountedPrice.add(rs.getInt("discountedPrice"));
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(BookingDBHandlerRetreive.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+         return discountedPrice;
+     }
+      
+      
+    
+    public ArrayList<Integer> getDiscountedpriceofHotel(String id)
+             
+     {
+         ArrayList<Integer> discountedPrice = new ArrayList<Integer>();
+         
+         //PreparedStatement pst;
+         
+         try{
+            // pst=con.prepareStatement("SELECT * FROM [PROJ_BOOKING] ");
+             
+             //rs=pst.executeQuery();
+            makeConnection();
+            
+            PreparedStatement pstmt;
+            // pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             
+              pstmt = con.prepareStatement("SELECT [discountedPrice] FROM [PROJ_ROOMASSIGNMENT] WHERE {hotelID]= ?  ");
+             pstmt.setString(1, id);
               
                  rs = pstmt.executeQuery();
              while(rs.next())

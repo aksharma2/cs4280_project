@@ -58,14 +58,20 @@
                             <td>${booking.getCityID()}</td>
                             <td>${booking.userID}</td>
                             <td>${booking.roomID}</td>
-                            <td> <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/ViewHotel" method="get">
-                             
-                            <input type="hidden" name="bookingUserID" value="${booking.getBookingID()}">
-                                    
-                            <button type="submit" class="btn btn-warning">Modify Booking</button>
-                            <br><br>
-                            <button type="submit" class="btn btn-success">Delete Booking</button>
-                           </form>
+                            <td> 
+                               <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/ViewHotel" method="get">
+                                   
+                                <input type="hidden" name="bookingUserID" value="${booking.getBookingID()}">
+                                <button type="submit" class="btn btn-warning">Modify Booking</button>
+                            
+                                </form>
+                            
+                                 <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/DeleteRoom" method="get">
+                           
+                                <input type="hidden" name="Bookinguserid" value="${booking.getBookingID()}">
+                               <br><br>
+                                <button type="submit" class="btn btn-success">Delete Booking</button>
+                                 </form>
                             </td>
                             
                             

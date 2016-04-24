@@ -72,6 +72,10 @@
         <servlet-name>SetRooms</servlet-name>
         <servlet-class>hotelBooking.web.servlet.booking.SetRooms</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteRoom</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.DeleteRoom</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/Test</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>SetRooms</servlet-name>
         <url-pattern>/admin/SetRooms</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteRoom</servlet-name>
+        <url-pattern>/DeleteRoom</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -80,9 +80,22 @@ public class AssignRoom extends HttpServlet {
          
          Integer numofAdults = (Integer) session.getAttribute("noofadults");
          Integer numOfChilren = (Integer)(session.getAttribute("noofchildren"));
-            
-            
-        int MyBookingId = (Integer) session.getAttribute("Bookingid");
+         
+         String hotelID = (String) session.getAttribute("HID");
+           
+         int MyBookingId =0;
+         
+         try
+         {
+           MyBookingId = (Integer) session.getAttribute("Bookingid");
+         }catch (NullPointerException e )
+         {
+             
+         }
+       
+         
+       //  String MyBookingId = (String) session.getAttribute("Bookingid");
+         
        
        
        
@@ -95,7 +108,7 @@ public class AssignRoom extends HttpServlet {
             
            /*
             Long id ;
-            Random rand = new Random();
+            Random rand = new Random();s
             id=rand.nextLong();
             */
             //String userName=Long.toString(id);
@@ -106,7 +119,7 @@ public class AssignRoom extends HttpServlet {
             //Booking b = new Booking(hotel,room,username,CityId);
             
             
-            Booking b = new Booking(hotel,RoomType,username,City);
+            Booking b = new Booking(hotelID,RoomType,username,City);
            // b.setHotelID(hotel);
             //b.setRoomID(room);
             //b.setUserID(userName);
@@ -128,9 +141,9 @@ public class AssignRoom extends HttpServlet {
             
             
             
-            Room r = new Room(hotel,RoomID,RoomType,isRoomAvailable);
+            Room r = new Room(hotelID,RoomID,RoomType,isRoomAvailable);
             
-            boolean isRoomBooked = bookingservice.BookRoom(r,numofAdults,numOfChilren);
+            boolean isRoomBooked = bookingservice.BookRoom(r,numofAdults,numOfChilren,username);
             
             if(isRoomBooked)
             {
@@ -160,9 +173,14 @@ public class AssignRoom extends HttpServlet {
              
               BookingService bookingservice = new BookingService();
               
-             // int myid = Integer.parseInt(MyBookingId);
+            // int myid = Integer.parseInt(MyBookingId);
+              
+              
             
-            boolean isConnectionMade = bookingservice.UpdateBooking(b,CheckInDate,CheckOutDate,MyBookingId );
+           // boolean isConnectionMade = bookingservice.UpdateBooking(b,CheckInDate,CheckOutDate,MyBookingId );
+             
+             boolean isConnectionMade = bookingservice.UpdateBooking(b,CheckInDate,CheckOutDate,MyBookingId );
+            
             
             if(isConnectionMade)
                 
@@ -179,7 +197,7 @@ public class AssignRoom extends HttpServlet {
             
             Room r = new Room(hotel,RoomID,RoomType,isRoomAvailable);
             
-            boolean isRoomBooked = bookingservice.BookRoom(r,numofAdults,numOfChilren);
+            boolean isRoomBooked = bookingservice.BookRoom(r,numofAdults,numOfChilren,username);
             
             if(isRoomBooked)
             {

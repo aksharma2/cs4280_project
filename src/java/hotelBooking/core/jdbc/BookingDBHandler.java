@@ -137,6 +137,47 @@ public class BookingDBHandler {
     }
     
     
+     public boolean DeleteMybooking(int id)
+            
+    {
+        boolean success= false;
+        
+        try
+        {
+             PreparedStatement pstmt = con.prepareStatement("DELETE [PROJ_BOOKING] WHERE [bookingID] =? ");
+                pstmt.setInt(1, id);
+               
+                
+                 int rows = pstmt.executeUpdate();
+                 if(rows>0)
+                 {
+                      success=true;
+                     
+                      
+                        if (rs != null && rs.next() != false) {
+                            
+                            rs.close();
+                    }
+                    StatementClose(); 
+                    
+                 }
+                 
+            
+                    
+        }catch(SQLException e)
+            
+        {
+            success=false;
+        }
+       
+        return success;
+    }
+    
+    
+    
+    
+    
+    
     
     
     public ResultSet returnResult() throws SQLException
@@ -197,7 +238,7 @@ public class BookingDBHandler {
     }
     
     
-    public boolean BookMyRoom(Room r , int numofAdults, int numOfChilren )
+    public boolean BookMyRoom(Room r , int numofAdults, int numOfChilren,String username )
             
     {
         boolean successs= false;
@@ -208,13 +249,15 @@ public class BookingDBHandler {
             
             if(Connectionmade)
             {
-                PreparedStatement pstmt1 = con.prepareStatement("INSERT INTO [PROJ_ROOM] ([hotelID],[id], [type],[isAvailable],[NoOfAdults] , [NoOfChildren]) VALUES (?, ?, ?, ?, ?, ?)");
+                PreparedStatement pstmt1 = con.prepareStatement("INSERT INTO [PROJ_ROOM] ([hotelID],[id], [type],[isAvailable],[NoOfAdults] , [NoOfChildren] ,[userID]) VALUES (?, ?, ?, ?, ?, ?,?)");
                 pstmt1.setString(1,r.getHotelID() );
                 pstmt1.setString(2,r.getId() );
                 pstmt1.setString(3,r.getType());
                 pstmt1.setBoolean(4,r.isIsAvailable());
                 pstmt1.setInt(5,numofAdults);
                 pstmt1.setInt(6,numOfChilren);
+                pstmt1.setString(7,username);
+                
                  
                 
                 
@@ -247,4 +290,55 @@ public class BookingDBHandler {
        
         return successs;
     }
+    
+    public boolean DeleteMyRoom(String username )
+            
+    {
+        boolean successs= false;
+        
+        try
+        {
+            boolean Connectionmade = makeConnection();
+            
+            if(Connectionmade)
+            {
+                PreparedStatement pstmt1 = con.prepareStatement("DELETE [PROJ_ROOM] WHERE [userID] =? ");
+                pstmt1.setString(1,username );
+               
+                 
+                 int rows = pstmt1.executeUpdate();
+                 
+                 if(rows>0)
+                 {
+                      successs=true;
+                     
+                     
+                        if (rs != null && rs.next() != false) {
+                            
+                            rs.close();
+                    }
+                    StatementClose(); 
+                    
+                 }
+            }
+                    
+        }catch(SQLException e)
+            
+        {
+            successs=false;
+        }
+       
+        return successs;
+    }
+    
+    
+    
+    
+    
+    
 }
+
+
+
+
+
