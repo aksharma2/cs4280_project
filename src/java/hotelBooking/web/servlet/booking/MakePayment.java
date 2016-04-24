@@ -46,7 +46,7 @@ public class MakePayment extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-     boolean authorized = UserService.checkForAccess(request, UserRole.AUTHENTICATED);
+    boolean authorized = UserService.checkForAccess(request, UserRole.AUTHENTICATED);
          
     String roomtype = request.getParameter("act");
     String hotlname= request.getParameter("hotlName");
@@ -57,7 +57,8 @@ public class MakePayment extends HttpServlet {
     {
         nextJSP="/Views/Booking/BookRoom.jsp";
     }
-          
+    
+    /*
     else if(roomtype.equals("single"))
     {
         tariff=150;
@@ -73,7 +74,12 @@ public class MakePayment extends HttpServlet {
     {
         tariff=289;
     }
-          
+    
+    */
+    
+    String tar = request.getParameter("tariff");
+    tariff= Integer.parseInt(tar);
+    
     HttpSession session = request.getSession(true);
     session.setAttribute("Roomtype", roomtype);
     session.setAttribute("tariff", tariff);

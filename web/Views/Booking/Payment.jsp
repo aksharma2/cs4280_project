@@ -57,13 +57,13 @@ $(document).ready(function(c) {
 		});
 	});	
         
-   var x = ":$ " (500 + (${requestScope.tariff}));
+   var x =  (500 + (${requestScope.tariff}));
 
- 
+ $("#ji").innerHTML = x;
 
 $('#detailslist li').click(function() {
      //Get the id of list items
-     $(this).text(x)
+     $(this).text(":$ " + x)
      
    });     
         
@@ -248,7 +248,7 @@ $('#detailslist li').click(function() {
 						<li>: $ ${requestScope.tariff}</li>
 						<li>: $10.00</li>
 						<li>: $0.00</li>
-						<li>510</li>
+						<li id="ji">Click to get the price</li>
 			</ul>
 			<div class="clear"></div>
 		</div>

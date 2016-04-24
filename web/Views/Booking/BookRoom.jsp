@@ -272,13 +272,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         
                         <c:if test="${requestScope.isAuthenticated}">
                             <h3><strike>${requestScope.singlePrice} $</strike> ${requestScope.singlePriceDisc} $</h3>
+                            <input type="hidden" name="tariff" value="${requestScope.singlePriceDisc}"> 
                         </c:if>
                         <c:if test="${not requestScope.isAuthenticated}">
                             <h3>${requestScope.singlePrice}</h3>
+                            <input type="hidden" name="tariff" value="${requestScope.singlePrice}"> 
                         </c:if>
                         <h3>per day</h3>
                        <button type="submit" class="btn btn-warning" name="act" value="single">SELECT ROOM</button>
                         <input type="hidden" name="hotlName" value="${requestScope.hname}"> 
+                        
+                        </form>
                           
                           </div>
 			</div>
@@ -289,6 +293,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<span class="next"> </span>
 				</a>
 			</div>
+                                        
+                         <form action="${pageContext.request.contextPath}/MakePayment" method="get">                 
+                                        
                     <div class="panel-heading">
 			<h4><a href="#"><span>Deluxe</span></a></h4>
                     </div>
@@ -300,13 +307,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                      <div class="panel-footer">
                         <c:if test="${requestScope.isAuthenticated}">
                             <h3><strike>${requestScope.deluxePrice} $</strike> ${requestScope.deluxePriceDisc} $</h3>
+                            <input type="hidden" name="tariff" value="${requestScope.deluxePriceDisc}"> 
+                            
                         </c:if>
                         <c:if test="${not requestScope.isAuthenticated}">
                             <h3>${requestScope.deluxePrice}</h3>
+                            <input type="hidden" name="tariff" value="${requestScope.deluxePrice}"> 
                         </c:if>
                         <h3>per day</h3>
                          <button type="submit" class="btn btn-warning" name="act" value="deluxe">SELECT ROOM</button>
                           <input type="hidden" name="hotlName" value="${requestScope.hname}">
+                          
+                          </form>
                      </div>
 			</div>
                   
@@ -318,6 +330,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<span class="next"> </span>
 				</a>
 			</div>
+                                        
+                         <form action="${pageContext.request.contextPath}/MakePayment" method="get">                 
                     <div class="panel-heading">
 			<h4><a href="#"><span>Junior Suite</span></a></h4>
                     </div>
@@ -329,17 +343,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="panel-footer">
                             <c:if test="${requestScope.isAuthenticated}">
                             <h3><strike>${requestScope.suiteePrice} $</strike> ${requestScope.suiteePriceDisc} $</h3>
+                            <input type="hidden" name="tariff" value="${requestScope.suiteePriceDisc}"> 
                             </c:if>
                             <c:if test="${not requestScope.isAuthenticated}">
                                 <h3>${requestScope.suiteePrice}</h3>
+                                <input type="hidden" name="tariff" value="${requestScope.suiteePrice}"> 
                             </c:if>
                         <h3>per day</h3>
                          <button type="submit" class="btn btn-warning" name="act" value="suitee">SELECT ROOM</button>
                         <input type="hidden" name="hotlName" value="${requestScope.hname}">
                         
+                         </form>
                         </div>
                         
-                </form>
+             
                         
 					</div>
 		
