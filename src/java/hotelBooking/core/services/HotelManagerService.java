@@ -6,6 +6,7 @@
 
 package hotelBooking.core.services;
 
+import hotelBooking.core.domain.Recommendation;
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserRole;
 import hotelBooking.core.jdbc.HotelManagerDBHandler;
@@ -50,4 +51,33 @@ public class HotelManagerService {
     
     }
     
+    public static ArrayList<Recommendation> findRecommendations(String id, String roomType)
+    {
+        ArrayList<Recommendation> allRec = null;
+        HotelManagerDBHandler db = new HotelManagerDBHandler();
+        
+        if(db.setupConnection())
+        {
+            allRec = db.findRecommendations(id, roomType);
+            
+        }
+        db.closeConnection();
+        return allRec;
+    
+    }
+    
+    public static ArrayList<Recommendation> findRecommendations()
+    {
+        ArrayList<Recommendation> allRec = null;
+        HotelManagerDBHandler db = new HotelManagerDBHandler();
+        
+        if(db.setupConnection())
+        {
+            allRec = db.findRecommendations();
+            
+        }
+        db.closeConnection();
+        return allRec;
+    
+    }
 }

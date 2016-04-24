@@ -44,13 +44,15 @@ public class DBKeyGen {
     */
         
        Recommendation r = new Recommendation();
-       r.setHotelID("12");
-       r.setRoomID("single");
-       r.setIndex(2);
+       r.setHotelID("10");
+       r.setRoomID("suitee");
+       r.setIndex(1);
        
        HotelManagerService.editRecommendationIndex(r.getHotelID(), r.getRoomID(), r.getIndex());
        
+       ArrayList<Recommendation> allrec = HotelManagerService.findRecommendations("10","suitee");
        
+       int  x = 10 ;
     }
             
    

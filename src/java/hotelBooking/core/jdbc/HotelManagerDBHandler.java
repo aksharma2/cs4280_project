@@ -6,6 +6,7 @@
 
 package hotelBooking.core.jdbc;
 
+import hotelBooking.core.domain.Recommendation;
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserRole;
 import static hotelBooking.core.services.UserService.findRolesAssignedToUser;
@@ -123,5 +124,71 @@ public class HotelManagerDBHandler {
         }
         return success;
     
+    }
+    
+    
+    public ArrayList<Recommendation> findRecommendations(String id, String roomtype)
+    {
+        
+        ArrayList<Recommendation> rec = new ArrayList<Recommendation>();
+        
+        PreparedStatement pstmt;
+        try {
+            pstmt = con.prepareStatement("SELECT * FROM [PROJ_RECOMMENDEDHOTELS] WHERE HotelID = (?) AND RoomType = (?)");
+            pstmt.setString(1, id);
+            pstmt.setString(2, roomtype);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) 
+            {
+               String hotelID = rs.getString("HOTELID");
+               if(rs.getString("RoomType")!=null && rs.getString("recommendationLevel")!=null)
+               {
+                   Recommendation r = new Recommendation();
+                   r.setHotelID(id);
+                   r.setIndex(rs.getInt("recommendationLevel"));
+                   r.setRoomID(rs.getString("RoomType"));
+                   rec.add(r);
+               }
+               
+            }
+            
+        }
+        catch (SQLException ex) {
+            //DO nothing
+        }
+        
+        return rec;
+    }
+    
+    public ArrayList<Recommendation> findRecommendations()
+    {
+        
+        ArrayList<Recommendation> rec = new ArrayList<Recommendation>();
+        
+        PreparedStatement pstmt;
+        try {
+            pstmt = con.prepareStatement("SELECT * FROM [PROJ_RECOMMENDEDHOTELS] ");
+            
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) 
+            {
+               String hotelID = rs.getString("HOTELID");
+               if(rs.getString("RoomType")!=null && rs.getString("recommendationLevel")!=null)
+               {
+                   Recommendation r = new Recommendation();//HotelID
+                   r.setHotelID(rs.getString("HotelID"));
+                   r.setIndex(rs.getInt("recommendationLevel"));
+                   r.setRoomID(rs.getString("RoomType"));
+                   rec.add(r);
+               }
+               
+            }
+            
+        }
+        catch (SQLException ex) {
+            //DO nothing
+        }
+        
+        return rec;
     }
 }

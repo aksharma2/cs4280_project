@@ -6,6 +6,7 @@
 
 package hotelBooking.web.servlet.hotel;
 
+import hotelBooking.core.domain.Recommendation;
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserRole;
 import hotelBooking.core.services.HotelManagerService;
@@ -55,11 +56,27 @@ public class RecommendHotelsServlet extends HttpServlet {
             if(user != null)
                 allHotels = HotelManagerService.findHotelsByManagerID(user.getId());
             
+            ArrayList<Recommendation> allrecs = new ArrayList<Recommendation>();
+            for(String h: allHotels)
+            {
+                Recommendation r = new Recommendation();
+                r = retreiveRecommendation(h, "single");
+                allrecs.add(r);
+                r = retreiveRecommendation(h, "deluxe");
+                allrecs.add(r);
+                r = retreiveRecommendation(h, "suitee");
+                allrecs.add(r);
+            }
+            
+            
+            
+            
             
             if(allHotels!=null && user!=null)
             {
                 request.setAttribute("allHotels", allHotels);
                 request.setAttribute("manager", user.getId());
+                
             }
             
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
@@ -78,6 +95,24 @@ public class RecommendHotelsServlet extends HttpServlet {
         //recomment room
         
         
+    }
+    
+    public Recommendation retreiveRecommendation(String h, String type)
+    {
+        ArrayList<Recommendation> all = HotelManagerService.findRecommendations(h, type);
+        
+        Recommendation r = all.get(0);
+        if(r==null || r.getHotelID()==null)
+        {
+            r.setHotelID(h);
+            r.setRoomID(type);
+            r.setIndex(0);
+        
+        }
+        
+        
+        
+        return r;
     }
     
 
