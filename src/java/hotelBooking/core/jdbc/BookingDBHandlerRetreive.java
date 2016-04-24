@@ -162,7 +162,7 @@ public class BookingDBHandlerRetreive {
             PreparedStatement pstmt;
             // pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
              
-              pstmt = con.prepareStatement("SELECT [price] FROM [PROJ_ROOMASSIGNMENT]  ");
+              pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT]  ");
             
               
                  rs = pstmt.executeQuery();
@@ -197,7 +197,7 @@ public class BookingDBHandlerRetreive {
             PreparedStatement pstmt;
             // pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
              
-              pstmt = con.prepareStatement("SELECT [price] FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID] =?  ");
+              pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID] = (?) ");
              pstmt.setString(1, id);
               rs = pstmt.executeQuery();
              while(rs.next())
@@ -234,7 +234,7 @@ public class BookingDBHandlerRetreive {
             PreparedStatement pstmt;
             // pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
              
-              pstmt = con.prepareStatement("SELECT [discountedPrice] FROM [PROJ_ROOMASSIGNMENT]  ");
+              pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT]");
             
               
                  rs = pstmt.executeQuery();
@@ -269,7 +269,7 @@ public class BookingDBHandlerRetreive {
             PreparedStatement pstmt;
             // pstmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
              
-              pstmt = con.prepareStatement("SELECT [discountedPrice] FROM [PROJ_ROOMASSIGNMENT] WHERE {hotelID]= ?  ");
+              pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID]= (?)");
              pstmt.setString(1, id);
               
                  rs = pstmt.executeQuery();

@@ -7,6 +7,7 @@ package hotelBooking.web.servlet.booking;
 
 import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserRole;
+import hotelBooking.core.services.BookingService;
 import hotelBooking.core.services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -53,6 +54,8 @@ public class BookMyRoom extends HttpServlet {
             request.setAttribute("hcity", HCity);
             
             boolean authorized = UserService.checkForAccess(request, UserRole.AUTHENTICATED);
+            
+            /*
             request.setAttribute("isAuthenticated",authorized);
             request.setAttribute("singlePrice", 150);
             request.setAttribute("deluxePrice", 199);
@@ -60,6 +63,31 @@ public class BookMyRoom extends HttpServlet {
             request.setAttribute("singlePriceDisc", 100);
             request.setAttribute("deluxePriceDisc", 160);
             request.setAttribute("suiteePriceDisc", 250);
+            
+            */
+            
+               BookingService bookingservice = new BookingService();
+               
+               ArrayList<Integer> orgprice = new ArrayList<Integer>();
+              // orgprice = bookingservice.getOriginalPriceOfHotel(HID);
+               
+               orgprice = bookingservice.getOriginalPrice()
+               
+               ArrayList<Integer> discountedsprice = new ArrayList<Integer>();
+              // discountedsprice = bookingservice.getDiscountedPriceofHotel(HID);
+               discountedsprice = bookingservice.getDiscountedPrice()
+            
+            request.setAttribute("isAuthenticated",authorized);
+            request.setAttribute("singlePrice", orgprice.get(0));
+            request.setAttribute("deluxePrice", orgprice.get(1));
+            request.setAttribute("suiteePrice", orgprice.get(2));
+            request.setAttribute("singlePriceDisc", discountedsprice.get(0));
+            request.setAttribute("deluxePriceDisc", discountedsprice.get(1));
+            request.setAttribute("suiteePriceDisc", discountedsprice.get(2));
+            
+            
+            
+            
             
             
             
