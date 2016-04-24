@@ -1,4 +1,5 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>s
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -265,7 +266,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h3> <strong>Bed: 1 Double</strong></h3>
                          </div>
                           <div class="panel-footer">
-                        <h3>$150</h3>
+                        
+                        <c:if test="${requestScope.isAuthenticated}">
+                            <h3><strike>${requestScope.singlePrice}</strike> ${requestScope.singlePriceDisc}</h3>
+                        </c:if>
+                        <c:if test="${not requestScope.isAuthenticated}">
+                            <h3>${requestScope.singlePrice}</h3>
+                        </c:if>
                         <h3>per day</h3>
                        <button type="submit" class="btn btn-warning" name="act" value="single">SELECT ROOM</button>
                         <input type="hidden" name="hotlName" value="${requestScope.hname}"> 
@@ -288,7 +295,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                          <h3><strong>Bed 2 Double</strong></h3>
                      </div>
                      <div class="panel-footer">
-                        <h3>$199</h3>
+                        <c:if test="${requestScope.isAuthenticated}">
+                            <h3><strike>${requestScope.deluxePrice}</strike> ${requestScope.deluxePriceDisc}</h3>
+                        </c:if>
+                        <c:if test="${not requestScope.isAuthenticated}">
+                            <h3>${requestScope.deluxePrice}</h3>
+                        </c:if>
                         <h3>per day</h3>
                          <button type="submit" class="btn btn-warning" name="act" value="deluxe">SELECT ROOM</button>
                           <input type="hidden" name="hotlName" value="${requestScope.hname}">
@@ -312,7 +324,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                          <h3><strong>Bed 2 King Size Double Beds</strong></h3>
                         </div>
                         <div class="panel-footer">
-                            <h3>$289</h3>
+                            <c:if test="${requestScope.isAuthenticated}">
+                            <h3><strike>${requestScope.suiteePrice}</strike> ${requestScope.suiteePriceDisc}</h3>
+                            </c:if>
+                            <c:if test="${not requestScope.isAuthenticated}">
+                                <h3>${requestScope.suiteePrice}</h3>
+                            </c:if>
                         <h3>per day</h3>
                          <button type="submit" class="btn btn-warning" name="act" value="suitee">SELECT ROOM</button>
                         <input type="hidden" name="hotlName" value="${requestScope.hname}">

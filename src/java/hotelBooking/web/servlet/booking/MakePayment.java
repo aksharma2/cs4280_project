@@ -48,55 +48,51 @@ public class MakePayment extends HttpServlet {
         
      boolean authorized = UserService.checkForAccess(request, UserRole.AUTHENTICATED);
          
-         if(authorized)
-        {
-          String roomtype = request.getParameter("act");
-          String hotlname= request.getParameter("hotlName");
-          String nextJSP="/Views/Booking/BookDates.jsp";
-          Integer tariff = null;
+    String roomtype = request.getParameter("act");
+    String hotlname= request.getParameter("hotlName");
+    String nextJSP="/Views/Booking/BookDates.jsp";
+    Integer tariff = null;
           
-        
-         
+    if(roomtype==null)
+    {
+        nextJSP="/Views/Booking/BookRoom.jsp";
+    }
           
-          if(roomtype==null)
-          {
-              nextJSP="/Views/Booking/BookRoom.jsp";
-          }
+    else if(roomtype.equals("single"))
+    {
+        tariff=150;
+    }
           
-          else if(roomtype.equals("single"))
-          {
-              tariff=150;
-          }
-          
-          else if(roomtype.equals("deluxe"))
-          {
-              tariff=199;
+    else if(roomtype.equals("deluxe"))
+    {
+        tariff=199;
               
-          }
+    }
           
-          else if (roomtype.equals("suitee"))
-          {
-              tariff=289;
-          }
+    else if (roomtype.equals("suitee"))
+    {
+        tariff=289;
+    }
           
-         // request.setAttribute("tariff", tariff);
-          //request.setAttribute("roomType", roomtype);
-          //request.setAttribute("HotlName", hotlname);
-          
-          
-           HttpSession session = request.getSession(true);
-           session.setAttribute("Roomtype", roomtype);
-           session.setAttribute("tariff", tariff);
-           session.setAttribute("HotlName", hotlname);
+    HttpSession session = request.getSession(true);
+    session.setAttribute("Roomtype", roomtype);
+    session.setAttribute("tariff", tariff);
+    session.setAttribute("HotlName", hotlname);
         
+    request.setAttribute("isAuthenticated",true);
+    request.setAttribute("singlePrice", 150);
+    request.setAttribute("deluxePrice", 199);
+    request.setAttribute("suiteePrice", 289);
+    request.setAttribute("singlePriceDisc", 100);
+    request.setAttribute("deluxePriceDisc", 160);
+    request.setAttribute("suiteePriceDisc", 250);
+           
           
-          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-          dispatcher.forward(request,response);
+    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+    dispatcher.forward(request,response);
         
-    }else
-        {
-            response.sendRedirect("./user/login?referer=" + request.getRequestURI());
-        }
+    //response.sendRedirect("./user/login?referer=" + request.getRequestURI());
+    
        
     }
 

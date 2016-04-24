@@ -51,6 +51,18 @@ public class BookMyRoom extends HttpServlet {
             request.setAttribute("hurl", HURL);
             request.setAttribute("hcity", HCity);
             
+            boolean authorized = UserService.checkForAccess(request, UserRole.AUTHENTICATED);
+            request.setAttribute("isAuthenticated",authorized);
+            request.setAttribute("singlePrice", 150);
+            request.setAttribute("deluxePrice", 199);
+            request.setAttribute("suiteePrice", 289);
+            request.setAttribute("singlePriceDisc", 100);
+            request.setAttribute("deluxePriceDisc", 160);
+            request.setAttribute("suiteePriceDisc", 250);
+            
+            
+            
+            
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
             dispatcher.forward(request,response);
        

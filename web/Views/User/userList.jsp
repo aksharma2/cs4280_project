@@ -35,7 +35,7 @@
                                             <label style="color:black"><input name="role_admin" type="checkbox" value="ROLE_ADMIN" >ADMINISTRATOR</label>
                                         </c:if>
                                     </div>
-                                    <div class="checkbox">
+                        S            <div class="checkbox">
                                         <c:if test="${currentUser.isManager}">
                                             <label style="color:black"><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" checked >HOTEL MANAGER</label>
                                         </c:if>
