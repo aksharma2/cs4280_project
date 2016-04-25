@@ -71,6 +71,11 @@ public class AssignRoom extends HttpServlet {
           User currUser=(User)session.getAttribute("user");
             String username=currUser.getId();
             
+            if(username==null)
+                    {
+                        username="EXTERNAL_USER";
+                    }
+            
          String hotel = (String) session.getAttribute("HotelName");
          String City = (String) session.getAttribute("HotelCity");
          String RoomType= (String) session.getAttribute("Roomtype");

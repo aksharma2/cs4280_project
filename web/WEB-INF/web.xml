@@ -80,6 +80,14 @@
         <servlet-name>RecommendHotels</servlet-name>
         <servlet-class>hotelBooking.web.servlet.hotel.RecommendHotelsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowAllHotelBookings</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.ShowAllHotelBookings</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBookingsAdmin</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.DeleteBookingsAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/Test</url-pattern>
@@ -159,6 +167,14 @@
     <servlet-mapping>
         <servlet-name>RecommendHotels</servlet-name>
         <url-pattern>/RecommendHotels</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowAllHotelBookings</servlet-name>
+        <url-pattern>/ShowAllHotelBookings</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookingsAdmin</servlet-name>
+        <url-pattern>/DeleteBookingsAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

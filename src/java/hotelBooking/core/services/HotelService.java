@@ -38,6 +38,7 @@ public class HotelService extends HttpServlet{
          out.println("<html>");
          out.println("<center><br/><a href='" + request.getRequestURI() + "?action=register'>Add a new hotel</a>");
          out.println("<center><br/><a href='" + request.getRequestURI() + "?action=remove'>Remove existing hotels & add Images to hotels</a>");
+         out.println("<center><br/><a href=\"/cs4280.project/ShowAllHotelBookings\">Show All Bookings</a>");
          out.println("<html>");
                if (action != null) {
             // call different action depending on the action parameter

@@ -160,6 +160,18 @@ public class BookingService {
     }
     
     
+      public static ArrayList<BookingType> getallBookings()
+            
+    {
+        ArrayList<BookingType> mybookings;
+        dbr=new BookingDBHandlerRetreive();
+        mybookings=dbr.findBooking();
+        
+        return mybookings;
+        
+    }
+    
+    
     
     public static ArrayList<Integer> getOriginalPrice()
             

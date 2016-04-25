@@ -5,25 +5,20 @@
  */
 package hotelBooking.web.servlet.booking;
 
-import hotelBooking.core.domain.Booking;
-import hotelBooking.core.domain.BookingType;
-import hotelBooking.core.domain.User;
 import hotelBooking.core.services.BookingService;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author shrankhla
  */
-public class ShowMyBooking extends HttpServlet {
+public class DeleteBookingsAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +30,6 @@ public class ShowMyBooking extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
    
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -48,29 +42,7 @@ public class ShowMyBooking extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-         HttpSession session = request.getSession(true);
-          User currUser=(User)session.getAttribute("user");
-            String username=currUser.getId();
-        
-        
-        
-        ArrayList<BookingType> allbookings;
-        
-         ArrayList<BookingType> allHotelbookings;
-        
-         BookingService bookingservice = new BookingService();
-         allbookings=bookingservice.getallMyBookings(username);
-         allHotelbookings=bookingservice.getallBookings();
        
-         request.setAttribute("allbookings", allbookings);
-         request.setAttribute("allHotelBookings", allHotelbookings);
-         
-         
-         String nextJSP = "/Views/Booking/BookingList.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request,response);
         
     }
 
@@ -86,9 +58,54 @@ public class ShowMyBooking extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        doGet(request,response);
+        //String nextJSP = "/Views/Booking/allHotelBookings.jsp";
+        
+       // String nextServlet = "/Views/Booking/allHotelBookings.jsp";
+        
+        
+        int dBookingID = Integer.parseInt(request.getParameter("Bookinguserid"));
+        
+        String username = request.getParameter("Bookingusername");
+        
+        
+          
+         BookingService bookingservice = new BookingService();
+            
+            boolean isConnectionMade = bookingservice.deleteBooking(dBookingID);
+            
+            if(isConnectionMade)
+                
+            {
+              
+                
+            boolean isRoomBooked = bookingservice.deleteRoom(username);
+            
+            
+            
+            if(isRoomBooked)
+            {
+                
+            }
+            
+            else
+                
+            {
+                 
+            }
+           
+            
+        }
+        
+       
+         
+        /*
+          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+            dispatcher.forward(request,response);
+       
+        */
+        response.sendRedirect("http://localhost:8080//cs4280.project/ShowAllHotelBookings");
+        
     }
-    
 
     /**
      * Returns a short description of the servlet.
