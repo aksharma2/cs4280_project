@@ -6,6 +6,49 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+    <head>
+        <style>
+                .card{
+    width: 350px;
+    border: 1px solid gray;
+    box-shadow: 1px 1px 3px #888;
+    border-top: 10px solid green;
+    min-height: 250px;
+    padding-: 10px;
+    margin: 10px;
+   position: static;
+    }
+
+    img{
+      border-radius: 50%;
+      width: 70px;
+      margin: 10px;
+    }
+
+    h1{
+      font-weight: lighter;
+      margin-left: 100px;
+      margin-top: -70px;
+    }
+
+    p{
+      margin: 10px;
+      font-family: segoe ui;
+      line-height: 1.4em;
+      font-size: 1.2em;
+    }
+
+    #mainbox{
+      font-family: calibri;
+      box-sizing: border-box;
+      justify-content: center;
+      display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    }
+        </style>
+    </head>
 
 <%--
 <div class="well sidebar-nav">
@@ -35,43 +78,29 @@
             	</ul>
                
                 <ul class="nav hidden-xs" id="lg-menu">
-                    <fieldset>
-                        <legend><b><u>Recommended hotels</u></b></legend>
-                    <table><tr>
-                        <th>Hotel</th>
-                        <th>Room</th>
-                    </tr><tbody>
                     
-                        <% ArrayList<Recommendation>recommend = HotelManagerService.getRandomRecommendations(1, 1, 1); 
+                    
+                    <li>  <%! ArrayList<Recommendation>recommend = HotelManagerService.getRandomRecommendations(1, 1, 1); 
                            HotelDBHandler db=new HotelDBHandler();
-                           ArrayList<Hotel>hot=null;
-                           
-                           try{ 
-                               for(Recommendation r:recommend){  
+                           ArrayList<Hotel>hot=null;  %>
+                   
+                    <% for(Recommendation r: recommend){ 
                         
-                               if(db.setupConnection())    
-                                     hot=db.findHotelById(r.getHotelID(), 0, 2000000);
-                            
-                            %>
-                            
-                            <tr>
-                            <td>
-                              <%= hot.get(0).getName() %>  
-                             </td>
-                            <td><%=r.getRoomID()%></td>
-                              
-                            </tr>
-                            
-                            <% } 
-                                    }catch(NullPointerException npe){ 
-
-                                     }                                        %>
-
-                       
+                            if(db.setupConnection())
+                                hot=db.findHotelById(r.getHotelID(), 0, 200000); 
+            ArrayList<String>s=hot.get(0).getImg();                                                    %>
                     
-                    </tbody>
-                    </table>
-                    </fieldset>
+            <div class="card"><ul><li>
+                           <img src= <%= s.get(0) %> alt="" />
+  <h1><u><a href="#">Recommended for You!</a</u></h1>
+  <h1><%= hot.get(0).getName() %></h1>
+  <h1><%=r.getRoomID()%></h1> 
+                </ul> </div>             
+          
+<% } %>
+                       
+                    </li> 
+                    
                 </ul>
                 
               
