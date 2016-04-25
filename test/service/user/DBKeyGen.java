@@ -59,7 +59,7 @@ public class DBKeyGen {
         
         //int x = 5;
         
-        UserService.deleteHotelManager("987");
+        boolean res = UserService.checkHotelMangerMapping("1","spanda2");
         
         int c = 0;
         

@@ -322,16 +322,23 @@ public class HotelService extends HttpServlet{
                 out.println("</body>");
                 out.println("</html>");
                 
+                HttpSession session = request.getSession(false);
+                User currUser=(User)session.getAttribute("user");
+                String manager=currUser.getId();
                 
                 
-                String sql="DELETE FROM PROJ_HOTEL WHERE hotelid = '"+request.getParameter("id")+ "'" ;
-                int rows=stmt.executeUpdate(sql);
+                if(UserService.checkHotelMangerMapping(request.getParameter("id"),manager))
+                {
                 
-                Boolean res = HotelManagerService.deleteRecommendationIndex(request.getParameter("id"));
-                res = UserService.deleteHotelManager(request.getParameter("id"));
-                
-                if(rows>0)
-                    response.sendRedirect(request.getRequestURI()+"?action=remove");
+                    String sql="DELETE FROM PROJ_HOTEL WHERE hotelid = '"+request.getParameter("id")+ "'" ;
+                    int rows=stmt.executeUpdate(sql);
+
+                    Boolean res = HotelManagerService.deleteRecommendationIndex(request.getParameter("id"));
+                    res = UserService.deleteHotelManager(request.getParameter("id"));
+
+                    if(rows>0)
+                        response.sendRedirect(request.getRequestURI()+"?action=remove");
+                }
                                 
         }catch(SQLException e){
           out.println("<div style='color: red'>" + e.toString() +  "</div>");
@@ -566,37 +573,40 @@ public class HotelService extends HttpServlet{
                 h.setName(request.getParameter("hotelname"));
                 h.setCity(request.getParameter("hotelcity"));
                 h.setPrice(hotelAvgPrice);
-                        
-                
-
-                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                Connection con = DriverManager.getConnection(url,username,password);
-                PreparedStatement pstmt = con.prepareStatement("UPDATE PROJ_HOTEL SET hotelname=?, hotelcity=?, price=? WHERE hotelid='"+request.getParameter("hotelid")+"' ");
-               
-                pstmt.setString(1, h.getName());
-                pstmt.setString(2, h.getCity());
-                pstmt.setInt(3, h.getPrice());
-                
-                int rows= pstmt.executeUpdate();
-
-                if(rows>0 && finalresult ) {
-                    out.println("Hotel succesfully updated");
-                    Statement st=con.createStatement();
-                    ResultSet rs = st.executeQuery("SELECT @@IDENTITY AS [@@IDENTITY]");
-
-                    if (rs != null && rs.next() != false) {
-                        out.println("<p>Hotel Id: " + (h.getId()) + "</p>");
-                        out.println("<p>Hotel name:" + (h.getName()) + "</p>");
-                        out.println("<p>City:" + (h.getCity()) + "</p>");
-                        rs.close();
-                    }
-                    
                    
+               
+                
+                if(UserService.checkHotelMangerMapping(request.getParameter("hotelid"),managerID))
+                {
+                
+
+                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    Connection con = DriverManager.getConnection(url,username,password);
+                    PreparedStatement pstmt = con.prepareStatement("UPDATE PROJ_HOTEL SET hotelname=?, hotelcity=?, price=? WHERE hotelid='"+request.getParameter("hotelid")+"' ");
+
+                    pstmt.setString(1, h.getName());
+                    pstmt.setString(2, h.getCity());
+                    pstmt.setInt(3, h.getPrice());
+
+                    int rows= pstmt.executeUpdate();
+
+                    if(rows>0 && finalresult ) {
+                        out.println("Hotel succesfully updated");
+                        Statement st=con.createStatement();
+                        ResultSet rs = st.executeQuery("SELECT @@IDENTITY AS [@@IDENTITY]");
+
+                        if (rs != null && rs.next() != false) {
+                            out.println("<p>Hotel Id: " + (h.getId()) + "</p>");
+                            out.println("<p>Hotel name:" + (h.getName()) + "</p>");
+                            out.println("<p>City:" + (h.getCity()) + "</p>");
+                            rs.close();
+                        }
+
+
+                    }
+
                 }
                
-             
-             
-            
         }catch(SQLException e){
           out.println("<div style='color: red'>" + e.toString() +  "</div>");
         }catch(ClassNotFoundException e){
