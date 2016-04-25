@@ -31,13 +31,22 @@ public class ViewHotel extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+         String lowerval=request.getParameter("lowerval");
+         String upperval=request.getParameter("upperval");
+         
+         if(lowerval.equals(""))
+             lowerval="0";
+         
+         if(upperval.equals(""))
+             upperval="0";
        
         try {
             String nextJSP="/Views/User/hotelmgmt.jsp";
             String id=request.getParameter("id");
             String radio=request.getParameter("Q2");
-            int lowerLmt=Integer.parseInt(request.getParameter("lowerval"));
-            int upperLmt=Integer.parseInt(request.getParameter("upperval"));
+             int lowerLmt=Integer.parseInt(lowerval);
+             int upperLmt=Integer.parseInt(upperval);
             ArrayList<Hotel>hotels=new ArrayList<Hotel>();
             hotels=null;
             HotelDBHandler db=new HotelDBHandler();
@@ -73,7 +82,7 @@ public class ViewHotel extends HttpServlet {
             Logger.getLogger(ViewHotel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ViewHotel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }
 
      protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -105,11 +105,15 @@ window.onload=swapImage;
   
   <label for="amount">Price range:</label>
 	<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-        
+     
+        <% try{ %>
         <div id="slider-range"></div>
         <input type="hidden" id="lower" name="lowerval">
         <input type="hidden" id="upper" name="upperval">
-  
+   
+                <% }catch(NumberFormatException nfe){
+
+}  %>
   
   
   <div class="gender">
