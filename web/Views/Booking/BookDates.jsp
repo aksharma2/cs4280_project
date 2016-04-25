@@ -104,11 +104,11 @@
 			<h2>Select Date</h2>
 			<div class="book-pag-frm1">
 				<label>Check In</label>
-				<input class="date" name="Date1" id="datepicker1" type="text" value="Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
+				<input class="date" name="Date1" id="datepicker1" type="text" value="Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required>
 			</div>
 			<div class="book-pag-frm2">
 				<label>Check Out</label>
-				<input class="date" name="Date2" id="datepicker2" type="text" value="Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
+				<input class="date" name="Date2" id="datepicker2" type="text" value="Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required>
 			</div>
 		<div class="clear"></div>
 		</div>	

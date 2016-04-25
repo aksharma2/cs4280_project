@@ -257,7 +257,7 @@ $('#detailslist li').click(function() {
 				<h3>Payment Information</h3>
 				<h5>Name On Credit Card</h5>
 				
-                  <input type="text"  value="James Thompson" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'James Thompson';}" required="">
+                  <input type="text"  value="James Thompson" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'James Thompson';}" required>
 
                           
                             

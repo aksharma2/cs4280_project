@@ -206,7 +206,7 @@ public class AssignRoom extends HttpServlet {
            
            BookingService bookingservice = new BookingService();
              
-             int numroom=0;
+             int numroom=2;
              
              try
              {
@@ -214,7 +214,7 @@ public class AssignRoom extends HttpServlet {
                numroom = bookingservice.getRoomsLeft(hotelID,RoomType); 
              } catch (NullPointerException e )
              {
-                 numroom=0;
+                 numroom=2;
              }
            
            
