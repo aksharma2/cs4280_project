@@ -21,52 +21,18 @@
                     <tbody>
                     <c:forEach items="${requestScope.allRecs}" var="recommendation">
                         <tr>
-                            <td>${currentUser}</td>
+                            <td>${recommendation.hotelID}</td>
+                            <td>${recommendation.roomID}</td>
                             <td>
-                                <table>
-                                    <tr>
-                                        <td>Single</td>
-                                        <td>
-                                            <form action="${pageContext.request.contextPath}/RecommendHotels" method="post">
-                                                <input value=${recommendation.index} id="SingleRecomendationIndex" type ="range" min ="0" max="3" step ="1">
-                                                <input value=${recommendation.hotelID} name="hotelID" input="text" />
-                                                <input type="submit" name="Submit" value="Submit">
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    
-                                </table>
-                            </td>
-                            <%--
-                            <td>${currentUser.name}</td>
-                            <td>
-                                <form action="${pageContext.request.contextPath}/admin/editAccess" method="post">
-                                    <p>User Access</p>
-                                    <input type="hidden" name="idToEdit" value=${currentUser.id}>
-                                    <div class="checkbox">
-                                        <c:if test="${currentUser.isAdmin}">
-                                            <label style="color:black"><input name="role_admin" type="checkbox" value="ROLE_ADMIN" checked >ADMINISTRATOR</label>
-                                        </c:if>
-                                        <c:if test="${not currentUser.isAdmin}">
-                                            <label style="color:black"><input name="role_admin" type="checkbox" value="ROLE_ADMIN" >ADMINISTRATOR</label>
-                                        </c:if>
-                                    </div>
-                        S            <div class="checkbox">
-                                        <c:if test="${currentUser.isManager}">
-                                            <label style="color:black"><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" checked >HOTEL MANAGER</label>
-                                        </c:if>
-                                        <c:if test="${not currentUser.isManager}">
-                                            <label style="color:black"><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" >HOTEL MANAGER</label>
-                                        </c:if>
-                                    </div>
-                                    <button type="submit" class="btn btn-warning">EDIT User Access</button>
+                                <form action="${pageContext.request.contextPath}/RecommendHotels" method="post">
+                                                <input value=${recommendation.index} name="SingleRecomendationIndex" type ="range" min ="0" max="3" step ="1">
+                                                <input value=${recommendation.hotelID} name="hotelID" type="hidden" />
+                                                <input value=${recommendation.roomID} name="roomID" type="hidden" />
+                                                <input type="submit" name="Submit" value="Recommend">
                                 </form>
-                                <form action="${pageContext.request.contextPath}/user/delete" method="post">
-                                    <input type="hidden" name="idToDel" value=${currentUser.id}>
-                                    <button type="submit" class="btn btn-danger">DELETE</button>
-                                </form>
+                                        
                             </td>
-                            --%>
+                            
                         </tr>
                     </c:forEach>
 
@@ -80,13 +46,7 @@
                     </tfoot>
                 </table>
 
-                <c:if test="${empty requestScope.userList}">
-                    <div class="alert alert-info">
-                        <div align="center">No one is registered to the system.</div>
-                    </div>
-                </c:if>
-                        
-                
+               
 
                 <c:if test="${not empty requestScope.userList}">
                 <div align="center">

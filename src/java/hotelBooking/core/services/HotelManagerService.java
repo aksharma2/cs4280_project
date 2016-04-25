@@ -13,6 +13,7 @@ import hotelBooking.core.jdbc.HotelManagerDBHandler;
 import hotelBooking.core.jdbc.UserDBHandler;
 import static hotelBooking.core.services.UserService.findRolesAssignedToUser;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -79,5 +80,59 @@ public class HotelManagerService {
         db.closeConnection();
         return allRec;
     
+    }
+    
+    public static ArrayList<Recommendation> getRandomRecommendations(int nHigh, int nMed, int nLow)
+    {
+        ArrayList<Recommendation> allRecs = findRecommendations();
+        
+        
+        ArrayList<Recommendation> high = new ArrayList<Recommendation>();
+        ArrayList<Recommendation> low = new ArrayList<Recommendation>();
+        ArrayList<Recommendation> med = new ArrayList<Recommendation>();
+        
+        
+        for(Recommendation r: allRecs)
+        {
+            if(r.getIndex() == 3)
+                high.add(r);
+            else if(r.getIndex() == 2)
+                 med.add(r);
+            else if(r.getIndex() ==  1)
+                low.add(r);
+        }
+    
+        ArrayList<Recommendation> finalList = new ArrayList<Recommendation>();
+        
+        for(int i = 0 ; i < nHigh; i++)
+        {
+            if(i < high.size() )
+                finalList.add(high.get(i));
+        }
+        for(int i = 0 ; i < nMed; i++)
+        {
+            if(i < med.size() )
+                finalList.add(med.get(i));
+        }
+        for(int i = 0 ; i < nLow; i++)
+        {
+            if(i < low.size() )
+                finalList.add(low.get(i));
+        }
+      
+        return finalList;
+        
+    }
+    
+    public static int randInt(int min, int max) {
+
+    // Usually this can be a field rather than a method variable
+        Random rand = new Random();
+
+    // nextInt is normally exclusive of the top value,
+    // so add 1 to make it inclusive
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+
+    return randomNum;
     }
 }

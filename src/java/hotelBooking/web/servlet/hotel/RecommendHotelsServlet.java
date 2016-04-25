@@ -88,8 +88,18 @@ public class RecommendHotelsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        //recomment room
+        String hotelID = request.getParameter("hotelID");
+        String roomID = request.getParameter("roomID");
+        String index = request.getParameter("SingleRecomendationIndex");
         
+        Recommendation newRecommendation = new Recommendation();
+        if(hotelID!=null && roomID!=null && index!=null )
+        {
+            
+            boolean editRecommendationIndex = HotelManagerService.editRecommendationIndex(hotelID, roomID, Integer.parseInt(index));
+        }
+        
+        doGet(request,response);
         
     }
     

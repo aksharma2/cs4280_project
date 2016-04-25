@@ -55,9 +55,15 @@ public class DBKeyGen {
        int  x = 10 ;
 */
         
-        Boolean b = UserService.checkHotelMangerMapping("2892891", "shrankhla2");
+        //Boolean b = UserService.checkHotelMangerMapping("2892891", "shrankhla2");
         
-        int x = 5;
+        //int x = 5;
+        
+        ArrayList<Recommendation> a = HotelManagerService.getRandomRecommendations(3, 2, 0);
+        
+        int c = 0;
+        
+        
         
         
     }
