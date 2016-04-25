@@ -59,7 +59,7 @@ public class DBKeyGen {
         
         //int x = 5;
         
-        ArrayList<Recommendation> a = HotelManagerService.getRandomRecommendations(3, 2, 0);
+        UserService.deleteHotelManager("987");
         
         int c = 0;
         

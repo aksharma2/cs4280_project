@@ -311,6 +311,32 @@ public class UserDBHandler {
         return false;
     
     }
+    
+    public boolean deleteHotelThatBelongsToManager(String hotelID)
+    {
+        boolean success = false;
+        PreparedStatement pstmt;
+        try {
+            
+            //Create Entry in the PROJ_USER table
+            pstmt = con.prepareStatement("DELETE FROM [PROJ_HOTELMANAGER] WHERE [HOTELID] = (?)");
+            pstmt.setString(1, hotelID);
+            
+            int rowsUser = pstmt.executeUpdate();
+            
+            
+            if(rowsUser > 0 )
+                success = true;
+        }
+        catch (SQLException ex) {
+            success = false;
+        }
+        return success;
+        
+        
+        
+    
+    }
 
     
 }
