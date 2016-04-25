@@ -69,7 +69,7 @@ window.onload=swapImage;
 		$( "#slider-range" ).slider({
 			range: true,
 			min: 0,
-			max: 2000,
+			max: 10000,
 			values: [ 75, 300 ],
 			slide: function( event, ui ) {
 				$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
@@ -155,10 +155,11 @@ window.onload=swapImage;
                             <td><h3><%=h.getId() %></h3></td> 
                             <td><h3><%=h.getName() %></h3></td>
                             <td><h3><%=h.getCity() %></h3></td>
-                            
-                            
-                            <td><center><img src ="" width="100px" height="100px" name="imgslide" ></center> </td>
-                             
+                            <td>
+                            <% for(String s:h.getImg()){ %>
+                            <img src =<%=s %> width="100px" height="100px"  > 
+                            <% } %>
+                            </td> 
                            <td>
                                 <form action="${pageContext.request.contextPath}/BookMyRoom" method="get">
                                     

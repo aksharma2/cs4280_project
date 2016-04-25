@@ -56,14 +56,16 @@
                             
                             <tr>
                             <td>
-                                <%= hot.get(0).getName() %>
+                              <%= hot.get(0).getName() %>  
                              </td>
                             <td><%=r.getRoomID()%></td>
                               
                             </tr>
                             
                             <% } 
-                                    }catch(NullPointerException npe){}   %>
+                                    }catch(NullPointerException npe){ 
+
+                                     }                                        %>
 
                        
                     
