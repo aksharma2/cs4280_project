@@ -205,5 +205,17 @@ public class UserService {
         
     }
     
+    public static boolean deleteHotelManager(String id)
+    {
+        boolean success = false;
+        UserDBHandler db = new UserDBHandler();
+        db = new UserDBHandler();
+        if(db.setupConnection())
+        {
+            success = db.deleteHotelThatBelongsToManager(id);
+        }
+        db.closeConnection();
+        return success;
+    }
     
 }

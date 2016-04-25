@@ -37,7 +37,7 @@
     </head>
     <body>
         
-        <h1 class="book">ASS Hotel Booking</h1>
+        <h1 class="book"> Hotel Booking</h1>
 
 <div class="reg">
 

@@ -127,6 +127,28 @@ public class HotelManagerDBHandler {
     }
     
     
+    public boolean deleteRecommendationIndex(String hotelID)
+    {
+        boolean success = true;
+        PreparedStatement pstmt;
+        try {
+           
+            pstmt = con.prepareStatement("DELETE FROM [PROJ_RECOMMENDEDHOTELS] WHERE [HotelID] = (?) ");
+            pstmt.setString(1, hotelID);
+           
+            int rowsAffected = pstmt.executeUpdate();
+            if(rowsAffected <= 0)
+                success = false;
+           
+           
+        }
+        catch (SQLException ex) {
+            success = false;
+        }
+        return success;
+    
+    }
+    
     public ArrayList<Recommendation> findRecommendations(String id, String roomtype)
     {
         

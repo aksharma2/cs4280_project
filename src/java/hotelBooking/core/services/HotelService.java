@@ -61,6 +61,21 @@ public class HotelService extends HttpServlet{
          }   
     
     
+    private boolean checkManagersHotelAccess(String hotelID, HttpServletRequest request)
+    {
+        HttpSession session = request.getSession(false);
+        User currUser=(User)session.getAttribute("user");
+        String username=currUser.getId();
+        
+        if(username!=null)
+            return UserService.checkHotelMangerMapping(hotelID, username);
+        else
+            return false;
+        
+        
+    }
+    
+    
     private void registerHotel(HttpServletRequest request, HttpServletResponse response) throws IOException{
     
      response.setContentType("text/html;charset=UTF-8");
@@ -193,7 +208,6 @@ public class HotelService extends HttpServlet{
                
                 
                 
-                
 
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 Connection con = DriverManager.getConnection(url,username,password);
@@ -243,7 +257,11 @@ public class HotelService extends HttpServlet{
           //out.println("<div style='color: red'>" + e.toString() +  "</div>");
         }catch(ClassNotFoundException e){
           out.println("<div style='color: red'>" + e.toString() +  "</div>");
-        }finally {
+        }catch(Exception e)
+        {
+           out.println("<div style='color: red'>" + "You Dont have access" +  "</div>"); 
+        }
+        finally {
           out.close();
         }
     
@@ -303,8 +321,14 @@ public class HotelService extends HttpServlet{
                 out.println("</table>");
                 out.println("</body>");
                 out.println("</html>");
+                
+                
+                
                 String sql="DELETE FROM PROJ_HOTEL WHERE hotelid = '"+request.getParameter("id")+ "'" ;
                 int rows=stmt.executeUpdate(sql);
+                
+                Boolean res = HotelManagerService.deleteRecommendationIndex(request.getParameter("id"));
+                res = UserService.deleteHotelManager(request.getParameter("id"));
                 
                 if(rows>0)
                     response.sendRedirect(request.getRequestURI()+"?action=remove");
@@ -313,7 +337,8 @@ public class HotelService extends HttpServlet{
           out.println("<div style='color: red'>" + e.toString() +  "</div>");
         }catch(ClassNotFoundException e){
           out.println("<div style='color: red'>" + e.toString() +  "</div>");
-        }finally {
+        }
+        finally {
           out.close();
                   
         }
@@ -372,7 +397,7 @@ public class HotelService extends HttpServlet{
                 out.println("</html>");
             
              
-                
+               
                 HotelImages h=new HotelImages();
                 h.setHotelId(request.getParameter("hotid"));        //values obtained from form submission
                 h.setHotelName(request.getParameter("hotname"));
@@ -525,6 +550,10 @@ public class HotelService extends HttpServlet{
                
                //================================
                
+              
+               
+               
+               
                 BookingService  bs = new BookingService();
                 boolean result1 =  bs.setMaximumRooms(request.getParameter("hotelid"),"single",SingleRoom,singleRoomPrice,singleRoomPrice_disc);
                 boolean result2 =  bs.setMaximumRooms(request.getParameter("hotelid"),"deluxe",DeluxeRoom,deluxeRoomPrice,deluxeRoomPrice_disc);
@@ -537,9 +566,7 @@ public class HotelService extends HttpServlet{
                 h.setName(request.getParameter("hotelname"));
                 h.setCity(request.getParameter("hotelcity"));
                 h.setPrice(hotelAvgPrice);
-               
-                
-                
+                        
                 
 
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -574,7 +601,8 @@ public class HotelService extends HttpServlet{
           out.println("<div style='color: red'>" + e.toString() +  "</div>");
         }catch(ClassNotFoundException e){
           out.println("<div style='color: red'>" + e.toString() +  "</div>");
-        }finally {
+        }
+        finally {
           out.close();
         }
     

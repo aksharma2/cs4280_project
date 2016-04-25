@@ -52,6 +52,21 @@ public class HotelManagerService {
     
     }
     
+    public static boolean deleteRecommendationIndex(String hotelID)
+    {
+        boolean result = false;
+        HotelManagerDBHandler db = new HotelManagerDBHandler();
+        
+        if(db.setupConnection())
+        {
+            result = db.deleteRecommendationIndex( hotelID);
+            
+        }
+        db.closeConnection();
+        return result;
+    
+    }
+    
     public static ArrayList<Recommendation> findRecommendations(String id, String roomType)
     {
         ArrayList<Recommendation> allRec = null;
