@@ -12,6 +12,7 @@ import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserCredential;
 import hotelBooking.core.domain.UserRole;
 import hotelBooking.core.jdbc.UserDBHandler;
+import hotelBooking.core.services.BookingService;
 import hotelBooking.core.services.HotelManagerService;
 import hotelBooking.core.services.UserService;
 import java.util.ArrayList;
@@ -58,8 +59,9 @@ public class DBKeyGen {
         //Boolean b = UserService.checkHotelMangerMapping("2892891", "shrankhla2");
         
         //int x = 5;
+        BookingService bookingservice = new BookingService();
+        int numroom = bookingservice.getRoomsLeft("5","deluxe");
         
-        boolean res = UserService.checkHotelMangerMapping("1","spanda2");
         
         int c = 0;
         

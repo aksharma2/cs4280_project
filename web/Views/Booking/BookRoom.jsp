@@ -290,10 +290,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <input type="hidden" name="tariff" value="${requestScope.singlePriceDisc}"> 
                         </c:if>
                         <c:if test="${not requestScope.isAuthenticated}">
-                            <h3>${requestScope.singlePrice}</h3>
+                            <h3>${requestScope.singlePrice} $</h3>
                             <input type="hidden" name="tariff" value="${requestScope.singlePrice}"> 
                         </c:if>
+                            
                         <h3>per day</h3>
+                        <p><h3 style="color: red">Rooms Available: ${requestScope.singleCount}</h3></p> 
                        <button type="submit" class="btn btn-warning" name="act" value="single">SELECT ROOM</button>
                         <input type="hidden" name="hotlName" value="${requestScope.hname}"> 
                         
@@ -326,10 +328,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             
                         </c:if>
                         <c:if test="${not requestScope.isAuthenticated}">
-                            <h3>${requestScope.deluxePrice}</h3>
+                            <h3>${requestScope.deluxePrice} $</h3>
                             <input type="hidden" name="tariff" value="${requestScope.deluxePrice}"> 
                         </c:if>
+                            
                         <h3>per day</h3>
+                        <p><h3 style="color: red">Rooms Available: ${requestScope.deluxeCount}<h3></p>
                          <button type="submit" class="btn btn-warning" name="act" value="deluxe">SELECT ROOM</button>
                           <input type="hidden" name="hotlName" value="${requestScope.hname}">
                           
@@ -361,10 +365,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <input type="hidden" name="tariff" value="${requestScope.suiteePriceDisc}"> 
                             </c:if>
                             <c:if test="${not requestScope.isAuthenticated}">
-                                <h3>${requestScope.suiteePrice}</h3>
+                                <h3>${requestScope.suiteePrice} $</h3>
                                 <input type="hidden" name="tariff" value="${requestScope.suiteePrice}"> 
                             </c:if>
+                                
                         <h3>per day</h3>
+                        <p><h3 style="color: red">Rooms Available: ${requestScope.suiteeCount}</h3></p>
                          <button type="submit" class="btn btn-warning" name="act" value="suitee">SELECT ROOM</button>
                         <input type="hidden" name="hotlName" value="${requestScope.hname}">
                         

@@ -266,7 +266,28 @@ public class BookingService {
          return maxrooms;
     }
      
+     public static String getRoomType(int id)
+            
+    {
+        String type;
+        
+         dbR=new RoomDBHandler();
+         type=dbR.getRoomType(id);
+         
+         return type;
+    }
      
+     public static String getHotelID(int id)
+            
+    {
+        String hotelid;
+        
+         dbR=new RoomDBHandler();
+         hotelid=dbR.getHotelID(id);
+         
+         return hotelid;
+    }
+      
     
     
     public boolean reduceRoomInHotel(String id, String roomtype)
@@ -286,5 +307,24 @@ public class BookingService {
         
         
     }
-           
+   
+    
+    public boolean IncreaseRoomInHotel(String id, String roomtype)
+    
+    {
+        boolean success=false;
+        dbR=new RoomDBHandler();
+        
+        if(dbR.makeConnection())
+            
+        {
+            success=dbR.IncreaseNumOfRoomsinHotel(id,roomtype);
+        }
+        dbR.closeConnection();
+        
+        return success;
+        
+        
+    }
+    
 }

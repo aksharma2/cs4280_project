@@ -135,11 +135,18 @@ public class MakePayment extends HttpServlet {
     request.setAttribute("singlePriceDisc", 100);
     request.setAttribute("deluxePriceDisc", 160);
     request.setAttribute("suiteePriceDisc", 250);
-           
-          
-    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-    dispatcher.forward(request,response);
+       
+    BookingService bookingService = new BookingService();
+    if(bookingService.getRoomsLeft(hotelID, roomtype) > 0)
+    {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        dispatcher.forward(request,response);
+    }
+    else
+    {
         
+        response.sendRedirect("./BookMyRoom?hotelN="+hotlname+"&HotelID="+hotelID);
+    }
     //response.sendRedirect("./user/login?referer=" + request.getRequestURI());
     
        

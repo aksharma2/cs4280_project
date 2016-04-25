@@ -86,7 +86,9 @@ public class BookMyRoom extends HttpServlet {
             request.setAttribute("deluxePriceDisc", discountedsprice.get(1));
             request.setAttribute("suiteePriceDisc", discountedsprice.get(2));
             
-            
+            request.setAttribute("singleCount", BookingService.getRoomsLeft(HID, "single"));
+            request.setAttribute("deluxeCount", BookingService.getRoomsLeft(HID, "deluxe"));
+            request.setAttribute("suiteeCount", BookingService.getRoomsLeft(HID, "suitee"));
             
             
             

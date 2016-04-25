@@ -71,7 +71,9 @@ public class DeleteRoom extends HttpServlet {
               username="EXTERNAL_USER";
           }
          
-         
+        
+          
+          
          BookingService bookingservice = new BookingService();
             
             boolean isConnectionMade = bookingservice.deleteBooking(dBookingID);
@@ -81,13 +83,15 @@ public class DeleteRoom extends HttpServlet {
             {
               
                 
-            boolean isRoomBooked = bookingservice.deleteRoom(username);
+            boolean isRoomdeleted = bookingservice.deleteRoom(username);
+            String hotelid = bookingservice.getHotelID(dBookingID);
+            String rType= bookingservice.getRoomType(dBookingID);
             
+            boolean isRoomadded=false;
             
-            
-            if(isRoomBooked)
+            if(isRoomdeleted)
             {
-                
+                isRoomadded = bookingservice.IncreaseRoomInHotel(hotelid,rType);
             }
             
             else

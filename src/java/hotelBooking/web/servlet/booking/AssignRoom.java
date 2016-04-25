@@ -143,11 +143,11 @@ public class AssignRoom extends HttpServlet {
                numroom = bookingservice.getRoomsLeft(hotelID,RoomType); 
              } catch (NullPointerException e )
              {
-                 numroom=0;
+                 
              }
              
             
-     if(numroom!=0)
+     if(numroom > 0)
              {
                   Booking b = new Booking(hotelID,RoomType,username,City);
            // b.setHotelID(hotel);

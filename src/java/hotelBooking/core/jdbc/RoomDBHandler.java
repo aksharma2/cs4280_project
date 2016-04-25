@@ -259,6 +259,103 @@ public class RoomDBHandler {
         
         
         }
+
+    public boolean IncreaseNumOfRoomsinHotel(String id, String roomtype) {
+        
+        boolean success= false;
+        
+         makeConnection();
+        try
+        {
+            int num = getMaximumRooms(id,roomtype);
+            num=num+1;
+            
+             PreparedStatement pstmt = con.prepareStatement("UPDATE [PROJ_ROOMASSIGNMENT] SET [maxNum] =? WHERE [hotelID] =? AND [roomType]= ? ");
+               
+                pstmt.setInt(1,num);
+                pstmt.setString(2, id);
+                pstmt.setString(3, roomtype);
+                
+                int rows = pstmt.executeUpdate();
+                
+                if(rows>0)
+                {
+                    
+                }success=true;
+                          
+        }catch(SQLException e)
+            
+        {
+            success=false;
+        }
+       
+        return success;
+   
+        
+         }
+
+    public String getRoomType(int id) {
+        
+        
+           String type=null;
+        
+         makeConnection();
+         
+          try
+        {
+             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM [PROJ_BOOKING] WHERE [bookingID]= (?)  ");
+                pstmt.setInt(1, id);
+                
+               
+                rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 
+                 type=(rs.getString("roomID"));
+             }
+               
+                          
+        }catch(SQLException e)
+            
+        {
+            
+        }
+       
+        return type;
+        
+        
+         }
+
+    public String getHotelID(int id) {
+        
+        
+           String hotelid=null;
+        
+         makeConnection();
+         
+          try
+        {
+             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM [PROJ_BOOKING] WHERE [bookingID] = (?) ");
+              pstmt.setInt(1, id);
+              rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 
+                 hotelid=(rs.getString("hotelID"));
+             }
+               
+                          
+        }catch(SQLException e)
+            
+        {
+            
+        }
+       
+        return hotelid;
+        
+         }
         
          
 }

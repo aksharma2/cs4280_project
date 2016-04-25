@@ -29,18 +29,18 @@
                                     <input type="hidden" name="idToEdit" value=${currentUser.id}>
                                     <div class="checkbox">
                                         <c:if test="${currentUser.isAdmin}">
-                                            <label style="color:black"><input name="role_admin" type="checkbox" value="ROLE_ADMIN" checked >ADMINISTRATOR</label>
+                                            <p style="color:black"><input name="role_admin" type="checkbox" value="ROLE_ADMIN" checked >ADMINISTRATOR</p>
                                         </c:if>
                                         <c:if test="${not currentUser.isAdmin}">
-                                            <label style="color:black"><input name="role_admin" type="checkbox" value="ROLE_ADMIN" >ADMINISTRATOR</label>
+                                            <p style="color:black"><input name="role_admin" type="checkbox" value="ROLE_ADMIN" >ADMINISTRATOR</p>
                                         </c:if>
                                     </div>
-                        S            <div class="checkbox">
+                                    <div class="checkbox">
                                         <c:if test="${currentUser.isManager}">
-                                            <label style="color:black"><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" checked >HOTEL MANAGER</label>
+                                            <p style="color:black"><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" checked >HOTEL MANAGER</p>
                                         </c:if>
                                         <c:if test="${not currentUser.isManager}">
-                                            <label style="color:black"><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" >HOTEL MANAGER</label>
+                                            <p style="color:black"><input name="role_hotel_manager" type="checkbox" value="ROLE_HOTEL_MANAGER" >HOTEL MANAGER</p>
                                         </c:if>
                                     </div>
                                     <button type="submit" class="btn btn-warning">EDIT User Access</button>

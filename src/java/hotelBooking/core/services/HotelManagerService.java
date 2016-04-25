@@ -106,17 +106,18 @@ public class HotelManagerService {
         ArrayList<Recommendation> low = new ArrayList<Recommendation>();
         ArrayList<Recommendation> med = new ArrayList<Recommendation>();
         
-        
-        for(Recommendation r: allRecs)
+        if(allRecs!=null && allRecs.size() > 0)
         {
-            if(r.getIndex() == 3)
-                high.add(r);
-            else if(r.getIndex() == 2)
-                 med.add(r);
-            else if(r.getIndex() ==  1)
-                low.add(r);
+            for(Recommendation r: allRecs)
+            {
+                if(r.getIndex() == 3)
+                    high.add(r);
+                else if(r.getIndex() == 2)
+                     med.add(r);
+                else if(r.getIndex() ==  1)
+                    low.add(r);
+            }
         }
-    
         ArrayList<Recommendation> finalList = new ArrayList<Recommendation>();
         
         for(int i = 0 ; i < nHigh; i++)
