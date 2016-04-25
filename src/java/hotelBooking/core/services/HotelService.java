@@ -181,7 +181,7 @@ public class HotelService extends HttpServlet{
                 BookingService  bs = new BookingService();
                 boolean result1 =  bs.setMaximumRooms(request.getParameter("hotelid"),"single",SingleRoom,singleRoomPrice,singleRoomPrice_disc);
                 boolean result2 =  bs.setMaximumRooms(request.getParameter("hotelid"),"deluxe",DeluxeRoom,deluxeRoomPrice,deluxeRoomPrice_disc);
-                boolean result3 =  bs.setMaximumRooms(request.getParameter("hotelid"),"suite",SuiteRoom,suiteRoomPrice,suiteRoomPrice_disc);
+                boolean result3 =  bs.setMaximumRooms(request.getParameter("hotelid"),"suitee",SuiteRoom,suiteRoomPrice,suiteRoomPrice_disc);
                 
                 boolean finalresult = result1 && result2 && result3;
                
@@ -411,6 +411,13 @@ public class HotelService extends HttpServlet{
      HttpSession session = request.getSession(false);
      User currUser=(User)session.getAttribute("user");
      String managerID = currUser.getId();
+     
+     String idHotel = request.getParameter("hotelid");
+     
+   //  if(idHotel=null || !UserService.checkHotelMangerMapping(idHotel, managerID))
+         
+     
+     
      
         try{
                 out.println("<html>");

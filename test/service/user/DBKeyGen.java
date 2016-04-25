@@ -42,7 +42,7 @@ public class DBKeyGen {
     }
     
     */
-        
+/*        
        Recommendation r = new Recommendation();
        r.setHotelID("10");
        r.setRoomID("suitee");
@@ -53,6 +53,13 @@ public class DBKeyGen {
        ArrayList<Recommendation> allrec = HotelManagerService.findRecommendations("10","suitee");
        
        int  x = 10 ;
+*/
+        
+        Boolean b = UserService.checkHotelMangerMapping("2892891", "shrankhla2");
+        
+        int x = 5;
+        
+        
     }
             
    

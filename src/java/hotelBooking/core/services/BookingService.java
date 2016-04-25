@@ -218,5 +218,73 @@ public class BookingService {
          return discountedPrice;
     }
    
-   
+    
+    
+     
+    public static int getMaxSingleRoom(String id)
+            
+    {
+        int maxsingleroom;
+         dbR=new RoomDBHandler();
+         maxsingleroom=dbR.getMaximumSingleRooms(id);
+         
+         return maxsingleroom;
+    }
+    
+    
+     public static int getDeluxeRoom(String id)
+            
+    {
+        int maxdeluxeroom;
+         dbR=new RoomDBHandler();
+         maxdeluxeroom=dbR.getMaximumDeluxeRooms(id);
+         
+         return maxdeluxeroom;
+    }
+    
+     
+     public static int getSuiteRoom(String id)
+            
+    {
+        int maxSuiteroom;
+        
+         dbR=new RoomDBHandler();
+         maxSuiteroom=dbR.getMaximumSuiteRooms(id);
+         
+         return maxSuiteroom;
+    }
+     
+     
+     public static int getRoomsLeft(String id,String roomtype)
+            
+    {
+        int maxrooms;
+        
+         dbR=new RoomDBHandler();
+         maxrooms=dbR.getMaximumRooms(id,roomtype);
+         
+         return maxrooms;
+    }
+     
+     
+    
+    
+    public boolean reduceRoomInHotel(String id, String roomtype)
+    
+    {
+        boolean success=false;
+        dbR=new RoomDBHandler();
+        
+        if(dbR.makeConnection())
+            
+        {
+            success=dbR.reduceNumOfRoomsFromHotel(id,roomtype);
+        }
+        dbR.closeConnection();
+        
+        return success;
+        
+        
+    }
+           
 }

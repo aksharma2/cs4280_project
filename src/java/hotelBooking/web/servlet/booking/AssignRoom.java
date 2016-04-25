@@ -107,6 +107,7 @@ public class AssignRoom extends HttpServlet {
        
        String nextJSP = "/Views/Booking/BookingList.jsp";
        
+       // When user is booking for the first time
        if (hotel != null && !hotel.equalsIgnoreCase("") &&
                 RoomType != null && !RoomType.equalsIgnoreCase("") && MyBookingId==0) {
             
@@ -122,14 +123,29 @@ public class AssignRoom extends HttpServlet {
             //String CityId = (String) session.getAttribute("city");
             
             //Booking b = new Booking(hotel,room,username,CityId);
+           
+             BookingService bookingservice = new BookingService();
+             
+             int numroom=0;
+             
+             try
+             {
+             
+               numroom = bookingservice.getRoomsLeft(hotelID,RoomType); 
+             } catch (NullPointerException e )
+             {
+                 numroom=0;
+             }
+             
             
-            
-            Booking b = new Booking(hotelID,RoomType,username,City);
+     if(numroom!=0)
+             {
+                  Booking b = new Booking(hotelID,RoomType,username,City);
            // b.setHotelID(hotel);
             //b.setRoomID(room);
             //b.setUserID(userName);
           
-           BookingService bookingservice = new BookingService();
+          
             
             boolean isConnectionMade = bookingservice.makeBooking(b,CheckInDate,CheckOutDate );
             
@@ -150,7 +166,9 @@ public class AssignRoom extends HttpServlet {
             
             boolean isRoomBooked = bookingservice.BookRoom(r,numofAdults,numOfChilren,username);
             
-            if(isRoomBooked)
+             boolean isNumberofRoomReduced = bookingservice.reduceRoomInHotel(hotelID,RoomType);
+            
+            if(isRoomBooked && isNumberofRoomReduced)
             {
                 out.println("<legend>New Room has been booked for you.</legend>");
             }
@@ -167,16 +185,45 @@ public class AssignRoom extends HttpServlet {
             else {
                 out.println("<legend>ERROR: Booking Failed.</legend>");
             }
+             }
+            
+            
+            
+    else
+     {
+          nextJSP = "/Views/Booking/OutOfRooms.jsp";
+     }
+           
         }
         
+       // When user is modifying an exsisting booking
        
        else if (hotel != null && !hotel.equalsIgnoreCase("") &&
                 RoomType != null && !RoomType.equalsIgnoreCase("") && MyBookingId!=0)
            
        {
-             Booking b = new Booking(hotel,RoomType,username,City);
+           
+           
+           BookingService bookingservice = new BookingService();
              
-              BookingService bookingservice = new BookingService();
+             int numroom=0;
+             
+             try
+             {
+             
+               numroom = bookingservice.getRoomsLeft(hotelID,RoomType); 
+             } catch (NullPointerException e )
+             {
+                 numroom=0;
+             }
+           
+           
+             if(numroom!=0)
+             {
+                 
+                  Booking b = new Booking(hotelID,RoomType,username,City);
+             
+              
               
             // int myid = Integer.parseInt(MyBookingId);
               
@@ -200,11 +247,13 @@ public class AssignRoom extends HttpServlet {
             
             
             
-            Room r = new Room(hotel,RoomID,RoomType,isRoomAvailable);
+            Room r = new Room(hotelID,RoomID,RoomType,isRoomAvailable);
             
             boolean isRoomBooked = bookingservice.BookRoom(r,numofAdults,numOfChilren,username);
             
-            if(isRoomBooked)
+            boolean isNumberofRoomReduced = bookingservice.reduceRoomInHotel(hotelID,RoomType);
+            
+            if(isRoomBooked && isNumberofRoomReduced)
             {
                 out.println("<legend>New Room has been booked for you.</legend>");
             }
@@ -225,6 +274,13 @@ public class AssignRoom extends HttpServlet {
              
        }
        
+                 
+                 
+                 
+                 
+             }
+           
+            
        
        
         else{
@@ -238,9 +294,8 @@ public class AssignRoom extends HttpServlet {
                 RoomType = "";
             }
             
-           nextJSP = "/Views/Booking/BookRoom.jsp";
-       
-            
+           nextJSP = "/Views/Booking/OutOfRooms.jsp";
+           
         }
         
         

@@ -88,6 +88,14 @@
         <servlet-name>DeleteBookingsAdmin</servlet-name>
         <servlet-class>hotelBooking.web.servlet.booking.DeleteBookingsAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckRoomAvailability</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.CheckRoomAvailability</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>hotelBooking.web.servlet.booking.NewServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/Test</url-pattern>
@@ -175,6 +183,14 @@
     <servlet-mapping>
         <servlet-name>DeleteBookingsAdmin</servlet-name>
         <url-pattern>/DeleteBookingsAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckRoomAvailability</servlet-name>
+        <url-pattern>/CheckRoomAvailability</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

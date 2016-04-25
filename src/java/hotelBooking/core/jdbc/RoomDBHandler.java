@@ -49,7 +49,7 @@ public class RoomDBHandler {
             
     {
         boolean success= false;
-        
+           makeConnection();
         try
         {
              PreparedStatement pstmt = con.prepareStatement("INSERT INTO [PROJ_ROOMASSIGNMENT] ( [hotelID], [roomType],[maxNum],[price],[discountedPrice]) VALUES (?, ?, ?, ?, ?)");
@@ -87,4 +87,178 @@ public class RoomDBHandler {
             Logger.getLogger(BookingDBHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public int getMaximumSingleRooms(String id) {
+        
+        int maxSingleRoom=0;
+        
+         makeConnection();
+         
+          try
+        {
+             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID]= (?) AND [roomType]= (?) ");
+                pstmt.setString(1, id);
+                pstmt.setString(2, "single");
+               
+                rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 
+                 maxSingleRoom=(rs.getInt("maxNum"));
+             }
+               
+                          
+        }catch(SQLException e)
+            
+        {
+            
+        }
+       
+        return maxSingleRoom;
+        
+        }
+
+    public int getMaximumDeluxeRooms(String id) {
+        
+         
+        int maxDeluxeRoom=0;
+        
+         makeConnection();
+         
+          try
+        {
+             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID]= (?) AND [roomType]= (?) ");
+                pstmt.setString(1, id);
+                pstmt.setString(2, "deluxe");
+               
+                rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 
+                 maxDeluxeRoom=(rs.getInt("maxNum"));
+             }
+               
+                          
+        }catch(SQLException e)
+            
+        {
+            
+        }
+       
+        return maxDeluxeRoom;
+        
+        }
+
+    public int getMaximumSuiteRooms(String id) {
+        
+          
+        int maxSuiteRoom=0;
+        
+         makeConnection();
+         
+          try
+        {
+             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID]= (?) AND [roomType]= (?) ");
+                pstmt.setString(1, id);
+                pstmt.setString(2, "suite");
+               
+                rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 
+                 maxSuiteRoom=(rs.getInt("maxNum"));
+             }
+               
+                          
+        }catch(SQLException e)
+            
+        {
+            
+        }
+       
+        return maxSuiteRoom;
+        
+        
+        
+          }
+    
+    
+    
+     public int getMaximumRooms(String id,String roomtype) {
+        
+          
+        int maxRoom=0;
+        
+         makeConnection();
+         
+          try
+        {
+             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM [PROJ_ROOMASSIGNMENT] WHERE [hotelID]= (?) AND [roomType]= (?) ");
+                pstmt.setString(1, id);
+                pstmt.setString(2, roomtype);
+               
+                rs = pstmt.executeQuery();
+             while(rs.next())
+             {
+                 //BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 
+                 maxRoom=(rs.getInt("maxNum"));
+             }
+               
+                          
+        }catch(SQLException e)
+            
+        {
+            
+        }
+       
+        return maxRoom;
+        
+        
+        
+          }
+    
+    
+    
+
+    public boolean reduceNumOfRoomsFromHotel(String id,String roomtype) {
+        
+        boolean success= false;
+        
+         makeConnection();
+        try
+        {
+            int num = getMaximumRooms(id,roomtype);
+            num=num-1;
+            
+             PreparedStatement pstmt = con.prepareStatement("UPDATE [PROJ_ROOMASSIGNMENT] SET [maxNum] =? WHERE [hotelID] =? AND [roomType]= ? ");
+               
+                pstmt.setInt(1,num);
+                pstmt.setString(2, id);
+                pstmt.setString(3, roomtype);
+                
+                int rows = pstmt.executeUpdate();
+                
+                if(rows>0)
+                {
+                    
+                }success=true;
+                          
+        }catch(SQLException e)
+            
+        {
+            success=false;
+        }
+       
+        return success;
+   
+        
+        
+        
+        }
+        
+         
 }

@@ -19,7 +19,7 @@
                     </thead>
 
                     <tbody>
-                    <c:forEach items="${requestScope.allHotels}" var="currentUser">
+                    <c:forEach items="${requestScope.allRecs}" var="recommendation">
                         <tr>
                             <td>${currentUser}</td>
                             <td>
@@ -28,30 +28,13 @@
                                         <td>Single</td>
                                         <td>
                                             <form action="${pageContext.request.contextPath}/RecommendHotels" method="post">
-                                                <input id="SingleRecomendationIndex" type ="range" min ="0" max="3" step ="1"/>
-                                                <input type="submit" name="Submit">
+                                                <input value=${recommendation.index} id="SingleRecomendationIndex" type ="range" min ="0" max="3" step ="1">
+                                                <input value=${recommendation.hotelID} name="hotelID" input="text" />
+                                                <input type="submit" name="Submit" value="Submit">
                                             </form>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Deluxe</td>
-                                        <td>
-                                            <form action="${pageContext.request.contextPath}/RecommendHotels" method="post">
-                                                <input id="DeluxeRecomendationIndex" type ="range" min ="0" max="3" step ="1"/>
-                                                <input type="submit" name="Submit">
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Suite</td>
-                                        <td>
-                                            <form action="${pageContext.request.contextPath}/RecommendHotels" method="post">
-                                                <input id="SuiteRecomendationIndex" type ="range" min ="0" max="3" step ="1"/>
-                                                <input type="submit" name="Submit">
-                                            </form>
-                                        </td>
-                                    </tr>
-
+                                    
                                 </table>
                             </td>
                             <%--

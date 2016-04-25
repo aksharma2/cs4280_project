@@ -68,14 +68,10 @@ public class RecommendHotelsServlet extends HttpServlet {
                 allrecs.add(r);
             }
             
-            
-            
-            
-            
             if(allHotels!=null && user!=null)
             {
-                request.setAttribute("allHotels", allHotels);
-                request.setAttribute("manager", user.getId());
+                request.setAttribute("allRecs", allrecs);
+                //request.setAttribute("manager", user.getId());
                 
             }
             
@@ -99,11 +95,15 @@ public class RecommendHotelsServlet extends HttpServlet {
     
     public Recommendation retreiveRecommendation(String h, String type)
     {
+        //returns rec if exist
         ArrayList<Recommendation> all = HotelManagerService.findRecommendations(h, type);
-        
-        Recommendation r = all.get(0);
-        if(r==null || r.getHotelID()==null)
+        Recommendation r = new Recommendation();
+        if(all.size() > 0)
         {
+            r = all.get(0);
+        
+        }
+        else{
             r.setHotelID(h);
             r.setRoomID(type);
             r.setIndex(0);
