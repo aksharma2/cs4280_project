@@ -59,11 +59,17 @@ public class DeleteRoom extends HttpServlet {
         
          session.setAttribute("dBookingID", dBookingID);
          
-        
-          User currUser=(User)session.getAttribute("user");
-            String username=currUser.getId();
+         String username ="EXTERNAL_USER";
+          
+          try
+          {
+               User currUser=(User)session.getAttribute("user");
+            username=currUser.getId();
             
-         
+          } catch(Exception e)
+          {
+              username="EXTERNAL_USER";
+          }
          
          
          BookingService bookingservice = new BookingService();

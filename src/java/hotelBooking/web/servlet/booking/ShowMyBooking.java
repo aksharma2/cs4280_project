@@ -51,8 +51,24 @@ public class ShowMyBooking extends HttpServlet {
         
         
          HttpSession session = request.getSession(true);
-          User currUser=(User)session.getAttribute("user");
-            String username=currUser.getId();
+         
+         
+         
+           String username ="EXTERNAL_USER";
+          
+          try
+          {
+               User currUser=(User)session.getAttribute("user");
+            username=currUser.getId();
+            
+          } catch(Exception e)
+          {
+              username="EXTERNAL_USER";
+          }
+         
+         
+         // User currUser=(User)session.getAttribute("user");
+           /// String username=currUser.getId();
         
         
         

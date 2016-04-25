@@ -49,6 +49,7 @@ public class BookMyRoom extends HttpServlet {
             String HCity = request.getParameter("hotelC");
             String HID = request.getParameter("HotelID");
 
+            
             request.setAttribute("hname", HName);
             request.setAttribute("hurl", HURL);
             request.setAttribute("hcity", HCity);
@@ -89,19 +90,21 @@ public class BookMyRoom extends HttpServlet {
             
             
             
+          HttpSession session = request.getSession(true);
+          session.setAttribute("HotelCity", HCity);
+          session.setAttribute("HotelName", HName);
+          session.setAttribute("HID", HID);
+          
             
             
-            
+       
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
             dispatcher.forward(request,response);
        
        
         
         
-          HttpSession session = request.getSession(true);
-          session.setAttribute("HotelCity", HCity);
-          session.setAttribute("HotelName", HName);
-          session.setAttribute("HID", HID);
+        
           
          
           

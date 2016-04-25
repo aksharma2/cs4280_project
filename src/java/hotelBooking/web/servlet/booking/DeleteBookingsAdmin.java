@@ -65,7 +65,16 @@ public class DeleteBookingsAdmin extends HttpServlet {
         
         int dBookingID = Integer.parseInt(request.getParameter("Bookinguserid"));
         
+        
+        
+        
         String username = request.getParameter("Bookingusername");
+        
+        if(username==null)
+            
+        {
+            username="EXTERNAL_USER";
+        }
         
         
           

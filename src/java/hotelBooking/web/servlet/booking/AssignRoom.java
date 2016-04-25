@@ -68,13 +68,22 @@ public class AssignRoom extends HttpServlet {
         
         
           HttpSession session = request.getSession(false);
-          User currUser=(User)session.getAttribute("user");
-            String username=currUser.getId();
+          
+           String username ="EXTERNAL_USER";
+          
+          try
+          {
+               User currUser=(User)session.getAttribute("user");
+            username=currUser.getId();
             
-            if(username==null)
-                    {
-                        username="EXTERNAL_USER";
-                    }
+          } catch(Exception e)
+          {
+              username="EXTERNAL_USER";
+          }
+         
+           
+                        
+                   
             
          String hotel = (String) session.getAttribute("HotelName");
          String City = (String) session.getAttribute("HotelCity");

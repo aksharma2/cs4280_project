@@ -158,12 +158,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- start header -->
 <div class="header_bg">
 <div class="wrap">
+    
+    <!--
 	<div class="header">
 		<div class="logo">
 			<a href="index.html"><img src="${pageContext.request.contextPath}/static/img/logo.png" width="159px" height="45px" alt=""></a>
 		</div>
 		
                 <div class="h_right">
+    
+    -->
 	                					<!--start menu -->
 	                		
                
@@ -182,6 +186,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				
 			</ul> -->
 			
+               <!--
+               
+               
 					<form class="style-1 drp_dwn">
 						<div class="row">
 							<div class="grid_3 columns">
@@ -194,8 +201,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</div>		
 						</div>		
 					</form>
+               -->
+               
+               
 		</div>
 		<div class="clear"></div>
+                
+                <!--
+                
                 <div class="top-nav">
 		
                     <nav class="clearfix">
@@ -211,6 +224,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 
 		</div>
                 
+                
+                -->
 	</div>
 </div>
 </div>
@@ -359,6 +374,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
              
                         
 					</div>
+                        
+                        <div>
+                            
+                         
 		
 		
 		<div class="clear"></div>
@@ -399,3 +418,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </body>
 </html>
 
+<%--end content--%>
+<%@ include file="../common/newfooter.jsp"%>

@@ -5,7 +5,9 @@
  */
 package hotelBooking.web.servlet.booking;
 
+import hotelBooking.core.domain.User;
 import hotelBooking.core.domain.UserRole;
+import hotelBooking.core.services.BookingService;
 import hotelBooking.core.services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -58,6 +60,47 @@ public class MakePayment extends HttpServlet {
         nextJSP="/Views/Booking/BookRoom.jsp";
     }
     
+    
+    
+          HttpSession session = request.getSession(false);
+         
+          
+           String RoomType= (String) session.getAttribute("Roomtype");
+           String hotelID = (String) session.getAttribute("HID");
+    
+           
+           /*
+           
+           
+             boolean isRoomNotAvailable =true;
+    
+    
+             BookingService bookingservice = new BookingService();
+     
+      
+      int numroom=2;
+             
+             try
+             {
+             
+               numroom = bookingservice.getRoomsLeft(hotelID,RoomType); 
+             } catch (NullPointerException e )
+             {
+                 numroom=2;
+                 isRoomNotAvailable =true;
+             }
+      
+      if(numroom==0)
+      {
+          request.setAttribute("isRoomNotAvailable", isRoomNotAvailable);
+          nextJSP="/Views/Booking/BookRoom.jsp";
+         
+      }
+      
+    */      
+         
+          
+    
     /*
     else if(roomtype.equals("single"))
     {
@@ -80,7 +123,7 @@ public class MakePayment extends HttpServlet {
     String tar = request.getParameter("tariff");
     tariff= Integer.parseInt(tar);
     
-    HttpSession session = request.getSession(true);
+
     session.setAttribute("Roomtype", roomtype);
     session.setAttribute("tariff", tariff);
     session.setAttribute("HotlName", hotlname);
