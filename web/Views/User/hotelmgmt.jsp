@@ -9,7 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../common/newheader.jsp"%>
-<%@ include file="../common/newfooter.jsp"%>
+
+<%@ include file="../common/sidebar.jspf"%>
 <%@page import="hotelBooking.core.domain.Hotel"%>
 <%@page import="hotelBooking.core.jdbc.HotelDBHandler"%>
 <%-- <%@page contentType="text/html" pageEncoding="UTF-8"%> --%>

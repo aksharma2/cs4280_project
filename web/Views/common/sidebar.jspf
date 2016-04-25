@@ -1,6 +1,12 @@
+<%@page import="hotelBooking.core.domain.Hotel"%>
+<%@page import="hotelBooking.core.jdbc.HotelDBHandler"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="hotelBooking.core.domain.Recommendation"%>
+<%@page import="hotelBooking.core.services.HotelManagerService"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%--
 <div class="well sidebar-nav">
     <ul class="nav nav-list">
@@ -29,16 +35,43 @@
             	</ul>
                
                 <ul class="nav hidden-xs" id="lg-menu">
-                    <li class="active"><a href="#featured"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
-                    <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Stories</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>
+                    <fieldset>
+                        <legend><b><u>Recommended hotels</u></b></legend>
+                    <table><tr>
+                        <th>Hotel</th>
+                        <th>Room</th>
+                    </tr><tbody>
+                    
+                        <% ArrayList<Recommendation>recommend = HotelManagerService.getRandomRecommendations(1, 1, 1); 
+                           HotelDBHandler db=new HotelDBHandler();
+                           ArrayList<Hotel>hot=null;
+                           
+                           try{ 
+                               for(Recommendation r:recommend){  
+                        
+                               if(db.setupConnection())    
+                                     hot=db.findHotelById(r.getHotelID(), 0, 2000000);
+                            
+                            %>
+                            
+                            <tr>
+                            <td>
+                                <%= hot.get(0).getName() %>
+                             </td>
+                            <td><%=r.getRoomID()%></td>
+                              
+                            </tr>
+                            
+                            <% } 
+                                    }catch(NullPointerException npe){}   %>
+
+                       
+                    
+                    </tbody>
+                    </table>
+                    </fieldset>
                 </ul>
-                <ul class="list-unstyled hidden-xs" id="sidebar-footer">
-                    <li>
-                      <a href="http://www.bootply.com"><h3>Bootstrap</h3> <i class="glyphicon glyphicon-heart-empty"></i> Bootply</a>
-                    </li>
-                </ul>
+                
               
               	<!-- tiny only nav-->
               <ul class="nav visible-xs" id="xs-menu">

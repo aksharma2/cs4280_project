@@ -36,10 +36,10 @@ public class ViewHotel extends HttpServlet {
          String upperval=request.getParameter("upperval");
          
          if(lowerval.equals(""))
-             lowerval="0";
+             lowerval="75";
          
          if(upperval.equals(""))
-             upperval="0";
+             upperval="300";
        
         try {
             String nextJSP="/Views/User/hotelmgmt.jsp";
