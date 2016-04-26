@@ -159,7 +159,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="header_bg">
 <div class="wrap">
     
-    <!--
+    
 	<div class="header">
 		<div class="logo">
 			<a href="index.html"><img src="${pageContext.request.contextPath}/static/img/logo.png" width="159px" height="45px" alt=""></a>
@@ -167,7 +167,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		
                 <div class="h_right">
     
-    -->
+    
 	                					<!--start menu -->
 	                		
                
@@ -230,6 +230,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 </div>
 <!----start-img-slider---->
+
+
+<!----start-img-slider---->
+		<div class="img-slider">
+			<!-- start slider -->
+		    <div id="fwslider">
+		        <div class="slider_container">
+		            <div class="slide"> 
+		                <!-- Slide image -->
+		                    <img src="${pageContext.request.contextPath}/static/img/slider-bg.jpg" alt=""/>
+		                <!-- /Slide image -->
+		                <!-- Texts container -->
+		                <div class="slide_content">
+		                    <div class="slide_content_wrap">
+		                        <!-- Text title -->
+		                        <h4 class="title"><i class="bg"></i>Lorem Ipsum is simply <span class="hide">dummy text</span></h4>
+		                        <h5 class="title1"><i class="bg"></i>Morbi justo <span class="hide" >condimentum accumsan</span></h5>
+		                        <!-- /Text title -->
+		                    </div>
+		                </div>
+		                 <!-- /Texts container -->
+		            </div>
+		            <!-- /Duplicate to create more slides -->
+		            <div class="slide">
+		                <img src="${pageContext.request.contextPath}/static/img/slider-bg.jpg" alt=""/>
+		                <div class="slide_content">
+		                     <div class="slide_content_wrap">
+		                        <!-- Text title -->
+		                        <h4 class="title"><i class="bg"></i>Morbi justo <span class="hide"> condimentum </span>text</h4>
+		                        <h5 class="title1"><i class="bg"></i>Lorem Ipsum is <span class="hide">simply dummy text</span> </h5>
+		                        <!-- /Text title -->
+		                    </div>
+		                </div>
+		            </div>
+		            <!--/slide -->
+		        </div>
+		        <div class="timers"> </div>
+		        <div class="slidePrev"><span> </span></div>
+		        <div class="slideNext"><span> </span></div>
+		    </div>
+		    <!--/slider -->
+		</div>
+
 		
 <!--start main -->
 <div class="main_bg">

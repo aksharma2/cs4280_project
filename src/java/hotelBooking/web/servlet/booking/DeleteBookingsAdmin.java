@@ -86,10 +86,10 @@ public class DeleteBookingsAdmin extends HttpServlet {
                 
             {
               
-                
-       boolean isRoomdeleted = bookingservice.deleteRoom(username);
-            String hotelid = bookingservice.getHotelID(dBookingID);
+                 String hotelid = bookingservice.getHotelID(dBookingID);
             String rType= bookingservice.getRoomType(dBookingID);
+            boolean isRoomdeleted = bookingservice.deleteRoom(username);
+           
             
              boolean isRoomadded=false;
             
