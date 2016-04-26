@@ -77,28 +77,26 @@
 
                      
                      
-               <!--      
+                
                      
 		<div class="suite">
 			<div class="dropdown-button">
-				<h2>Suite</h2>           			
-    			<select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
-					<option value="1">-</option>
-					<option value="1">Single Room</option>
-					<option value="2">Premium Single Room</option>
-					<option value="2">Double Room</option>
-					<option value="2">Premium Double Room</option>
-					<option value="3">Deluxe Suite</option>
-					<option value="4">Executive Suite</option>
-					<option value="4">Ocean View Suite</option>
-					<option value="4">Presidential Suite</option>
-					<option value="3">The Penthouse</option>
+				<h2>Number of Rooms</h2>           			
+    			<select class="dropdown" name="NumR" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					
 				</select>
 			</div>
 		</div>
 
                      
-                  -->   
+                   
                      
 		<div class="book-pag">
 			<h2>Select Date</h2>

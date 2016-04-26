@@ -43,6 +43,7 @@
                         <th>Booking ID</th>
                         <th>City</th>
                         <th>User</th>
+                        <th>Num of Rooms</th>
                         <th>Room Assigned</th>
                         <th>Edit Booking </th>
                         
@@ -52,19 +53,20 @@
                     <tbody>
                     <c:forEach items="${requestScope.allHotelBookings}" var="booking">
                         <tr>
-                            <td>${booking.getUserID()}</td>
-                            <td>${booking.hotelID}</td>
-                            <td>${booking.getBookingID()}</td>
-                            <td>${booking.getCityID()}</td>
                             <td>${booking.userID}</td>
+                            <td>${booking.hotelID}</td>
+                            <td>${booking.bookingID}</td>
+                            <td>${booking.cityID}</td>
+                            <td>${booking.userID}</td>
+                            <td>${booking.num}</td>
                             <td>${booking.roomID}</td>
                             <td> 
                                
                             
                                  <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/DeleteBookingsAdmin" method="post">
                            
-                                <input type="hidden" name="Bookinguserid" value="${booking.getBookingID()}">
-                                 <input type="hidden" name="Bookingusername" value="${booking.getUserID()}">
+                                <input type="hidden" name="Bookinguserid" value="${booking.bookingID}">
+                                 <input type="hidden" name="Bookingusername" value="${booking.userID}">
                                 
                                <br><br>
                                 <button type="submit" class="btn btn-success">Delete Booking</button>

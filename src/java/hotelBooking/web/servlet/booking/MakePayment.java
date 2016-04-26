@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -177,6 +177,7 @@ public class MakePayment extends HttpServlet {
           
           String checkinDate = request.getParameter("Date1");
           String checkoutDate = request.getParameter("Date2");
+          String numRooms = request.getParameter("NumR");
           
           
           
@@ -190,6 +191,7 @@ public class MakePayment extends HttpServlet {
            session.setAttribute("noofadults", numofAdults);
            session.setAttribute("checkindate", checkinDate);
            session.setAttribute("checkoutdate", checkoutDate);
+           session.setAttribute("numRooms", numRooms);
            
            
            //session.setAttribute("Roomtype", roomtype);

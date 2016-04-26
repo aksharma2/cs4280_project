@@ -92,6 +92,8 @@ public class AssignRoom extends HttpServlet {
          String CheckInDate = (String) session.getAttribute("checkindate");
          String CheckOutDate = (String) session.getAttribute("checkoutdate");
          
+         String numR = (String )session.getAttribute("numRooms");
+         
          Integer numofAdults = (Integer) session.getAttribute("noofadults");
          Integer numOfChilren = (Integer)(session.getAttribute("noofchildren"));
          
@@ -156,7 +158,7 @@ public class AssignRoom extends HttpServlet {
           
           
             
-            boolean isConnectionMade = bookingservice.makeBooking(b,CheckInDate,CheckOutDate );
+            boolean isConnectionMade = bookingservice.makeBooking(b,CheckInDate,CheckOutDate,numR );
             
             if(isConnectionMade)
                 
@@ -215,7 +217,7 @@ public class AssignRoom extends HttpServlet {
            
            BookingService bookingservice = new BookingService();
              
-             int numroom=2;
+             int numroom=0;
              
              try
              {
@@ -223,7 +225,7 @@ public class AssignRoom extends HttpServlet {
                numroom = bookingservice.getRoomsLeft(hotelID,RoomType); 
              } catch (NullPointerException e )
              {
-                 numroom=2;
+               
              }
            
            

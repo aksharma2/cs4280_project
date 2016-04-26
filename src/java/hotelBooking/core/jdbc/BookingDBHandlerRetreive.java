@@ -99,7 +99,7 @@ public class BookingDBHandlerRetreive {
              rs = pstmt.executeQuery("SELECT * FROM [PROJ_BOOKING] ");
              while(rs.next())
              {
-                 BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"),rs.getInt("numOfRooms"));
                  allbookings.add(b);
              }
          } catch (SQLException ex) {
@@ -133,7 +133,7 @@ public class BookingDBHandlerRetreive {
                  rs = pstmt.executeQuery();
              while(rs.next())
              {
-                 BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"));
+                 BookingType b = new BookingType(rs.getString("hotelID"),rs.getString("roomID"),rs.getString("userID"),rs.getString("city"),rs.getInt("bookingID"),rs.getInt("numOfRooms"));
                  allbookings.add(b);
              }
          } catch (SQLException ex) {

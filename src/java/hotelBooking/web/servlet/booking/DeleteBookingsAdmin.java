@@ -114,7 +114,7 @@ public class DeleteBookingsAdmin extends HttpServlet {
             dispatcher.forward(request,response);
        
         */
-        response.sendRedirect("http://localhost:8080//cs4280.project/ShowAllHotelBookings");
+        response.sendRedirect("./ShowAllHotelBookings");
         
     }
 

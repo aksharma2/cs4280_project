@@ -41,6 +41,7 @@
                         <th>Booking ID</th>
                         <th>City</th>
                         <th>User</th>
+                        <th>Num Of Rooms</th>
                         <th>Room Assigned</th>
                         <th>Edit Booking </th>
                         
@@ -51,21 +52,22 @@
                     <c:forEach items="${requestScope.allbookings}" var="booking">
                         <tr>
                             <td>${booking.hotelID}</td>
-                            <td>${booking.getBookingID()}</td>
-                            <td>${booking.getCityID()}</td>
+                            <td>${booking.bookingID}</td>
+                            <td>${booking.cityID}</td>
                             <td>${booking.userID}</td>
+                            <td>${booking.num}</td>
                             <td>${booking.roomID}</td>
                             <td> 
                                <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/ViewHotel" method="get">
                                    
-                                <input type="hidden" name="bookingUserID" value="${booking.getBookingID()}">
+                                <input type="hidden" name="bookingUserID" value="${booking.bookingID}">
                                 <button type="submit" class="btn btn-warning">Modify Booking</button>
                             
                                 </form>
                             
                                  <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/DeleteRoom" method="get">
                            
-                                <input type="hidden" name="Bookinguserid" value="${booking.getBookingID()}">
+                                <input type="hidden" name="Bookinguserid" value="${booking.bookingID}">
                                <br><br>
                                 <button type="submit" class="btn btn-success">Delete Booking</button>
                                  </form>

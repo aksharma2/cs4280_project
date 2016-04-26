@@ -46,20 +46,21 @@ public class BookingDBHandler {
         return success;
     }
     
-    public boolean makeMybooking(Booking b,String checkinDate , String checkoutDate)
+    public boolean makeMybooking(Booking b,String checkinDate , String checkoutDate , String num)
             
     {
         boolean success= false;
         
         try
         {
-             PreparedStatement pstmt = con.prepareStatement("INSERT INTO [PROJ_BOOKING] ([roomID], [hotelID], [userID],[city] ,[checkinDate] , [checkoutDate]) VALUES (?, ?, ?, ?,?,?)");
+             PreparedStatement pstmt = con.prepareStatement("INSERT INTO [PROJ_BOOKING] ([roomID], [hotelID], [userID],[city] ,[checkinDate] , [checkoutDate],[numOfRooms]) VALUES (?, ?, ?, ?,?,?,?)");
                 pstmt.setString(1, b.getRoomID());
                 pstmt.setString(2, b.getHotelID());
                 pstmt.setString(3,b.getUserID());
                 pstmt.setString(4,b.getCityID());
                 pstmt.setString(5,checkinDate);
                 pstmt.setString(6,checkoutDate);
+                pstmt.setString(7,num);
                 
                 
                  int rows = pstmt.executeUpdate();

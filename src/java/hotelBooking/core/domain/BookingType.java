@@ -14,18 +14,21 @@ public class BookingType {
    private String userID;
     private String roomID;
     private String hotelID;
-    private String CityID;
-    private int BookingID;
+    private String cityID;
+    private int bookingID;
+     private int num;
+    
     
     
 
-    public BookingType(String HotelID, String RoomID, String UserID,String CityID,int bookingID) {
+    public BookingType(String HotelID, String RoomID, String UserID,String CityID,int bookingID , int num) {
        
             setHotelID(HotelID);
             setRoomID(RoomID);
             setUserID(UserID);
             setCityID(CityID);
             setBookingID(bookingID);
+            setNum(num);
          }
 
    
@@ -56,25 +59,33 @@ public class BookingType {
 
     public void setCityID(String CityID) {
        
-        this.CityID = CityID;
+        this.cityID = CityID;
     }
     
     public String getCityID()
             
     {
-       return this.CityID; 
+       return this.cityID; 
     }
 
     public void setBookingID(int bookingID) {
         
-        this.BookingID=bookingID;
+        this.bookingID=bookingID;
        }
     
     public int getBookingID ()
             
     {
-        return this.BookingID;
+        return this.bookingID;
     }
+
+    public void setNum(int num) {
+        this.num=num;
+         }
      
-    
+     public int getNum ()
+            
+    {
+        return this.num;
+    }
 }
