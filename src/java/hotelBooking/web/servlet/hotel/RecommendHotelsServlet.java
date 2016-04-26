@@ -38,7 +38,7 @@ public class RecommendHotelsServlet extends HttpServlet {
         */
         boolean authorized = false;
         try{
-            authorized = UserService.checkForAccess(request, UserRole.ADMIN);
+            authorized = UserService.checkForAccess(request, UserRole.HOTEL_MANAGER);
         }
         catch(Exception e)
         {

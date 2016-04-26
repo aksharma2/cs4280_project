@@ -14,9 +14,11 @@
                 <h1>Sign up</h1>
             </div>
 
+             <%@ include file="../common/error.jspf"%>
+            
             <form class="well form-horizontal" method="post" action="register">
 
-                <%@ include file="../common/error.jspf"%>
+               
 
                 <fieldset>
 
