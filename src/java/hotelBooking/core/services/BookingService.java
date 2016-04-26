@@ -92,7 +92,7 @@ public class BookingService {
     }
     
      
-      public static boolean UpdateBooking(Booking b , String checkinDate, String checkoutdate , int id)
+      public static boolean UpdateBooking(Booking b , String checkinDate, String checkoutdate , int id , String numR)
     {
         boolean success=false;
         
@@ -101,7 +101,7 @@ public class BookingService {
         if(db.makeConnection())
             
         {
-            success=db.UpdateMybooking(b, checkinDate , checkoutdate , id);
+            success=db.UpdateMybooking(b, checkinDate , checkoutdate , id , numR);
             
         }
         db.closeConnection();

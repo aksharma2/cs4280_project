@@ -92,21 +92,22 @@ public class BookingDBHandler {
     }
     
     
-    public boolean UpdateMybooking(Booking b,String checkinDate , String checkoutDate,int id)
+    public boolean UpdateMybooking(Booking b,String checkinDate , String checkoutDate,int id , String numR)
             
     {
         boolean success= false;
         
         try
         {
-             PreparedStatement pstmt = con.prepareStatement("UPDATE [PROJ_BOOKING] SET [roomID] =? , [hotelID] =? , [userID] =? ,[city] =?  ,[checkinDate] =?  , [checkoutDate] =?  WHERE [bookingID] =? ");
+             PreparedStatement pstmt = con.prepareStatement("UPDATE [PROJ_BOOKING] SET [roomID] =? , [hotelID] =? , [userID] =? ,[city] =?  ,[checkinDate] =?  , [checkoutDate] =? ,[numOfRooms] =? WHERE [bookingID] =? ");
                 pstmt.setString(1, b.getRoomID());
                 pstmt.setString(2, b.getHotelID());
                 pstmt.setString(3,b.getUserID());
                 pstmt.setString(4,b.getCityID());
                 pstmt.setString(5,checkinDate);
                 pstmt.setString(6,checkoutDate);
-                pstmt.setInt(7, id);
+                pstmt.setString(7, numR);
+                pstmt.setInt(8, id);
                 
                 
                  int rows = pstmt.executeUpdate();

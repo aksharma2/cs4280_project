@@ -70,7 +70,7 @@
 <div class="wrap">
 	<div class="header" class="nav-list">
 		<div class="logo">
-			<a href="index.html"><img src="${pageContext.request.contextPath}/static/img/logo.png" width="159px" height="45px" alt=""></a>
+			<a href="${pageContext.request.contextPath}/index.jsp"><img src="${pageContext.request.contextPath}/static/img/logo.png" width="159px" height="45px" alt=""></a>
 		</div>
 		<div >
 			<!--start menu -->

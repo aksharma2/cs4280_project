@@ -242,7 +242,7 @@ public class AssignRoom extends HttpServlet {
             
            // boolean isConnectionMade = bookingservice.UpdateBooking(b,CheckInDate,CheckOutDate,MyBookingId );
              
-             boolean isConnectionMade = bookingservice.UpdateBooking(b,CheckInDate,CheckOutDate,MyBookingId );
+             boolean isConnectionMade = bookingservice.UpdateBooking(b,CheckInDate,CheckOutDate,MyBookingId,numR );
             
             
             if(isConnectionMade)

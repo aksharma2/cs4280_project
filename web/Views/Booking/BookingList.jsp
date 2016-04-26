@@ -37,13 +37,13 @@
 
                     <thead>
                     <tr>
-                        <th>Hotel ID</th>
-                        <th>Booking ID</th>
-                        <th>City</th>
-                        <th>User</th>
-                        <th>Num Of Rooms</th>
-                        <th>Room Assigned</th>
-                        <th>Edit Booking </th>
+                        <th><h1><b>Hotel ID</b><h1></th>
+                        <th><h1><b>Booking ID</h1></b></th>
+                        <th><h1><b>City</h1></b></th>
+                        <th><h1><b>User</h1></b></th>
+                        <th><h1><b>Num Of Rooms</h1></b></th>
+                        <th><h1></b>Room Assigned<h1></b></th>
+                        <th></h1></b>Edit Booking </h1></b></th>
                         
                     </tr>
                     </thead>
